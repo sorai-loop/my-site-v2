@@ -1,4 +1,4 @@
-export default function Stack(){
+export const Stack = () =>{
     return(
         <section id="stack-section" className="l-scroll__adjustment-top c-container">
                 <h2 className="c-heading">

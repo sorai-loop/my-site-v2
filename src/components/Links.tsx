@@ -1,4 +1,4 @@
-export default function Links(){
+export const Links = () =>{
     return(
         <section id="links-section" className="l-scroll__adjustment-top l-scroll__adjustment-bottom c-container">
             <h2 className="c-heading">

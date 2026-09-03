@@ -1,4 +1,4 @@
-export default function Hero(){
+export const Hero = () =>{
     return(
         <section id="name-section" className="l-scroll__adjustment-top c-container p-name">
             <div className="name-section-text">

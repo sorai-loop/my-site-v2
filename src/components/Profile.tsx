@@ -1,4 +1,4 @@
-export default function Profile(){
+export const Profile = () =>{
     return(
         <section id="profile-section" className="l-scroll__adjustment-top c-container p-profile">
                 <h2 className="c-heading">

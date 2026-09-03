@@ -1,12 +1,11 @@
 import './App.css';
-import Articles from './components/Articles';
-import './components/Header';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Links from './components/Links';
-import Profile from './components/Profile';
-import Stack from './components/Stack';
-import Works from './components/Works';
+import { Articles } from './components/Articles';
+import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { Links } from './components/Links';
+import { Profile } from './components/Profile';
+import { Stack } from './components/Stack';
+import { Works } from './components/Works';
 
 function App() {
   return (

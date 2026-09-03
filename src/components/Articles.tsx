@@ -1,4 +1,4 @@
-export default function Articles(){
+export const Articles = () => {
     return(
         <section id="articles-section" className="l-scroll__adjustment-top c-container">
                 <h2 className="c-heading">
