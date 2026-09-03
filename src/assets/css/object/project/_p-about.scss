@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+.p-about{
+    &__frame{
+        background-color: variable.$color-paper;
+        &--top{
+            border-top: variable.$border-size-md solid variable.$color-drafting-slate;
+        }
+
+        &--bottom{
+            border-bottom: variable.$border-size-md solid variable.$color-drafting-slate;
+        }
+
+        &--left{
+            border-left: variable.$border-size-md solid variable.$color-drafting-slate;
+        }
+
+        &--right{
+            border-right: variable.$border-size-md solid variable.$color-drafting-slate;
+        }
+    }
+}

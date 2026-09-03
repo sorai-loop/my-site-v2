@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+.p-name{
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    &__name{
+        font-family: variable.$font-display;
+        font-size: variable.$font-size-myname;
+
+        color: variable.$color-seal-red;
+    }
+
+    &__note{
+        font-family: variable.$font-base;
+        color: variable.$color-sepia-faded;
+        // デザイン的な役割が強いため大きさとして指定。
+        font-size: 1.2rem;
+    }
+
+    &__arrow-text{
+        font-family: variable.$font-base;
+    }
+}

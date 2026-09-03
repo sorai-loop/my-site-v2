@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+@keyframes noise-dance {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-1%, -2%); }
+    40% { transform: translate(2%, 1%); }
+    60% { transform: translate(-2%, -1%); }
+    80% { transform: translate(1%, 2%); }
+    100% { transform: translate(-1%, 0); }
+}
+
+.p-overlay{
+    background-size: cover;
+
+    pointer-events: none;
+    
+    &__noise{
+        // オーバーレイは200番台なので重複しないよう+10
+        z-index: calc(#{variable.$z-overlay} + 10);
+
+        //このファイルの位置からではなくstyle.cssの位置からの参照
+        background-image: url(../assets/noise.svg);
+
+        opacity: 0.03;
+
+        animation: noise-dance 0.2s steps(2) infinite;
+    }
+
+    &__stain{
+        z-index: calc(#{variable.$z-overlay} + 20);
+
+        background-image: url(../assets/stain.svg);
+
+        opacity: 1;
+    }
+}

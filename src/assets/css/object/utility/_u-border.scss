@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+.u-border{
+    &--top{
+        border-top: variable.$border-size-md solid variable.$color-text-main;
+    }
+
+    &--bottom{
+        border-bottom: variable.$border-size-md solid variable.$color-text-main;
+    }
+
+    &--left{
+        border-left: variable.$border-size-md solid variable.$color-text-main;
+    }
+
+    &--right{
+        border-right: variable.$border-size-md solid variable.$color-text-main;
+    }
+}

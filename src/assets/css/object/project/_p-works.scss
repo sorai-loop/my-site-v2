@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+.p-works{
+    &__grid{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+@use "./variable";
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    background-color: variable.$color-bg-base;
+    
+    color: variable.$color-carbon-black;
+}
+
+a {
+  text-decoration: none; /* デフォルトの紫と下線を消す */
+  color: variable.$color-drafting-slate;
+  transition: all 0.3s ease;
+}

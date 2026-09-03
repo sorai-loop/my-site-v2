@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@use "../foundation/variable";
+
+.l-overlay{
+    width: variable.$layout-width;
+    height: variable.$layout-height;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+

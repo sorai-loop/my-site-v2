@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+@use "../../foundation/variable";
+
+.p-stacks{
+    width: 100%;
+
+    &__category{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: variable.$layout-space-s;
+    }
+
+    &__title{
+        font-size: variable.$font-size-content-title;
+    }
+
+    &__list{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+
+        gap: variable.$layout-space-s;
+        
+        list-style: none;
+    }
+
+    &__item{
+        width: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__head{
+        width: 100%;
+        padding: 0 variable.$layout-space-md;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: baseline;
+
+        flex: 1;
+    }
+
+    &__icon{
+        // ついになるstack名の倍の大きさが欲しいので2倍で計算。
+        width: calc(#{variable.$font-size-item-title} * 2);
+        height: auto;
+        &--main{
+            fill: variable.$color-icon-main;
+        }
+        &--sub{
+            fill: variable.$color-icon-sub;
+        }
+        &--accent{
+            fill: variable.$color-icon-accent;
+        }
+    }
+
+    &__name{
+        width: auto;
+        height: 100%;
+
+        font-family: variable.$font-code;
+
+        font-size: variable.$font-size-item-title;
+    }
+
+    &__text{
+        width: 100%;
+        padding: 0 variable.$layout-space-md;
+        
+        padding-bottom: variable.$layout-space-s;
+        border-bottom: variable.$border-size-md solid variable.$color-parchment-line;
+        text-align: left;
+        font-family: variable.$font-base;
+        //letter-spacing:0.00001rem;
+        line-height: 1.2;
+    }
+}
