@@ -1,6 +1,6 @@
 import type { ArticleData } from "../types/article";
 
-export const ArticleCard = ({id, title, description, aHref, imgSrc, footerText}:ArticleData)=>{
+export const ArticleCard = ({title, description, aHref, imgSrc, footerText}:ArticleData)=>{
     return(
         <article className="c-card">
             <h3 className="c-card__title">
