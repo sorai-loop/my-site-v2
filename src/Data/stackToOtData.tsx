@@ -18,7 +18,7 @@ export const stackToOtData: StackData[] = [
         ),
         description: (
             <p className="p-stacks__text">
-                Git を用いたソースコードのバージョン管理が可能です。
+                Gitを用いたソースコードのバージョン管理，Projectsを用いたチーム内のタスク管理や関連操作が可能です．
             </p>
         ),
     },
@@ -34,7 +34,7 @@ export const stackToOtData: StackData[] = [
         ),
         description: (
             <p className="p-stacks__text">
-                Linuxマイコンへのプログラミングが可能です。
+                Linuxマイコンへのプログラミングが可能です．
             </p>
         ),
     },

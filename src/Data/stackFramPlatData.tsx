@@ -7,7 +7,7 @@ export const stackFramPlatsList: StackData[] = [
         name: "App Development",
         description: (
             <p className="p-stacks__text">
-                WPFや Java を用い、GUIを持つアプリケーションを開発できます。ユーザーの操作性と内部ロジックの両立を重視しています。<br />最近はReactを勉強中です。
+                WPFやJavaを用いたGUIを持つアプリケーションが開発できます．<br />Reactを勉強中です。
             </p>
         ),
     },
@@ -16,7 +16,7 @@ export const stackFramPlatsList: StackData[] = [
         name: "Game Development",
         description: (
             <p className="p-stacks__text">
-                C++ と SDL ライブラリを組み合わせた 2D ゲームのスクラッチ開発が可能です。エンジンに頼らない2Dゲームの開発が可能です。
+                C++とSDLライブラリを組み合わせたゲームエンジンに頼らない2Dゲームの開発が可能です．<br />現在，サークル内でUnityでのチーム開発を行っています．
             </p>
         ),
     },
@@ -26,7 +26,7 @@ export const stackFramPlatsList: StackData[] = [
         name: "Database Management",
         description: (
             <p className="p-stacks__text">
-                MySQL や SQLite をアプリケーションに組み込み、データ管理が可能です。
+                MySQLやSQLiteをアプリケーションに組み込み，データ管理が可能です．
             </p>
         ),
     },
@@ -36,7 +36,7 @@ export const stackFramPlatsList: StackData[] = [
         name: "Hardware Control",
         description: (
             <p className="p-stacks__text">
-                C言語を用いたマイコン制御により、ソフトウェアと物理デバイスを繋ぐ開発が可能です。ハードウェアの制約を考慮した最適化に関心があります。
+                C言語を用いたマイコン制御によりソフトウェアと物理デバイスを組み合わせた開発が可能です．
             </p>
         ),
     },

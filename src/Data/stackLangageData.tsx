@@ -14,7 +14,7 @@ export const stackLangagesList: StackData[] = [
         name: "/C",
         description: (
             <p className="p-stacks__text">
-                ポインタ操作やメモリ管理、アルゴリズムの実装など、低レイヤーの基礎を理解しています。マイコン制御等のハードウェアに近い領域での開発が可能です。
+                ポインタ操作やアルゴリズムの作成，マイコンへのプログラミングが可能です．
             </p>
         )
     },
@@ -33,7 +33,7 @@ export const stackLangagesList: StackData[] = [
         name: "/C++",
         description: (
             <p className="p-stacks__text">
-                SDLライブラリを用いたゲーム制作を通じ、描画処理や衝突判定などのコアロジックを構築できます。パフォーマンスを意識したオブジェクト指向開発を実践しています。
+                SDLライブラリを用いたゲーム作成を行ったことがあり，オブジェクト指向プログラミングでの衝突判定等を必要とするゲームの制作が可能です．
             </p>
         )
     },
@@ -50,7 +50,7 @@ export const stackLangagesList: StackData[] = [
         name: "/C#",
         description: (
             <p className="p-stacks__text">
-                WPFを用いたデスクトップアプリ開発が可能です。TCP/IPを用いた非同期のチャットアプリケーション制作など、ネットワーク通信の実装経験があります。
+                WPFを用いたデスクトップアプリ開発が可能です．TCP/IPを用いた非同期のチャットアプリケーション制作など、ネットワーク通信の実装経験があります．
             </p>
         )
     },
@@ -69,7 +69,7 @@ export const stackLangagesList: StackData[] = [
         name: "/Java",
         description: (
             <p className="p-stacks__text">
-                オブジェクト指向の基本原則に基づいたシステム開発が可能です。
+                オブジェクト指向の基本原則に基づいたシステム開発が可能です．
             </p>
         )
     },
@@ -84,7 +84,7 @@ export const stackLangagesList: StackData[] = [
         name: "/SQL",
         description: (
             <p className="p-stacks__text">
-                MySQLやSQLiteを用いたリレーショナルデータベースの操作が可能です。データの整合性を意識したテーブル設計や基本的なCRUD操作を習得しています。
+                MySQLやSQLiteを用いたリレーショナルデータベースの操作が可能です．データベースの適切な設計はまだ怪しいです．
             </p>
         )
     },
