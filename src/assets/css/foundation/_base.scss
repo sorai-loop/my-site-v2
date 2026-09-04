@@ -7,13 +7,17 @@ html{
 }
 
 body{
+    background-color: variable.$color-bg-base;
+    
+    color: variable.$color-carbon-black;
+}
+
+#root{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    background-color: variable.$color-bg-base;
-    
-    color: variable.$color-carbon-black;
+    align-items: center;
 }
 
 a {

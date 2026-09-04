@@ -8,9 +8,7 @@ export const WorkCord = ({title, description, imgSrc , footerText}:WorkData) =>{
             </h3>
             <div className="c-card__pair">
                 <div className="c-card__text">
-                    <p>
-                        {description}
-                    </p>
+                    {description}
                 </div>
                 <img src={imgSrc} className="c-card__img" />
             </div>

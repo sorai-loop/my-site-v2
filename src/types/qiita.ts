@@ -8,5 +8,5 @@ export type QiitaArticle={
     url:string;
     likes_count:number;
     tags:QiitaTag[];
-    created__at:string;
+    created_at:string;
 }

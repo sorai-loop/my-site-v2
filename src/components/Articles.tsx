@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { QiitaArticle } from "../types/qiita";
+import { ArticleCard } from "./ArticleCard";
 
 export const Articles = () => {
     const [article ,setArticles] = useState<QiitaArticle[]>([]);
@@ -45,31 +46,9 @@ export const Articles = () => {
 
                 {error && <p style={{color:"red"}}>{error}</p>}
 
-                {!loading && !error && article.map(article =>{
-                    const tagsString = article.tags.map((tag) => tag.name).join("/");
-
-                    return(
-                        <article className="c-cord" key={article.id}>
-                            <h3 className="c-cord__title">
-                                {article.title}
-                            </h3>
-                            <div className="c-card__pair">
-                                <div className="c-card__text">
-                                    <p>
-                                        投稿日：{new Date(article.created__at).toLocaleDateString("ja-JP")} <br />
-                                        ♥ {article.likes_count}いいね
-                                    </p>
-                                </div>
-                                <a href={article.url} target="_blank">
-                                    <img className="c-card__img" src="https://cdn.qiita.com/assets/qiita-fb-2887e7b4aad86fc8c25dd840c86851cb.png" alt={article.title} />
-                                </a>
-                            </div>
-                            <div className="c-cord__footer">
-                                {tagsString}
-                            </div>
-                        </article>
-                    );
-                })}
+                {!loading && !error && article.map(article =>(
+                    <ArticleCard key={article.id} article={article} />
+                ))}
             </div>
         </section>
         // <section id="articles-section" className="l-scroll__adjustment-top c-container">
