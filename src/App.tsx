@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Links } from './components/Links';
 import { Profile } from './components/Profile';
+import { Sandbox } from './components/Sandbox';
 import { Stack } from './components/Stack';
 import { Works } from './components/Works';
 
@@ -35,6 +36,7 @@ function App() {
             <Stack />
             <Profile />
             <Links />
+            <Sandbox />
         </main>
         <div className="l-overlay p-overlay p-overlay__noise"></div>
         <div className="l-overlay p-overlay p-overlay__stain"></div>
