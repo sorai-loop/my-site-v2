@@ -1,0 +1,83 @@
+.gateMain{
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawGateMain 3s ease-in-out forwards;
+}
+
+.gateSub{
+    stroke-dasharray: 8;
+    stroke-dashoffset: 8;
+    animation: drawGateSub 0.7s ease-in-out forwards;
+}
+
+.arrow1{
+    stroke-dasharray: 6;
+    stroke-dashoffset: 6;
+    animation: drawArrow1 0.5s ease-in-out forwards;
+}
+
+.arrow2{
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    animation: drawArrow2 0.5s ease-in-out forwards;
+}
+
+.jin{
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawJin 4s ease-in-out forwards;
+}
+
+@keyframes drawGateMain {
+    0% {
+        stroke-dashoffset: 400;
+    }
+    50% {
+        stroke-dashoffset: 175;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawGateSub {
+    0% {
+        stroke-dashoffset: 8;
+    }
+    100% {
+        stroke-dashoffset: -2;
+    }
+}
+
+@keyframes drawArrow1{
+    0%{
+        stroke-dashoffset: 6;
+    }
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawArrow2{
+    0%{
+        stroke-dashoffset: 20;
+    }
+    50%{
+        stroke-dashoffset: 14;
+    }
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawJin{
+    0%{
+        stroke-dashoffset: 400;
+    }
+    50%{
+        stroke-dashoffset: 20;
+    }
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
