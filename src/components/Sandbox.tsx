@@ -1,5 +1,5 @@
 import { Rect } from "../svgtester/Rect/Rect";
-
+import { Fire } from "../svgtester/magic/Fire";
 export const Sandbox =()=>{
     return(
         <div style={{ 
@@ -9,10 +9,10 @@ export const Sandbox =()=>{
             flexDirection: 'column', 
             alignItems: 'center',
             gap: '20px',
-            backgroundColor: '#f9f9f9' 
             }}>
             <h2>SVG & CSS Modules Playground</h2>
             <Rect />
+            <Fire />
         </div>
     );
 };
