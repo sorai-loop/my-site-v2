@@ -1,0 +1,19 @@
+<svg viewBox="-1 -1 52 52" xmlns="http://www.w3.org/2000/svg">
+    <!-- <g fill="none" stroke="black" stroke-width="0.4">
+        <circle cx="25" cy="25" r="15" />
+        <path id="guide" stroke-dasharray="25" transform="rotate(45,25,25)"
+            d="M25 25 v18" />
+        <use href="#guide" transform="rotate(90,25,25)" />
+        <use href="#guide" transform="rotate(180,25,25)" />
+        <use href="#guide" transform="rotate(270,25,25)" />
+    </g> -->
+    <path fill="none" stroke="black" stroke-width="0.5" stroke-linecap="square"
+        d="M25 26 l-10 -10" />
+    <path fill="none" stroke="black" stroke-width="0.5" stroke-linecap="square"
+        d="M25 26 l10 -10" />
+
+    <path fill="none" stroke="black" stroke-width="0.5" stroke-linecap="square"
+        d="M25 31 l-10 -10" />
+    <path fill="none" stroke="black" stroke-width="0.5" stroke-linecap="square"
+        d="M25 31 l10 -10" />
+</svg>
