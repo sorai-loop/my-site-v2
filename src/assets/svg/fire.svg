@@ -1,0 +1,18 @@
+<svg viewBox="0 0 101 101" xmlns="http://www.w3.org/2000/svg">
+    <path fill="none" stroke="black"
+        d="M50,40 L41.34,55 L58.66,55 Z" />
+    <path id="gate" stroke="black" stroke-dasharray="8" stroke-dashoffset="-2"
+        d="M50,50 v8" />
+    <use href="#gate" transform="rotate(120,50,50)" />
+    <use href="#gate" transform="rotate(240,50,50)" />
+    <g id="arrow" stroke="black" stroke-width="0.7">
+        <path d="M47 30 h6" />
+        <path d="M50 30 v6" />
+        <path fill="none"
+            d="M48 33 l2 3 l2 -3" />
+    </g>
+    <use href="#arrow" transform="rotate(90,50,50)" />
+    <use href="#arrow" transform="rotate(180,50,50)" />
+    <use href="#arrow" transform="rotate(270,50,50)" />
+    <circle fill="none" stroke="black" stroke-width="0.7" cx="50" cy="50" r="25"/>
+</svg>
