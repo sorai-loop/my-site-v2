@@ -1,4 +1,4 @@
-import { HeroSection } from "./assets/components/HeroSection"
+import { HeroSection } from "./assets/components/section/HeroSection"
 
 function App() {
 
