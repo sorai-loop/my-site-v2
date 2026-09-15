@@ -1,4 +1,4 @@
-import { ArticleSection } from './components/section/ArticleSection';
+import { ArticlesSection } from './components/section/ArticlesSection';
 import { HeroSection } from './components/section/HeroSection';
 import { ProfileSection } from './components/section/ProfileSection';
 import { StacksSection } from './components/section/StacksSecrion';
@@ -13,7 +13,7 @@ function App() {
       <HeroSection />
       <TOCSection />
       <WorksSection />
-      <ArticleSection />
+      <ArticlesSection />
       <StacksSection />
       <ProfileSection />
     </>
