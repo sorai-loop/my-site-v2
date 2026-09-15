@@ -1,7 +1,7 @@
 export const StacksSection=()=>{
     return(
         <>
-            <h2>スタックセクションだよ！</h2>
+            <h2 id="stacksSection">スタックセクションだよ！</h2>
         </>
     )
 }

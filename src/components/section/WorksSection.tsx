@@ -1,7 +1,7 @@
 export const WorksSection = () =>{
     return(
         <>
-            <h2>Worksだよ！</h2>
+            <h2 id="worksSection">Works</h2>
         </>
     );
 }
