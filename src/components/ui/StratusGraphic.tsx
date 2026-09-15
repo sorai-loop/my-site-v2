@@ -1,4 +1,4 @@
-import CloudSVG from '../../svg/stratuscloud.svg?react';
+import CloudSVG from '../../assets/svg/stratuscloud.svg?react';
 
 export const StratusGraphic = () =>{
     return(
