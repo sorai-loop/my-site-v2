@@ -1,0 +1,18 @@
+.mozi{
+    fill: none;
+    font-size: 100px;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawmozi 10s ease-in-out forwards;
+}
+@keyframes drawmozi {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    50% {
+        stroke-dashoffset: 400;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
