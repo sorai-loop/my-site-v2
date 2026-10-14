@@ -1,9 +1,9 @@
 import SignPostSVG from '../../assets/svg/signpost.svg?react';
 
-export const TOCSection = () =>{
+export const SignSection = () =>{
     return(
         <>
-            <ul>
+            <ul id='signSection'>
                 <a href='#worksSection'>Works</a>
                 <a href='#articlesSection'>Articles</a>
                 <a href='#stacksSection'>Stacks</a>

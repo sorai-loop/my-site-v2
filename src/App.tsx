@@ -1,8 +1,8 @@
 import { ArticlesSection } from './components/section/ArticlesSection';
 import { HeroSection } from './components/section/HeroSection';
 import { ProfileSection } from './components/section/ProfileSection';
+import { SignSection } from './components/section/SignSection';
 import { StacksSection } from './components/section/StacksSecrion';
-import { TOCSection } from './components/section/TOCSection';
 import { WorksSection } from './components/section/WorksSection';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <>
       <h1>Hello World !</h1>
       <HeroSection />
-      <TOCSection />
+      <SignSection />
       <WorksSection />
       <ArticlesSection />
       <StacksSection />
