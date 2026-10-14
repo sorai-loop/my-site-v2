@@ -1,0 +1,16 @@
+:root{
+    --font-display:           "Shippori Mincho", serif;
+    --font-header:            "IM Fell English", serif;
+    --font-title:             "Sawarabi Mincho", serif;
+    --font-base:              "Klee One", cursive;
+    --font-code:              "JetBrains Mono", monospace;
+    --font-handwriting:       "Homemade Apple", cursive;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
