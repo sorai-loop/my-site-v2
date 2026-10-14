@@ -2,7 +2,7 @@ import SignPostSVG from '../../assets/svg/signpost.svg?react';
 
 export const SignSection = () =>{
     return(
-        <>
+        <section>
             <ul id='signSection'>
                 <a href='#worksSection'>Works</a>
                 <a href='#articlesSection'>Articles</a>
@@ -10,6 +10,6 @@ export const SignSection = () =>{
                 <a href='#profileSection'>Profile</a>
             </ul>
             <SignPostSVG />
-        </>
+        </section>
     );
 }
