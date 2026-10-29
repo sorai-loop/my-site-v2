@@ -52,8 +52,11 @@ soraiの文字と雲のsvgを2つくらい配置する。
 - SVG
 - Qiita API
 ### SVG
-ベースとなる.svgを`/assets/svg`に入れる。汎用性を高めるため、SVG内の色の指定は`stroke="var{--colour, base}"`のように書き、`/ui`内でコンポーネントとして統合する。
+ベースとなる.svgを`src/assets/svg`に入れる。汎用性を高めるため、SVG内の色の指定は`stroke="var(--colour, base)
+"`もしくは`currentColor`（親要素の色を参照）のように書き、`src/ui`内でコンポーネントとして統合する。
 動的な処理を設けなくてはいけない場合、uiパーツと捉え、ベースの.svgを設けずに`/ui`のコンポーネントとしてreturnにインラインで書き込む。
+画像サイズとしてのwidth, heigthは使わず、viewBoxを使用する。
+命名：foobarGraphicかfoobarIconの形とする。
 ## アセット
 弊サイトで使用するSVGはすべて自作する。
 ## デザイン案
