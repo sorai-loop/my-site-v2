@@ -17,7 +17,7 @@ soraiの文字と雲のsvgを2つくらい配置する。
 目次。
 モバイルだと他セクションと同じで画面サイズ最大だが、PC等のある程度大きい画面ならそれ以降常に画面左に常駐するような形にする。
 ### Works
-これまで作ったものを配置する。
+これまで作ったものを配置する。}
 現状いいデザインが思いついていない。
 ### Articles
 これまで投稿した記事を飾る。
@@ -52,10 +52,9 @@ soraiの文字と雲のsvgを2つくらい配置する。
 - SVG
 - Qiita API
 ### SVG
-ベースとなる.svgを`src/assets/svg`に入れる。汎用性を高めるため、SVG内の色の指定は`stroke="var(--colour, base)
-"`もしくは`currentColor`（親要素の色を参照）のように書き、`src/ui`内でコンポーネントとして統合する。
+ベースとなる.svgを`src/assets/svg`に入れる。汎用性を高めるため、SVG内の色の指定は`stroke="var(--colour, base)`もしくは`currentColor`（親要素の色を参照）のように書き、`src/ui`内でコンポーネントとして統合する。
 動的な処理を設けなくてはいけない場合、uiパーツと捉え、ベースの.svgを設けずに`/ui`のコンポーネントとしてreturnにインラインで書き込む。
-画像サイズとしてのwidth, heigthは使わず、viewBoxを使用する。
+画像サイズとしてのwidth, heightは使わず、viewBoxを使用する。
 命名：foobarGraphicかfoobarIconの形とする。
 ## アセット
 弊サイトで使用するSVGはすべて自作する。
@@ -68,3 +67,13 @@ soraiの文字と雲のsvgを2つくらい配置する。
 
 ### All
 <img width="400" height="auto" alt="my-site-concept" src="https://github.com/user-attachments/assets/869e165a-af72-4bbf-93ed-5cf61828baee" />
+
+## Lintに書きたいもの
+### ファイルの命名規則
+- src/components/ui直下のファイルは`*Graphic.tsx`か`*Icon,tsx`のみとする。
+- src/components/section直下は`*Section.tsx`のみとする。
+- src/assets/svg直下のファイルはケバブケースのみとする。
+### .tsx
+- svgの直接imoprtを禁止する。
+- 装飾目的のSVGオブジェクトに対して、`aria-hidden="true"`を付与する。
+- クリック可能なアイコンに対して`aria^label`を付与する。
