@@ -70,10 +70,12 @@ soraiの文字と雲のsvgを2つくらい配置する。
 
 ## Lintに書きたいもの
 ### ファイルの命名規則
-- src/components/ui直下のファイルは`*Graphic.tsx`か`*Icon,tsx`のみとする。
+- src/components/ui直下のファイルは`*Graphic.tsx`か`*Icon.tsx`のみとする。
 - src/components/section直下は`*Section.tsx`のみとする。
-- src/assets/svg直下のファイルはケバブケースのみとする。
+- src/assets/svg直下のファイルはパスカルケースのみとする。
 ### .tsx
-- svgの直接imoprtを禁止する。
+- svgの直接importを禁止する。
 - 装飾目的のSVGオブジェクトに対して、`aria-hidden="true"`を付与する。
-- クリック可能なアイコンに対して`aria^label`を付与する。
+- クリック可能なアイコンに対して`aria-label`を付与する。
+### .module.css
+- 存在しないクラス名を.tsxで参照した場合、エラーとする。
