@@ -1,5 +1,3 @@
-import SignPostSVG from '../../assets/svg/signpost.svg?react';
-
 export const SignSection = () =>{
     return(
         <section>
@@ -9,7 +7,6 @@ export const SignSection = () =>{
                 <a href='#stacksSection'>Stacks</a>
                 <a href='#profileSection'>Profile</a>
             </ul>
-            <SignPostSVG />
         </section>
     );
 }
