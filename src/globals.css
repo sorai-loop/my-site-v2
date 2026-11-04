@@ -1,5 +1,8 @@
 :root {
-  /* --- Fonts Name --- */
+  /* ==========================================================================
+     1. Fonts
+     ========================================================================== */
+  /* --- Font Families --- */
   --font-display: "Shippori Mincho", serif;
   --font-header: "IM Fell English", serif;
   --font-title: "Sawarabi Mincho", serif;
@@ -7,7 +10,7 @@
   --font-code: "JetBrains Mono", monospace;
   --font-handwriting: "Homemade Apple", cursive;
 
-  /* --- Font Size --- */
+  /* --- Font Sizes --- */
   --font-size-xs: 0.5rem;
   --font-size-s: 0.85rem;
   --font-size-md: 1rem;
@@ -16,7 +19,7 @@
   --font-size-2xl: 3rem;
   --font-size-3xl: 6rem;
 
-  /* 役割ごとのフォントサイズ */
+  /* --- Font Sizes --- */
   --font-size-myname: var(--font-size-3xl);
   --font-size-section-title: var(--font-size-2xl);
   --font-size-content-title: var(--font-size-xl);
@@ -24,31 +27,40 @@
   --font-size-body: var(--font-size-md);
   --font-size-caption: var(--font-size-s);
 
-  /* --- Colors (Material / Concept) --- */
-  --color-paper: #fffdf4;
-  --color-carbon-black: #36332f; /* 石墨インク（手書きメイン色） */
-  --color-seal-red: #45312e; /* 封蝋・公印の赤 */
-  --color-iron-gall: #2b2d31; /* 没食子インク（印字用） */
-  --color-sepia-faded: #7a6c5d; /* 褪色したセピア（補足・注釈用） */
-  --color-parchment-line: #e1d8ba; /* ガイド線 */
-  --color-engram-teal: #6c9997; /* 紙の折り目・影 */
-  --color-drafting-slate: #525b68; /* 製図用スレート */
+  /* ==========================================================================
+     2. Colors
+     ========================================================================== */
+  /* --- 素材パレット --- */
+  --palette-paper: #fffdf4;           /* 羊皮紙の地色 */
+  --palette-carbon-black: #36332f;    /* 石墨インク（手書きのメイン色） */
+  --palette-iron-gall: #2b2d31;       /* 没食子インク（印字用の硬質な黒） */
+  --palette-seal-red: #45312e;        /* 封蝋・公印の赤（落款風アクセント） */
+  --palette-sepia-faded: #7a6c5d;     /* 褪色したセピア（補足・注釈用） */
+  --palette-drafting-slate: #525b68;  /* 製図用スレート（金属器で引かれた硬質な線） */
+  --palette-parchment-line: #e1d8ba;  /* ガイド線（紙に近いごく薄い色） */
 
-  /* --- Colors (Role) --- */
-  --color-bg-base: #fffdf4;
-  --color-text-main: #2a2a2a;
-  --color-text-sub: #414141;
-  --color-accent: #00fdce;
-  --color-highlight: #dbff03;
-  --color-warning: #ff6128;
-  --color-accent-glow: rgba(0, 242, 255, 0.3);
+  /* アイコン用パレット */
+  --palette-amber-dark: #574938;
+  --palette-amber-main: #975600;
+  --palette-amber-light: #d49853;
 
-  /* --- Icons --- */
-  --color-icon-main: #975600;
-  --color-icon-sub: #574938;
-  --color-icon-accent: #d49853;
+  /* --- セマンティック --- */
+  --color-bg-base: var(--palette-paper);
+  --color-text-main: var(--palette-carbon-black);
+  --color-text-sub: var(--palette-sepia-faded);
+  --color-heading: var(--palette-iron-gall);
+  --color-accent: var(--palette-seal-red);
+  --color-border: var(--palette-drafting-slate);
+  --color-border-subtle: var(--palette-parchment-line);
 
-  /* --- Layout & Border --- */
+  /* アイコン用途 */
+  --color-icon-main: var(--palette-amber-main);
+  --color-icon-sub: var(--palette-amber-dark);
+  --color-icon-accent: var(--palette-amber-light);
+
+  /* ==========================================================================
+     3. Layout & Border
+     ========================================================================== */
   --layout-width-max: 1200px;
   --border-size-md: 1px;
 }
