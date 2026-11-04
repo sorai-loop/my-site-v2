@@ -1,11 +1,29 @@
 .nimbus{
-    position: relative;
-    top: 0;
-    left: 0;
+    width: 85vh;
+
+    position: absolute;
+    top: 40%;
+    left: -70%;
 }
 
 .stratus{
+    width: 55vh;
+
+    position: absolute;
+    top: 40%;
+    right: -55%;
+}
+
+.cintent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section{
     position: relative;
-    top: 0;
-    right: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
