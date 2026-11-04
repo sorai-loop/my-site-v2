@@ -73,6 +73,11 @@
   padding: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
@@ -87,7 +92,9 @@ a {
 }
 
 section {
+  position: relative;
   height: 100vh;
+  overflow-x: hidden;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
