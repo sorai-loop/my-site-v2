@@ -1,0 +1,36 @@
+@keyframes stainDrift {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(1.2%, -0.8%) scale(1.015) rotate(0.3deg);
+  }
+  50% {
+    transform: translate(-0.8%, 1.2%) scale(1.025) rotate(-0.2deg);
+  }
+  75% {
+    transform: translate(-1.2%, -0.6%) scale(1.01) rotate(0.2deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+}
+
+.container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  overflow: hidden;
+}
+
+.stain {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  opacity: 0.8;
+  animation: stainDrift 18s ease-in-out infinite;
+}
