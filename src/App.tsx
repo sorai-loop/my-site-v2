@@ -10,14 +10,14 @@ import { StainGraphic } from './components/ui/StainGraphic';
 function App() {
   return (
     <>
-      <StainGraphic aria-hidden="true" />
-      <NoiseGraphic aria-hidden="true" />
       <HeroSection />
       <SignSection />
       <WorksSection />
       <ArticlesSection />
       <StacksSection />
       <ProfileSection />
+      <StainGraphic aria-hidden="true" />
+      <NoiseGraphic aria-hidden="true" />
     </>
   );
 }
