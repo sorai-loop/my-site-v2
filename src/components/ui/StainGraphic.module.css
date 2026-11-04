@@ -19,16 +19,18 @@
 .container {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 99;
+  z-index: 220;
   overflow: hidden;
 }
 
 .stain {
+  display: block;
   position: absolute;
-  inset: -8%;
+  top: -8%;
+  left: -8%;
   width: 116%;
   height: 116%;
   opacity: 0.8;
