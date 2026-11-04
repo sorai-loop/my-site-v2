@@ -1,13 +1,20 @@
 import { NimbusGrapic } from "../ui/NimbusGraphic";
 import { StratusGraphic } from "../ui/StratusGraphic";
+import styles from "./HeroSection.module.css";
 
 export const HeroSection = () =>{
     return(
         <section>
-            <h1>Sorai</h1>
-            <a href='#signSection'>VIEW_DETAILS</a>
-            <StratusGraphic />
-            <NimbusGrapic />
+            <div className={styles.cintent}>
+                <h1>Sorai</h1>
+                <a href='#signSection'>VIEW_DETAILS</a>
+            </div>
+            <div className={styles.nimbus}>
+                <NimbusGrapic/>
+            </div>
+            <div className={styles.stratus}>
+                <StratusGraphic aria-hidden="true"/>
+            </div>
         </section>
     )
 }
