@@ -1,0 +1,39 @@
+@keyframes noiseDance {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-1%, -2%);
+  }
+  40% {
+    transform: translate(2%, 1%);
+  }
+  60% {
+    transform: translate(-2%, -1%);
+  }
+  80% {
+    transform: translate(1%, 2%);
+  }
+  100% {
+    transform: translate(-1%, 0);
+  }
+}
+
+.container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.noise {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  opacity: 0.04;
+  animation: noiseDance 0.2s steps(2) infinite;
+}
