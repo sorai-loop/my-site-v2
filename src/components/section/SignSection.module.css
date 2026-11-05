@@ -1,3 +1,17 @@
-.test{
-    fill:red;
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.signWrapper {
+  height: 75vh;
+  max-height: 650px;
+  width: auto;
+  aspect-ratio: 85 / 207;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

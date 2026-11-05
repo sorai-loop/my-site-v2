@@ -1,12 +1,17 @@
-export const SignSection = () =>{
-    return(
-        <section>
-            <ul id='signSection'>
-                <a href='#worksSection'>Works</a>
-                <a href='#articlesSection'>Articles</a>
-                <a href='#stacksSection'>Stacks</a>
-                <a href='#profileSection'>Profile</a>
-            </ul>
-        </section>
-    );
-}
+import { SignPostGraphic } from '../ui/SignPostGraphic';
+import styles from './SignSection.module.css';
+
+export const SignSection = () => {
+  return (
+    <section id="signSection" className={styles.section}>
+      <div className={styles.signWrapper}>
+        <SignPostGraphic
+          works={{ label: 'Works', href: '#worksSection' }}
+          articles={{ label: 'Articles', href: '#articlesSection' }}
+          stacks={{ label: 'Stacks', href: '#stacksSection' }}
+          profile={{ label: 'Profile', href: '#profileSection' }}
+        />
+      </div>
+    </section>
+  );
+};
