@@ -14,10 +14,18 @@
     right: -55%;
 }
 
-.cintent{
+.content{
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    transform: translateY(-3vh);
+}
+
+h1{
+    font-size: 6rem;
+    font-family: Shippori Mincho, serif;
+
 }
 
 section{

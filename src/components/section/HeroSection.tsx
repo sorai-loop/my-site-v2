@@ -5,7 +5,7 @@ import styles from "./HeroSection.module.css";
 export const HeroSection = () =>{
     return(
         <section>
-            <div className={styles.cintent}>
+            <div className={styles.content}>
                 <h1>Sorai</h1>
                 <a href='#signSection'>VIEW_DETAILS</a>
             </div>
