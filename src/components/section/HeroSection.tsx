@@ -4,9 +4,9 @@ import styles from "./HeroSection.module.css";
 
 export const HeroSection = () =>{
     return(
-        <section>
+        <section className={styles.hero}>
             <div className={styles.content}>
-                <h1>Sorai</h1>
+                <h1 className={styles.title}>Sorai</h1>
                 <a href='#signSection'>VIEW_DETAILS</a>
             </div>
             <div className={styles.nimbus}>

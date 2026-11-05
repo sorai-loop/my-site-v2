@@ -22,13 +22,13 @@
     transform: translateY(-3vh);
 }
 
-h1{
+.title{
     font-size: 6rem;
     font-family: Shippori Mincho, serif;
 
 }
 
-section{
+.hero{
     position: relative;
     overflow: hidden;
     display: flex;
