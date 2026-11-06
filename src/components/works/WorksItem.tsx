@@ -1,6 +1,6 @@
 import type { WorkItem } from '../../types/work';
-import { resolveImage } from '../../utils/resolveImage';
 import { DownArrowIcon } from '../ui/DownArrowIcon';
+import { WorksDetail } from './WorksDetail';
 import styles from './WorksItem.module.css';
 
 export type WorksItemProps = {
@@ -19,7 +19,6 @@ export const WorksItem = ({
   const contentId = `work-content-${work.id}`;
   const headerId = `work-header-${work.id}`;
   const issueNum = String(index + 1).padStart(3, '0');
-  const imageSrc = resolveImage(work.imagePath ?? work.imageUrl);
 
   return (
     <li className={styles.item}>
@@ -61,94 +60,13 @@ export const WorksItem = ({
       </button>
 
       {isOpen && (
-        <div
-          id={contentId}
-          role="region"
-          aria-labelledby={headerId}
-          className={styles.content}
-        >
-          <div className={styles.contentBanner}>
-            <span className={styles.bannerTag}>SPECIAL DISPATCH</span>
-            <span className={styles.bannerDivider}>—</span>
-            <span className={styles.bannerNote}>
-              OFFICIAL RECORD OF REQUISITION & DEVELOPMENT
-            </span>
-          </div>
-
-          <div className={styles.articleBody}>
-            <figure className={styles.mediaColumn}>
-              <div className={styles.imageFrame}>
-                {imageSrc ? (
-                  <img
-                    src={imageSrc}
-                    alt={`${work.title}の図面記録`}
-                    className={styles.workImage}
-                  />
-                ) : (
-                  <div className={styles.imagePlaceholder}>
-                    <span className={styles.sketchLabel}>[ SKETCH & DIAGRAM ]</span>
-                    <span className={styles.sketchNote}>Plate {index + 1}. Prototype View</span>
-                  </div>
-                )}
-              </div>
-              <figcaption className={styles.caption}>
-                Fig. {issueNum} — Archival blueprint documentation for {work.title}.
-              </figcaption>
-            </figure>
-
-            <div className={styles.textColumn}>
-              <p className={styles.description}>{work.description}</p>
-
-              {work.stacks.length > 0 && (
-                <div className={styles.stacksSection}>
-                  <h4 className={styles.stacksHeading}>
-                    ACQUIRED STACKS & APPARATUS
-                  </h4>
-                  <ul className={styles.stacksList}>
-                    {work.stacks.map((stack) => (
-                      <li key={stack} className={styles.stackTag}>
-                        {stack}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className={styles.actionSection}>
-                <div className={styles.actionLinks}>
-                  {work.siteUrl && (
-                    <a
-                      href={work.siteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.actionLink}
-                    >
-                      <span className={styles.linkPrefix}>▶</span>
-                      <span>VIEW EXHIBIT</span>
-                    </a>
-                  )}
-                  {work.githubUrl && (
-                    <a
-                      href={work.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.actionLink}
-                    >
-                      <span className={styles.linkPrefix}>◈</span>
-                      <span>SOURCE BLUEPRINT</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <footer className={styles.articleFooter}>
-            <span className={styles.footerColophon}>
-              LOGGED BY SORAI ATELIER • DISPATCH #{issueNum}
-            </span>
-          </footer>
-        </div>
+        <WorksDetail
+          work={work}
+          index={index}
+          issueNum={issueNum}
+          contentId={contentId}
+          headerId={headerId}
+        />
       )}
     </li>
   );
