@@ -1,0 +1,9 @@
+<svg viewBox="-1 -1 52 19 " xmlns="http://www.w3.org/2000/svg">
+    <rect fill="none" stroke="black"
+    rx="5" ry="5" width="50" height="17" />
+    <text font-size="0.5rem" stroke="black"
+    text-anchor="middle" dominant-baseline="middle"
+    x="25" y="8.5">
+        TEMPLATE
+    </text>
+</svg>
