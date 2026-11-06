@@ -6,6 +6,7 @@ export const SignSection = () => {
     <section id="signSection" className={styles.section}>
       <div className={styles.signWrapper}>
         <SignPostGraphic
+          aria-hidden="false"
           works={{ label: 'Works', href: '#worksSection' }}
           articles={{ label: 'Articles', href: '#articlesSection' }}
           stacks={{ label: 'Stacks', href: '#stacksSection' }}
