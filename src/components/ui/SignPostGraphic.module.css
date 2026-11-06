@@ -20,6 +20,7 @@
   font-family: var(--font-header, serif);
   font-size: 7px;
   fill: currentColor;
+  fill-opacity: 1;
   text-anchor: middle;
   dominant-baseline: central;
   letter-spacing: 0.05em;

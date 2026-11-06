@@ -50,7 +50,13 @@ export const SignPostGraphic = ({
             >
               <path d="m15 58 h55 l15 -10 l-15 -10 h-55 v20 z" />
               <path d="M15 58 l-2 -2 v-20 h55 l2 2 m-55 0 l-2 -2" />
-              <text x="45" y="48" className={styles.plateText}>
+              <text
+                x="45"
+                y="48"
+                className={styles.plateText}
+                fill="currentColor"
+                fillOpacity={1}
+              >
                 {works.label}
               </text>
             </a>
@@ -66,7 +72,13 @@ export const SignPostGraphic = ({
             >
               <path d="M15 60 v20 h55 l15 -10 l-15 -10 h-55 z" />
               <path d="M15 60 l2 -2 h55 l15 10 l-2 2 m-15 -10 l2 -2" />
-              <text x="45" y="70" className={styles.plateText}>
+              <text
+                x="45"
+                y="70"
+                className={styles.plateText}
+                fill="currentColor"
+                fillOpacity={1}
+              >
                 {articles.label}
               </text>
             </a>
@@ -82,7 +94,13 @@ export const SignPostGraphic = ({
             >
               <path d="M75 103 h-55 l-15 -10 l15 -10 h55 v20 z" />
               <path d="M75 103 l2 -2 v-20 h-55 l-2 2 m55 0 l2 -2" />
-              <text x="45" y="93" className={styles.plateText}>
+              <text
+                x="45"
+                y="93"
+                className={styles.plateText}
+                fill="currentColor"
+                fillOpacity={1}
+              >
                 {stacks.label}
               </text>
             </a>
@@ -98,7 +116,13 @@ export const SignPostGraphic = ({
             >
               <path d="M75 140 h-55 l-15 -10 l15 -10 h55 v20 z" />
               <path d="M75 140 l2 -2 v-20 h-55 l-2 2 m55 0 l2 -2" />
-              <text x="45" y="130" className={styles.plateText}>
+              <text
+                x="45"
+                y="130"
+                className={styles.plateText}
+                fill="currentColor"
+                fillOpacity={1}
+              >
                 {profile.label}
               </text>
             </a>
@@ -114,7 +138,13 @@ export const SignPostGraphic = ({
             >
               <path d="m15 178 h55 l15 -10 l-15 -10 h-55 v20 z" />
               <path d="M15 178 l-2 -2 v-20 h55 l2 2 m-55 0 l-2 -2" />
-              <text x="45" y="168" className={styles.plateText}>
+              <text
+                x="45"
+                y="168"
+                className={styles.plateText}
+                fill="currentColor"
+                fillOpacity={1}
+              >
                 {extra.label}
               </text>
             </a>
