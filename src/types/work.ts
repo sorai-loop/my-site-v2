@@ -6,6 +6,7 @@ export type WorkItem = {
   period: string;
   description: string;
   stacks: string[];
+  imagePath: string | null;
   imageUrl?: string;
   siteUrl?: string;
   githubUrl?: string;

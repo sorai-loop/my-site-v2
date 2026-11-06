@@ -8,6 +8,7 @@ export const WORKS_DATA: WorkItem[] = [
     description:
       '冒険者の手記をコンセプトとした個人ポートフォリオサイト。自作SVGと羊皮紙の質感を組み合わせ、世界観とアクセシビリティを両立した設計。',
     stacks: ['React', 'TypeScript', 'Vite', 'CSS Modules', 'SVG'],
+    imagePath: '../assets/img/my-site-v2.png',
     siteUrl: 'https://sorai-portfolio.example.com',
     githubUrl: 'https://github.com/sorai-loop/my-site-v2',
     status: 'IN_PROGRESS',
@@ -19,6 +20,7 @@ export const WORKS_DATA: WorkItem[] = [
     description:
       'ギルドのクエスト掲示板をイメージしたタスク・プロジェクト管理Webアプリ。タグや期日ごとのフィルタリング、手帳風の進捗ログ機能を搭載。',
     stacks: ['React', 'TypeScript', 'Node.js', 'CSS Modules'],
+    imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
     status: 'COMPLETED',
   },
@@ -29,6 +31,7 @@ export const WORKS_DATA: WorkItem[] = [
     description:
       'オープン気象APIと連携し、各地の空模様・雲の様子を手記風に記録・視覚化するWebツール。',
     stacks: ['TypeScript', 'FastAPI', 'Python', 'SVG'],
+    imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
     status: 'COMPLETED',
   },
