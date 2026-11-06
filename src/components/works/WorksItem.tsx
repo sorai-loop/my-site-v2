@@ -1,4 +1,5 @@
 import type { WorkItem } from '../../types/work';
+import { resolveImage } from '../../utils/resolveImage';
 import { DownArrowIcon } from '../ui/DownArrowIcon';
 import styles from './WorksItem.module.css';
 
@@ -18,6 +19,7 @@ export const WorksItem = ({
   const contentId = `work-content-${work.id}`;
   const headerId = `work-header-${work.id}`;
   const issueNum = String(index + 1).padStart(3, '0');
+  const imageSrc = resolveImage(work.imagePath ?? work.imageUrl);
 
   return (
     <li className={styles.item}>
@@ -76,9 +78,9 @@ export const WorksItem = ({
           <div className={styles.articleBody}>
             <figure className={styles.mediaColumn}>
               <div className={styles.imageFrame}>
-                {work.imageUrl ? (
+                {imageSrc ? (
                   <img
-                    src={work.imageUrl}
+                    src={imageSrc}
                     alt={`${work.title}の図面記録`}
                     className={styles.workImage}
                   />
