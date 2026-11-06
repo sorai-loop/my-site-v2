@@ -14,6 +14,7 @@ export type SignPostGraphicProps = {
   extra?: SignPostItem;
   className?: string;
   strokeWidth?: number;
+  'aria-hidden'?: boolean | 'true' | 'false';
 };
 
 const DEFAULT_ITEMS = {
@@ -31,6 +32,7 @@ export const SignPostGraphic = ({
   extra,
   className,
   strokeWidth = 0.5,
+  'aria-hidden': ariaHidden,
 }: SignPostGraphicProps) => {
   return (
     <svg
@@ -39,6 +41,7 @@ export const SignPostGraphic = ({
       className={`${styles.signPost} ${className || ''}`}
       role="navigation"
       aria-label="セクション目次"
+      aria-hidden={ariaHidden}
     >
       <g fill="red" fillOpacity={0} stroke="currentColor" strokeWidth={strokeWidth}>
         {works && (
