@@ -1,0 +1,529 @@
+/* ==========================================================================
+   WorksItem (Mobile-First Styles)
+   Base: Mobile (default)
+   Media Query: @media (min-width: 769px) for PC/Desktop
+   ========================================================================== */
+
+/* ==========================================================================
+   Clipped Scrapbook Paper Item
+   ========================================================================== */
+.item {
+  --paper-angle: -0.4deg;
+  position: relative;
+  filter: drop-shadow(0 2px 6px rgba(54, 51, 47, 0.09));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.item:nth-child(even) {
+  --paper-angle: 0.45deg;
+}
+
+.item:nth-child(3n) {
+  --paper-angle: -0.25deg;
+}
+
+.item:hover {
+  filter: drop-shadow(0 5px 12px rgba(54, 51, 47, 0.14));
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background:
+    linear-gradient(140deg, rgba(255, 253, 244, 0.6) 0%, transparent 55%),
+    rgba(255, 255, 255, 0.88);
+  clip-path: polygon(
+    0 0.5%,
+    46% 0.1%,
+    99.6% 0.4%,
+    100% 68%,
+    99.5% 99.6%,
+    54% 99.8%,
+    0.1% 99.4%,
+    0.5% 32%
+  );
+  transform: rotate(var(--paper-angle));
+  box-shadow:
+    inset 0 1px 1px rgba(255, 245, 223, 0.85),
+    inset 0 -2px 3px rgba(156, 130, 92, 0.18);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.25s ease;
+}
+
+/* ==========================================================================
+   Trigger (Newspaper Headline & Dateline)
+   ========================================================================== */
+.trigger {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text-main, #36332f);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-accent, #45312e);
+  outline-offset: -2px;
+}
+
+.triggerMain {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dateline {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 0.45rem;
+  font-family: var(--font-header, serif);
+  font-size: clamp(0.65rem, 2.5vw, 0.72rem);
+  letter-spacing: 0.08em;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.issueNumber {
+  font-weight: 700;
+  color: var(--color-accent, #45312e);
+  letter-spacing: 0.1em;
+}
+
+.datelineDivider {
+  opacity: 0.4;
+  font-size: 0.6rem;
+}
+
+.gazetteTag,
+.gazetteTag + .datelineDivider {
+  display: none;
+}
+
+.period {
+  font-style: italic;
+  font-size: clamp(0.65rem, 2.5vw, 0.72rem);
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.04em;
+}
+
+.headlineRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.itemTitle {
+  font-family: var(--font-display, 'Shippori Mincho', serif);
+  font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+  color: var(--color-heading, #2b2d31);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.triggerSide {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.unfoldLabel {
+  display: none;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-subtle, #e1d8ba);
+  background: rgba(255, 253, 244, 0.7);
+  transition: transform 0.25s ease, background 0.2s ease;
+}
+
+.trigger:hover .iconWrapper {
+  background: var(--palette-paper, #fffdf4);
+  border-color: var(--color-accent, #45312e);
+}
+
+.arrowIcon {
+  width: 0.65rem;
+  height: 0.65rem;
+  stroke: var(--color-heading, #2b2d31);
+  transition: transform 0.25s ease;
+}
+
+.iconOpen .arrowIcon {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Accordion Content (Detailed Gazette Article)
+   ========================================================================== */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.25rem 1.4rem;
+  animation: fadeIn 0.22s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contentBanner {
+  display: none;
+}
+
+.bannerTag {
+  font-weight: 700;
+  color: var(--color-accent, #45312e);
+}
+
+.bannerDivider {
+  opacity: 0.5;
+}
+
+.bannerNote {
+  letter-spacing: 0.16em;
+}
+
+.articleBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+/* Media Column */
+.mediaColumn {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.imageFrame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle, #e1d8ba);
+  background: var(--palette-paper, #fffdf4);
+  box-shadow: inset 0 0 12px rgba(156, 130, 92, 0.12);
+}
+
+.workImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: contrast(0.96) sepia(0.08);
+}
+
+.imagePlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 140px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(225, 216, 186, 0.4) 19px,
+      rgba(225, 216, 186, 0.4) 20px
+    ),
+    rgba(255, 253, 244, 0.5);
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.sketchLabel {
+  font-family: var(--font-header, serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+.sketchNote {
+  font-family: var(--font-header, serif);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.caption {
+  font-family: var(--font-header, serif);
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: var(--color-text-sub, #7a6c5d);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+/* Text Column */
+.textColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  font-family: var(--font-body, serif);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--color-text-main, #36332f);
+  margin: 0 0 1.25rem;
+  text-align: justify;
+}
+
+/* Acquired Stacks */
+.stacksSection {
+  margin-bottom: 1.25rem;
+}
+
+.stacksHeading {
+  font-family: var(--font-header, serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--color-text-sub, #7a6c5d);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.stacksList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stackTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  padding: 0.18rem 0.5rem;
+  background: rgba(225, 216, 186, 0.28);
+  border: 1px solid rgba(156, 130, 92, 0.25);
+  color: var(--color-text-main, #36332f);
+  letter-spacing: 0.04em;
+}
+
+/* Action Links */
+.actionSection {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.actionLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--color-heading, #2b2d31);
+  background: transparent;
+  color: var(--color-heading, #2b2d31);
+  font-family: var(--font-header, serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.actionLink:hover,
+.actionLink:focus-visible {
+  background-color: var(--color-heading, #2b2d31);
+  color: var(--palette-paper, #fffdf4);
+}
+
+.linkPrefix {
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.articleFooter {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.25rem;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footerColophon {
+  font-family: var(--font-header, serif);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  color: var(--color-text-sub, #7a6c5d);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   PC / Desktop Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .item::before {
+    clip-path: polygon(
+      0 1.2%,
+      26% 0.2%,
+      58% 0.8%,
+      82% 0.1%,
+      99.7% 0.7%,
+      99.4% 36%,
+      100% 68%,
+      99.5% 99.3%,
+      74% 99.8%,
+      42% 99.3%,
+      14% 99.9%,
+      0.2% 99.2%,
+      0.6% 64%,
+      0.1% 30%
+    );
+  }
+
+  .trigger {
+    gap: 1.25rem;
+    padding: 1.25rem 1.75rem;
+  }
+
+  .dateline {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .issueNumber {
+    letter-spacing: 0.14em;
+  }
+
+  .period {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .gazetteTag,
+  .gazetteTag + .datelineDivider {
+    display: inline;
+  }
+
+  .unfoldLabel {
+    display: inline;
+    font-family: var(--font-header, serif);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    color: var(--color-text-sub, #7a6c5d);
+    text-transform: uppercase;
+  }
+
+  .headlineRow {
+    gap: 1rem;
+  }
+
+  .content {
+    padding: 0 1.75rem 1.75rem;
+  }
+
+  .contentBanner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    border-top: 3px double var(--color-border-subtle, #e1d8ba);
+    border-bottom: 1px solid var(--color-border-subtle, #e1d8ba);
+    padding: 0.35rem 0;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-header, serif);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--color-text-sub, #7a6c5d);
+    text-transform: uppercase;
+  }
+
+  .articleBody {
+    grid-template-columns: 280px 1fr;
+    gap: 1.75rem;
+  }
+
+  .imagePlaceholder {
+    height: 170px;
+  }
+
+  .description {
+    margin-bottom: 1.5rem;
+  }
+
+  .description::first-letter {
+    font-family: var(--font-header, serif);
+    font-size: 2.3rem;
+    float: left;
+    line-height: 0.85;
+    margin-right: 0.4rem;
+    padding-top: 0.15rem;
+    color: var(--color-heading, #2b2d31);
+    font-weight: 700;
+  }
+
+  .stacksSection {
+    margin-bottom: 1.5rem;
+  }
+
+  .actionLinks {
+    gap: 0.85rem;
+  }
+
+  .articleFooter {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: auto;
+    border-top: 1px solid var(--color-border-subtle, #e1d8ba);
+    margin-top: 1.75rem;
+    padding-top: 0.6rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
