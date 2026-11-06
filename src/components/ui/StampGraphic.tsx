@@ -35,14 +35,14 @@ export const StampGraphic = ({
             <rect x="-1" y="-1" width="52" height="19" fill="#ffffff" />
             <text
               x="25"
-              y="8"
+              y="7"
               textAnchor="middle"
               dominantBaseline="central"
               fill="#000000"
               stroke="#000000"
               strokeWidth={0.2}
               className={styles.stampText}
-              textLength={shouldCompress ? 42 : undefined}
+              textLength={shouldCompress ? 40 : undefined}
               lengthAdjust={shouldCompress ? 'spacingAndGlyphs' : undefined}
             >
               {text}
@@ -52,18 +52,29 @@ export const StampGraphic = ({
       </defs>
 
       {isHakubun ? (
-        <rect
-          x="0"
-          y="0"
-          width="50"
-          height="17"
-          rx="5"
-          ry="5"
-          fill="currentColor"
-          stroke="currentColor"
-          strokeWidth={0.8}
-          mask={`url(#${maskId})`}
-        />
+        <g>
+          <rect
+            x="0"
+            y="0"
+            width="50"
+            height="17"
+            rx="5"
+            ry="5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={0.8}
+          />
+          <rect
+            x="1.5"
+            y="1.5"
+            width="47"
+            height="14"
+            rx="3.8"
+            ry="3.8"
+            fill="currentColor"
+            mask={`url(#${maskId})`}
+          />
+        </g>
       ) : (
         <g>
           <rect
@@ -79,12 +90,12 @@ export const StampGraphic = ({
           />
           <text
             x="25"
-            y="8"
+            y="7"
             textAnchor="middle"
             dominantBaseline="central"
             fill="currentColor"
             className={styles.stampText}
-            textLength={shouldCompress ? 42 : undefined}
+            textLength={shouldCompress ? 40 : undefined}
             lengthAdjust={shouldCompress ? 'spacingAndGlyphs' : undefined}
           >
             {text}
