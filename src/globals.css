@@ -94,7 +94,7 @@ a {
 section {
   position: relative;
   height: 100vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory; */
 }
