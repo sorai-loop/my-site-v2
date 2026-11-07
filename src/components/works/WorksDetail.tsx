@@ -32,7 +32,7 @@ export const WorksDetail = ({
         </span>
         <span className={styles.bannerDivider}>—</span>
         <span className={styles.bannerNote}>
-          OFFICIAL RECORD OF REQUISITION & DEVELOPMENT
+          {work.role ?? 'OFFICIAL RECORD OF REQUISITION & DEVELOPMENT'}
         </span>
       </div>
 

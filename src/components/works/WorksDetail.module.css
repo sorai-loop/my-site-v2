@@ -371,23 +371,23 @@
   color: var(--color-accent, #45312e);
 }
 
-/* モバイルでは背景透かしとして配置 */
+/* 奥付・フッター (コロフォン) */
 .articleFooter {
-  position: absolute;
-  bottom: 0.5rem;
-  right: 1.25rem;
-  border-top: none;
-  padding-top: 0;
-  margin-top: 0;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
+  border-top: 1px solid var(--color-border-subtle, #e1d8ba);
+  margin-top: 1.25rem;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: auto;
 }
 
 .footerColophon {
   font-family: var(--font-header, serif);
   font-size: 0.64rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   color: var(--color-text-sub, #7a6c5d);
   text-transform: uppercase;
 }
@@ -460,16 +460,13 @@
     font-size: 0.78rem;
   }
 
-  /* PCでは奥付・フッターを通常配置に戻す */
   .articleFooter {
-    position: static;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: auto;
-    border-top: 1px solid var(--color-border-subtle, #e1d8ba);
     margin-top: 1.75rem;
     padding-top: 0.6rem;
-    display: flex;
-    justify-content: flex-end;
+  }
+
+  .footerColophon {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
   }
 }

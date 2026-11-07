@@ -15,6 +15,7 @@ export const WORKS_DATA: WorkItem[] = [
     status: 'IN_PROGRESS',
     caption: 'このさいとだよー',
     client: 'Personal Initiative',
+    role: 'UI/UX Design, Frontend Architecture & SVG Assets',
   },
   {
     id: 'guild-quest-board',
@@ -30,6 +31,7 @@ export const WORKS_DATA: WorkItem[] = [
     status: 'COMPLETED',
     caption: 'Archival blueprint documentation for Guild Quest Board.',
     client: 'Guild Mission',
+    role: 'Frontend Development & UI Design',
     collaborators: [
       {
         name: 'Companion Adventurer',
@@ -52,5 +54,6 @@ export const WORKS_DATA: WorkItem[] = [
     status: 'COMPLETED',
     caption: 'Archival blueprint documentation for Sky Log & Weather API.',
     client: 'Open Research',
+    role: 'API Architecture & Backend Integration',
   },
 ];

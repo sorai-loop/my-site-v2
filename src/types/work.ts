@@ -22,5 +22,6 @@ export type WorkItem = {
   status?: WorkStatus;
   caption?: string;
   client?: string;
+  role?: string;
   collaborators?: Collaborator[];
 };
