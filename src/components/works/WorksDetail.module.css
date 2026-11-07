@@ -236,6 +236,94 @@
   opacity: 1;
 }
 
+/* Collaborators & Allies */
+.collaboratorsSection {
+  margin-bottom: 1.25rem;
+}
+
+.collaboratorsHeading {
+  font-family: var(--font-header, serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--color-text-sub, #7a6c5d);
+  text-transform: uppercase;
+  margin: 0 0 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.collaboratorsHeading::before {
+  content: '◈';
+  font-size: 0.58rem;
+  color: var(--color-accent, #45312e);
+  opacity: 0.75;
+}
+
+.collaboratorsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.collaboratorItem {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-header, serif);
+  font-size: 0.76rem;
+  color: var(--color-text-main, #36332f);
+}
+
+.collaboratorLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  color: var(--color-heading, #2b2d31);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-border-subtle, #e1d8ba);
+  padding-bottom: 0.1rem;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.collaboratorLink:hover,
+.collaboratorLink:focus-visible {
+  color: var(--color-accent, #45312e);
+  border-bottom-color: var(--color-accent, #45312e);
+}
+
+.collaboratorName {
+  font-weight: 500;
+}
+
+.collaboratorRole {
+  font-size: 0.7rem;
+  color: var(--color-text-sub, #7a6c5d);
+  font-style: italic;
+  margin-left: 0.25rem;
+}
+
+.collaboratorExternal {
+  font-size: 0.68rem;
+  color: var(--color-text-sub, #7a6c5d);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.collaboratorLink:hover .collaboratorExternal,
+.collaboratorLink:focus-visible .collaboratorExternal {
+  color: var(--color-accent, #45312e);
+  transform: translate(1px, -1px);
+}
+
+.collaboratorText {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  color: var(--color-heading, #2b2d31);
+}
+
 /* Action Links */
 .actionSection {
   margin-top: auto;
@@ -354,6 +442,14 @@
 
   .stackTag {
     font-size: 0.78rem;
+  }
+
+  .collaboratorsSection {
+    margin-bottom: 1.5rem;
+  }
+
+  .collaboratorItem {
+    font-size: 0.8rem;
   }
 
   .actionLinks {

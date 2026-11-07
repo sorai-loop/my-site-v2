@@ -1,5 +1,11 @@
 export type WorkStatus = 'COMPLETED' | 'IN_PROGRESS' | 'SOLVED';
 
+export type Collaborator = {
+  name: string;
+  url?: string;
+  role?: string;
+};
+
 export type WorkItem = {
   id: string;
   title: string;
@@ -16,4 +22,5 @@ export type WorkItem = {
   status?: WorkStatus;
   caption?: string;
   client?: string;
+  collaborators?: Collaborator[];
 };

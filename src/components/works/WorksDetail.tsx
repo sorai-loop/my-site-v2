@@ -79,6 +79,50 @@ export const WorksDetail = ({
             </div>
           )}
 
+          {work.collaborators && work.collaborators.length > 0 && (
+            <div className={styles.collaboratorsSection}>
+              <h4 className={styles.collaboratorsHeading}>
+                COLLABORATORS & ALLIES
+              </h4>
+              <ul className={styles.collaboratorsList}>
+                {work.collaborators.map((c) => (
+                  <li key={c.name} className={styles.collaboratorItem}>
+                    {c.url ? (
+                      <a
+                        href={c.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.collaboratorLink}
+                      >
+                        <span className={styles.collaboratorName}>{c.name}</span>
+                        {c.role && (
+                          <span className={styles.collaboratorRole}>
+                            ({c.role})
+                          </span>
+                        )}
+                        <span
+                          className={styles.collaboratorExternal}
+                          aria-hidden="true"
+                        >
+                          ↗
+                        </span>
+                      </a>
+                    ) : (
+                      <span className={styles.collaboratorText}>
+                        <span className={styles.collaboratorName}>{c.name}</span>
+                        {c.role && (
+                          <span className={styles.collaboratorRole}>
+                            ({c.role})
+                          </span>
+                        )}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className={styles.actionSection}>
             <div className={styles.actionLinks}>
               {work.siteUrl && (

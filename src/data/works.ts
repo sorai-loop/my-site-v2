@@ -30,6 +30,13 @@ export const WORKS_DATA: WorkItem[] = [
     status: 'COMPLETED',
     caption: 'Archival blueprint documentation for Guild Quest Board.',
     client: 'Guild Mission',
+    collaborators: [
+      {
+        name: 'Companion Adventurer',
+        url: 'https://github.com',
+        role: 'Co-Design',
+      },
+    ],
   },
   {
     id: 'sky-log-api',
