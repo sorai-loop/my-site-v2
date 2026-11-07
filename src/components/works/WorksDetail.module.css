@@ -43,7 +43,6 @@
   letter-spacing: 0.16em;
 }
 
-/* モバイルでは縦積み (1カラム) */
 .articleBody {
   display: grid;
   grid-template-columns: 1fr;
@@ -132,6 +131,18 @@
   color: var(--color-text-main, #36332f);
   margin: 0 0 1.25rem;
   text-align: justify;
+}
+
+/* ドロップキャップ */
+.description::first-letter {
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: normal;
+  float: left;
+  line-height: 0.88;
+  margin-right: 0.35rem;
+  padding-top: 0.15rem;
+  color: var(--color-heading, #2b2d31);
 }
 
 /* Acquired Stacks */
@@ -266,16 +277,9 @@
     margin-bottom: 1.5rem;
   }
 
-  /* PCではドロップキャップ（先頭文字装飾）を有効化 */
   .description::first-letter {
-    font-family: var(--font-header, serif);
     font-size: 2.3rem;
-    float: left;
-    line-height: 0.85;
     margin-right: 0.4rem;
-    padding-top: 0.15rem;
-    color: var(--color-heading, #2b2d31);
-    font-weight: 700;
   }
 
   .stacksSection {
