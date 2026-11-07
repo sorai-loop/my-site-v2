@@ -27,7 +27,9 @@ export const WorksDetail = ({
       className={styles.content}
     >
       <div className={styles.contentBanner}>
-        <span className={styles.bannerTag}>SPECIAL DISPATCH</span>
+        <span className={styles.bannerTag}>
+          {work.client ?? 'SPECIAL DISPATCH'}
+        </span>
         <span className={styles.bannerDivider}>—</span>
         <span className={styles.bannerNote}>
           OFFICIAL RECORD OF REQUISITION & DEVELOPMENT
@@ -86,7 +88,7 @@ export const WorksDetail = ({
                   rel="noopener noreferrer"
                   className={styles.actionLink}
                 >
-                  <span className={styles.linkPrefix}>▶</span>
+                  <span className={styles.linkPrefix}>→</span>
                   <span>VIEW EXHIBIT</span>
                 </a>
               )}
@@ -97,8 +99,8 @@ export const WorksDetail = ({
                   rel="noopener noreferrer"
                   className={styles.actionLink}
                 >
-                  <span className={styles.linkPrefix}>◈</span>
-                  <span>SOURCE BLUEPRINT</span>
+                  <span className={styles.linkPrefix}>→</span>
+                  <span>GIT HUB</span>
                 </a>
               )}
             </div>
