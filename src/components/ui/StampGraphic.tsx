@@ -41,7 +41,7 @@ export const StampGraphic = ({
             <feTurbulence
               type="fractalNoise"
               // ここいじるとギザギザの細かさ変わるよ
-              baseFrequency="0.05"
+              baseFrequency="0.07"
               numOctaves="1"
               result="noise"
             />
@@ -49,7 +49,7 @@ export const StampGraphic = ({
               in="SourceGraphic"
               in2="noise"
               // ここいじるとギザギザの歪み変わるよ
-              scale="0.5"
+              scale="0.8"
               xChannelSelector="R"
               yChannelSelector="G"
             />
@@ -105,7 +105,7 @@ export const StampGraphic = ({
             <rect x="-1" y="-1" width="52" height="19" fill="#ffffff" />
             <text
               x="25"
-              y="6.5"
+              y="8"
               textAnchor="middle"
               dominantBaseline="central"
               fill="#000000"
@@ -164,7 +164,7 @@ export const StampGraphic = ({
             />
             <text
               x="25"
-              y="6.5"
+              y="8"
               textAnchor="middle"
               dominantBaseline="central"
               fill="currentColor"

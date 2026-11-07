@@ -4,7 +4,7 @@
   height: 1.25rem;
   width: auto;
   aspect-ratio: 52 / 19;
-  color: var(--color-accent, #45312e);
+  color: inherit;
 }
 
 .stampText {
