@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { WORKS_DATA } from '../../data/works';
 import type { WorkItem } from '../../types/work';
+import { sortAndNumberWorks } from '../../utils/sortWorks';
 import { WorksItem } from '../works/WorksItem';
 import styles from './WorksSection.module.css';
 
@@ -16,8 +17,10 @@ export const WorksSection = ({
   works = WORKS_DATA,
   className,
 }: WorksSectionProps) => {
+  const sortedWorks = useMemo(() => sortAndNumberWorks(works), [works]);
+
   const [openIds, setOpenIds] = useState<string[]>(() =>
-    works.length > 0 ? [works[0].id] : []
+    sortedWorks.length > 0 ? [sortedWorks[0].id] : []
   );
 
   const toggleItem = (id: string) => {
@@ -38,11 +41,12 @@ export const WorksSection = ({
         </header>
 
         <ul className={styles.accordionList}>
-          {works.map((work, index) => (
+          {sortedWorks.map((work, index) => (
             <WorksItem
               key={work.id}
               work={work}
               index={index}
+              dispatchNumber={work.dispatchNumber}
               isOpen={openIds.includes(work.id)}
               onToggle={() => toggleItem(work.id)}
             />

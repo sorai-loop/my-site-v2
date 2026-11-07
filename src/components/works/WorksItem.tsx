@@ -9,6 +9,7 @@ export type WorksItemProps = {
   index: number;
   isOpen: boolean;
   onToggle: () => void;
+  dispatchNumber?: number;
 };
 
 export const WorksItem = ({
@@ -16,10 +17,12 @@ export const WorksItem = ({
   index,
   isOpen,
   onToggle,
+  dispatchNumber,
 }: WorksItemProps) => {
   const contentId = `work-content-${work.id}`;
   const headerId = `work-header-${work.id}`;
-  const issueNum = String(index + 1).padStart(3, '0');
+  const num = dispatchNumber ?? work.dispatchNumber ?? index + 1;
+  const issueNum = String(num).padStart(3, '0');
 
   return (
     <li className={styles.item}>
