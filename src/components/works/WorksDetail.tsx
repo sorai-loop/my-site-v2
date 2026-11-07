@@ -153,9 +153,15 @@ export const WorksDetail = ({
       </div>
 
       <footer className={styles.articleFooter}>
-        <span className={styles.footerColophon}>
-          LOGGED BY SORAI ATELIER • DISPATCH #{issueNum}
-        </span>
+        <div className={styles.colophonLeft}>
+          <span className={styles.footerColophon}>
+            LOGGED BY SORAI ATELIER • DISPATCH #{issueNum}
+          </span>
+        </div>
+        <div className={styles.signatureBlock}>
+          <span className={styles.signatureLabel}>Verified by</span>
+          <span className={styles.signatureScript}>Sorai</span>
+        </div>
       </footer>
     </div>
   );
