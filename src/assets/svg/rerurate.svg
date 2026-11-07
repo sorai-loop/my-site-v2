@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">黒い帽子をかぶった白髪のキャラクター</title>
+  <desc id="desc">大きな青い耳のような形、黒い帽子、赤い目を持つ手描き風のキャラクターアイコン。</desc>
+  <rect width="400" height="400" fill="#fff"/>
+  <!-- Blue forms behind the hat and hair -->
+  <g fill="#00a8f3">
+    <path d="M19 88 C30 91 51 98 67 104 C85 108 101 113 122 121 C144 130 176 140 206 151 L241 162 C224 170 190 176 156 179 C129 183 113 194 95 209 C81 220 75 235 70 239 C54 230 39 207 28 182 C16 156 10 136 11 111 C11 97 12 88 19 88Z"/>
+    <path d="M291 145 C312 136 335 109 352 85 C366 67 377 56 389 48 C386 78 373 119 357 146 C351 155 343 162 332 169 C317 162 302 155 291 145Z"/>
+  </g>
+  <!-- Pointed, floppy black cap -->
+  <path fill="#000" d="M63 57 C85 59 114 59 143 62 C163 63 172 69 181 81 C196 79 213 83 229 83 C240 71 250 58 258 46 C266 37 270 45 274 55 C280 72 294 87 305 103 C321 101 328 100 341 100 C324 109 307 125 293 138 C280 151 270 160 259 164 C250 169 243 161 232 161 C210 158 185 157 167 151 C146 144 134 136 114 127 C112 111 109 94 104 82 C97 69 84 65 66 63 C60 62 58 59 63 57Z"/>
+  <!-- Five irregular cutouts in the cap -->
+  <g fill="#fff">
+    <path d="M278.5 94.5 L284.7 94.9 L286.1 100 L281.5 100.8 L278.2 98.2Z"/>
+    <path d="M260.4 99.8 L271.2 101.6 L270.9 113.4 L262.1 109.4 L260.8 106.7Z"/>
+    <path d="M241.8 113.3 L254.7 112.2 L259.6 123.6 L248.5 125.7 L244.5 121.8Z"/>
+    <path d="M226.9 130.2 L240.5 127.1 L245.3 134.2 L235.1 139.3 L228.2 137.4 L225.7 133.1Z"/>
+    <path d="M217.5 148.7 L224.1 146.9 L231.2 150.3 L225.5 154.5 L217.4 151.3Z"/>
+  </g>
+  <!-- Hair and face: flowing linework, round caps mimic the sketch -->
+  <g fill="none" stroke="#c1c1c1" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.6" d="M235 160 C213 169 186 176 166 179 C139 182 129 178 111 194 C95 207 81 221 74 234 C68 245 69 283 69 306"/>
+    <path stroke-width="3.9" d="M69 308 C77 315 87 321 91 337 C94 350 107 358 124 361 C134 363 138 361 140 358 C135 341 125 314 119 296"/>
+    <path stroke-width="3.7" d="M98 257 C104 274 114 286 125 295 C135 302 143 307 151 307 L168 306"/>
+    <path stroke-width="3.5" d="M151 218 C151 244 149 264 156 285 C163 304 172 327 182 348 C186 359 194 365 204 368 C212 371 223 372 228 370 C214 354 204 341 199 322 C194 304 189 283 187 265 C183 244 184 226 185 213"/>
+    <path stroke-width="3.8" d="M194 184 C191 190 185 196 185 201 L185 226"/>
+    <path stroke-width="3.3" d="M209 202 C221 188 224 180 227 177 C231 189 230 201 222 212 C217 219 209 221 203 224"/>
+    <path stroke-width="3.3" d="M240 178 C249 190 252 197 254 208 C258 225 252 247 255 258 C258 271 266 259 269 248 C272 236 272 223 277 214"/>
+    <path stroke-width="3.7" d="M283 166 C285 178 285 187 283 198 C280 209 271 220 265 231 C259 244 256 253 259 258"/>
+    <path stroke-width="3.8" d="M288 138 C306 147 323 159 334 174 C348 188 359 200 364 210 C358 213 351 202 343 193"/>
+    <path stroke-width="3.7" d="M343 194 C347 208 349 223 346 242 C345 249 346 262 341 265 C335 256 338 240 338 232"/>
+    <path stroke-width="3.7" d="M337 231 C336 254 330 273 324 288 C320 296 324 299 330 301"/>
+    <path stroke-width="3.4" d="M284 164 C306 172 322 190 330 208"/>
+    <path stroke-width="3.6" d="M286 305 C292 318 297 332 304 339 C314 345 326 344 339 345 C328 333 320 314 319 297"/>
+    <path stroke-width="3.5" d="M322 290 C321 304 322 316 326 328"/>
+  </g>
+  <!-- Thin eyebrows / upper fringes -->
+  <g fill="none" stroke="#696969" stroke-width="1.4" stroke-linecap="round">
+    <path d="M211 203 C221 202 238 202 249 205"/>
+    <path d="M284 204 C296 203 307 205 321 210"/>
+  </g>
+  <!-- Eyes: red irises beneath dark lashes -->
+  <g>
+    <path fill="#e9202a" d="M204 238 C204 245 205 256 210 259 C215 263 226 262 231 258 C234 253 235 244 234 237 C224 234 212 235 204 238Z"/>
+    <path fill="#cf1522" d="M205 237 C215 233 227 235 234 237 L234 247 C225 245 213 246 206 246Z"/>
+    <path fill="#eb2531" d="M280 235 C280 242 280 255 285 259 C291 261 298 261 303 257 C308 252 309 242 307 235 C299 232 288 233 280 235Z"/>
+    <path fill="#cb1323" d="M280 236 C289 232 300 233 307 236 L307 247 C298 244 288 245 280 245Z"/>
+    <!-- Strong, intentionally imperfect upper lashes -->
+    <path d="M194 237 C204 229 217 231 228 232 C235 232 241 234 244 236" fill="none" stroke="#080808" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M199 237 L196 241" stroke="#080808" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M283 236 C292 232 299 233 307 235 C312 236 315 237 318 240" fill="none" stroke="#080808" stroke-width="4.4" stroke-linecap="round"/>
+    <path d="M312 234 L313 231" stroke="#080808" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M236 223 L244 224" stroke="#090909" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M286 222 L292 222" stroke="#090909" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="218" cy="248" r="2.6" fill="#320908"/>
+    <circle cx="294" cy="247" r="2.6" fill="#35080b"/>
+    <ellipse cx="230" cy="247" rx="2.1" ry="3.1" fill="white"/>
+    <ellipse cx="305" cy="247" rx="2.0" ry="3.1" fill="white"/>
+  </g>
+  <!-- Small face details and pale yellow jaw contour -->
+  <path d="M194 293 C218 304 250 307 278 304 C301 303 317 292 320 275" fill="none" stroke="#feedaa" stroke-width="3.0" stroke-linecap="round"/>
+  <circle cx="267" cy="272" r="0.9" fill="#141414"/>
+  <path d="M260 291 Q264 287 271 288" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
