@@ -14,4 +14,5 @@ export type WorkItem = {
   siteUrl?: string;
   githubUrl?: string;
   status?: WorkStatus;
+  caption?: string;
 };

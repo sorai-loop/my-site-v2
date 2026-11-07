@@ -53,7 +53,9 @@ export const WorksDetail = ({
             )}
           </div>
           <figcaption className={styles.caption}>
-            Fig. {issueNum} — Archival blueprint documentation for {work.title}.
+            Fig. {issueNum} —{' '}
+            {work.caption ??
+              `Archival blueprint documentation for ${work.title}.`}
           </figcaption>
         </figure>
 

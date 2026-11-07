@@ -13,6 +13,7 @@ export const WORKS_DATA: WorkItem[] = [
     siteUrl: 'https://sorai-portfolio.example.com',
     githubUrl: 'https://github.com/sorai-loop/my-site-v2',
     status: 'IN_PROGRESS',
+    caption: 'このさいとだよー',
   },
   {
     id: 'guild-quest-board',
@@ -26,6 +27,7 @@ export const WORKS_DATA: WorkItem[] = [
     imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
     status: 'COMPLETED',
+    caption: 'Archival blueprint documentation for Guild Quest Board.',
   },
   {
     id: 'sky-log-api',
@@ -39,5 +41,6 @@ export const WORKS_DATA: WorkItem[] = [
     imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
     status: 'COMPLETED',
+    caption: 'Archival blueprint documentation for Sky Log & Weather API.',
   },
 ];
