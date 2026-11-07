@@ -35,6 +35,7 @@
   --palette-carbon-black: #36332f;    /* 石墨インク（手書きのメイン色） */
   --palette-iron-gall: #2b2d31;       /* 没食子インク（印字用の硬質な黒） */
   --palette-seal-red: #45312e;        /* 封蝋・公印の赤（落款風アクセント） */
+  --palette-vermilion: #c54a38;       /* 朱肉インク（鮮やかなスタンプの朱色） */
   --palette-sepia-faded: #7a6c5d;     /* 褪色したセピア（補足・注釈用） */
   --palette-drafting-slate: #525b68;  /* 製図用スレート（金属器で引かれた硬質な線） */
   --palette-parchment-line: #e1d8ba;  /* ガイド線（紙に近いごく薄い色） */
@@ -50,6 +51,7 @@
   --color-text-sub: var(--palette-sepia-faded);
   --color-heading: var(--palette-iron-gall);
   --color-accent: var(--palette-seal-red);
+  --color-stamp-vermilion: var(--palette-vermilion);
   --color-border: var(--palette-drafting-slate);
   --color-border-subtle: var(--palette-parchment-line);
 
