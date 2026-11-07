@@ -1,5 +1,6 @@
 import type { WorkItem } from '../../types/work';
 import { DownArrowIcon } from '../ui/DownArrowIcon';
+import { StampGraphic } from '../ui/StampGraphic';
 import { WorksDetail } from './WorksDetail';
 import styles from './WorksItem.module.css';
 
@@ -67,6 +68,16 @@ export const WorksItem = ({
           contentId={contentId}
           headerId={headerId}
         />
+      )}
+
+      {work.status && (
+        <div className={styles.stampWrapper}>
+          <StampGraphic
+            text={work.status}
+            type={work.status === 'COMPLETED' ? 1 : 0}
+            aria-hidden="true"
+          />
+        </div>
       )}
     </li>
   );

@@ -185,10 +185,31 @@
 }
 
 /* ==========================================================================
+   Status Stamp Wrapper
+   ========================================================================== */
+.stampWrapper {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-stamp-vermilion);
+  font-family: var(--font-header, serif);
+  transform: rotate(7deg);
+}
+
+.stampWrapper svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+/* ==========================================================================
    PC / Desktop Overrides (@media min-width: 769px)
    ========================================================================== */
 @media (min-width: 769px) {
-  /* PC用のより繊細なクリップパス */
   .item::before {
     clip-path: polygon(
       0 1.2%,
@@ -229,7 +250,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* PCでは装飾テキストを表示 */
   .gazetteTag,
   .gazetteTag + .datelineDivider {
     display: inline;
@@ -246,5 +266,16 @@
 
   .headlineRow {
     gap: 1rem;
+  }
+
+  .stampWrapper {
+    top: 1rem;
+    right: 8rem;
+    transform: rotate(3deg);
+  }
+
+  .stampWrapper svg {
+    height: 3.5rem;
+    width: auto;
   }
 }
