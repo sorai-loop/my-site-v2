@@ -1,4 +1,8 @@
 <svg viewBox="9 0 22 32" xmlns="http://www.w3.org/2000/svg">
     <path stroke="currentColor" stroke-width="1.5" fill="none"
     d="M20 0 h-2 l-9 4 v24 l9 4 h4 l9 -4 v-24 l-9 -4 z" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M17 0v32" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M23 0v32" />
 </svg>
