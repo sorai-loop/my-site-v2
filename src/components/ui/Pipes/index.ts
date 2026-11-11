@@ -5,3 +5,4 @@ export * from './PaddingGraphic';
 export * from './UnionGraphic';
 export * from './ElbowGraphic';
 export * from './CheeseGraphic';
+export * from './RingGraphic';
