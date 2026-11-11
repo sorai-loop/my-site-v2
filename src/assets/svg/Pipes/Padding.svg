@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M5 10 h3 l2 -2 h3" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M5 24 h3 l2 2 h3" />
+</svg>
