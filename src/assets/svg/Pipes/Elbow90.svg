@@ -1,0 +1,14 @@
+<svg viewBox="5 5 28 28" xmlns="http://www.w3.org/2000/svg">
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M5 5 h3 l1 2  h4 a18 18 0 0 1 18 18 v4 l2 1 v3" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M5 23 h3 l1 -2 h2 a6 6 0 0 1 6 6 v2 l-2 1 v3" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M5 5 v18" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M15 33 h18" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M9 7 v14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M17 29 h14" />
+</svg>
