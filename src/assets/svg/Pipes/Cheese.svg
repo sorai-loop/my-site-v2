@@ -1,0 +1,22 @@
+<svg viewBox="10 9 27 19" xmlns="http://www.w3.org/2000/svg">
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M10 10 v-1 h1 l2 1 h20 l2 -1 h1 v1" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M10 24 v1 h1 l2 -1 h3 v1 l-1 2 v1 h1" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M36 24 v1 h-1 l-2 -1 h-3 v1 l1 2 v1 h-1" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M10 10 v14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M13 10 v14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M33 10 v14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M36 10 v14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M16 25 h14" />
+    <path stroke="currentColor" stroke-width="1.5" fill="none"
+    d="M16 28 h14" />
+    <path stroke="currentColor" stroke-width="1" fill="none"
+    d="M16 24 a25 150 0 0 1 14 0" />
+</svg>
