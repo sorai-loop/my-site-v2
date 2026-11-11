@@ -7,7 +7,7 @@ export type ThreadGraphicProps = {
   length?: number;
   /**
    * 巻き数
-   * @default 1（length未指定時）
+   * @default 1
    */
   turns?: number;
   /**
@@ -20,16 +20,31 @@ export type ThreadGraphicProps = {
    */
   size?: number;
   /**
-   * 1周のピッチ
+   * ピッチ
    */
   pitch?: number;
+  /**
+   * 水平反転
+   * @default false
+   */
+  flipX?: boolean;
+  /**
+   * 垂直反転
+   * @default false
+   */
+  flipY?: boolean;
+  /**
+   * 回転角度
+   * @default 0
+   */
+  rotate?: number;
   /**
    * 太さ
    * @default 1.5
    */
   strokeWidth?: number;
   /**
-   * 太さ
+   * 斜線の太さ
    * @default strokeWidth
    */
   ridgeStrokeWidth?: number;
@@ -49,6 +64,9 @@ export const ThreadGraphic = ({
   height: heightProp,
   size,
   pitch: pitchProp,
+  flipX = false,
+  flipY = false,
+  rotate = 0,
   strokeWidth = 1.5,
   ridgeStrokeWidth: ridgeStrokeWidthProp,
   closed = false,
@@ -58,8 +76,11 @@ export const ThreadGraphic = ({
   ...props
 }: ThreadGraphicProps) => {
   const actualHeight = heightProp ?? size ?? 15;
+  
   const actualPitch = pitchProp ?? (actualHeight * 2) / 15;
+  
   const crestDepth = (actualHeight * 1) / 15;
+  
   const actualRidgeStrokeWidth = ridgeStrokeWidthProp ?? Math.round(strokeWidth * 0.47 * 10) / 10;
 
   let actualTurns = turnsProp;
@@ -99,6 +120,14 @@ export const ThreadGraphic = ({
     ? `M 0 0 L ${r(actualPitch / 2)} ${r(actualHeight - crestDepth)} M ${r(actualTurns * actualPitch)} 0 L ${totalWidth} ${r(actualHeight - crestDepth)}`
     : '';
 
+  const transforms = [
+    flipX ? 'scaleX(-1)' : '',
+    flipY ? 'scaleY(-1)' : '',
+    rotate !== 0 ? `rotate(${rotate}deg)` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <svg
       viewBox={`0 0 ${totalWidth} ${r(actualHeight)}`}
@@ -111,6 +140,8 @@ export const ThreadGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
+        transform: transforms || undefined,
+        transformOrigin: 'center',
         ...style,
       }}
       {...props}

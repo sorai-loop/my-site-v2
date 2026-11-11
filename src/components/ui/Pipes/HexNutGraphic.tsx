@@ -20,6 +20,21 @@ export type HexNutGraphicProps = {
    */
   size?: number;
   /**
+   * 水平反転
+   * @default false
+   */
+  flipX?: boolean;
+  /**
+   * 垂直反転
+   * @default false
+   */
+  flipY?: boolean;
+  /**
+   * 回転角度
+   * @default 0
+   */
+  rotate?: number;
+  /**
    * 太さ
    * @default 1.5
    */
@@ -34,6 +49,9 @@ export const HexNutGraphic = ({
   width: widthProp,
   height: heightProp,
   size,
+  flipX = false,
+  flipY = false,
+  rotate = 0,
   strokeWidth = 1.5,
   className,
   style,
@@ -44,6 +62,7 @@ export const HexNutGraphic = ({
   const actualHeight = heightProp ?? size ?? 50;
 
   const r = (val: number) => Math.round(val * 100) / 100;
+  
   const x = (baseX: number) => r(((baseX - 6) / 22) * actualThickness);
   const y = (baseY: number) => r((baseY / 50) * actualHeight);
 
@@ -52,6 +71,14 @@ export const HexNutGraphic = ({
   const dRidges = `M ${x(24)} ${y(0)} L ${x(28)} ${y(7)} L ${x(25)} ${y(14)} L ${x(28)} ${y(21)} V ${y(29)} L ${x(25)} ${y(36)} L ${x(28)} ${y(43)} L ${x(24)} ${y(50)} H ${x(10)} L ${x(6)} ${y(43)} L ${x(9)} ${y(36)} L ${x(6)} ${y(29)} V ${y(21)} L ${x(9)} ${y(14)} L ${x(6)} ${y(7)} L ${x(10)} ${y(0)} Z`;
 
   const dHLine = `M ${x(9)} ${y(14)} H ${x(25)} M ${x(9)} ${y(36)} H ${x(25)}`;
+
+  const transforms = [
+    flipX ? 'scaleX(-1)' : '',
+    flipY ? 'scaleY(-1)' : '',
+    rotate !== 0 ? `rotate(${rotate}deg)` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <svg
@@ -65,6 +92,8 @@ export const HexNutGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
+        transform: transforms || undefined,
+        transformOrigin: 'center',
         ...style,
       }}
       {...props}

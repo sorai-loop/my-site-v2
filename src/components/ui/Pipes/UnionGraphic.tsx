@@ -22,62 +22,77 @@ export type UnionGraphicProps = {
    */
   order?: UnionPartType[];
   /**
-   * パイプ部の横
+   * 水平反転
+   * @default false
+   */
+  flipX?: boolean;
+  /**
+   * 垂直反転
+   * @default false
+   */
+  flipY?: boolean;
+  /**
+   * 回転角度
+   * @default 0
+   */
+  rotate?: number;
+  /**
+   * 左端パイプ部の横幅
    * @default 16
    */
   pipeLength?: number;
   /**
-   * パイプの縦
+   * 左端パイプ部の縦幅
    * @default 28
    */
   pipeHeight?: number;
   /**
-   * メインナットの厚さ
+   * メインナットの横幅
    * @default 22
    */
   mainNutWidth?: number;
   /**
-   * メインナットの縦
+   * メインナットの縦幅
    * @default 50
    */
   mainNutHeight?: number;
   /**
-   * 中間パディングの横幅
+   * パディングの横幅
    * @default 5
    */
   paddingWidth?: number;
   /**
-   * 中間パディングの縦（広い方）
+   * パディングの縦幅（広い方）
    * @default 36
    */
   paddingHeight?: number;
   /**
-   * 中間パディングの縦（狭い方）
+   * パディングの縦幅（狭い方）
    * @default 30
    */
   paddingInnerHeight?: number;
   /**
-   * 中間パディングの反転
+   * パディングの段差反転
    * @default true
    */
   flipPadding?: boolean;
   /**
-   * サブナットの横
+   * サブナットの厚さ
    * @default 10
    */
   subNutWidth?: number;
   /**
-   * サブナットの縦
+   * サブナットの縦幅
    * @default 42
    */
   subNutHeight?: number;
   /**
-   * ネックの横
+   * ネックの横幅
    * @default 4
    */
   neckWidth?: number;
   /**
-   * ネックの縦
+   * ネックの縦幅
    */
   neckHeight?: number;
   /**
@@ -86,12 +101,12 @@ export type UnionGraphicProps = {
    */
   flipNeck?: boolean;
   /**
-   * ネジ山の横
+   * ネジ山の横幅
    * @default 24
    */
   threadLength?: number;
   /**
-   * ネジ山の縦
+   * ネジ山の縦幅
    * @default 30
    */
   threadHeight?: number;
@@ -104,7 +119,7 @@ export type UnionGraphicProps = {
    */
   threadPitch?: number;
   /**
-   * 全体の線の太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
@@ -115,6 +130,9 @@ export type UnionGraphicProps = {
 
 export const UnionGraphic = ({
   order = DEFAULT_UNION_ORDER,
+  flipX = false,
+  flipY = false,
+  rotate = 0,
   pipeLength = 16,
   pipeHeight = 28,
   mainNutWidth = 22,
@@ -204,6 +222,14 @@ export const UnionGraphic = ({
 
   const yCenter = (h: number) => r((maxHeight - h) / 2);
 
+  const transforms = [
+    flipX ? 'scaleX(-1)' : '',
+    flipY ? 'scaleY(-1)' : '',
+    rotate !== 0 ? `rotate(${rotate}deg)` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <svg
       viewBox={`0 0 ${totalWidth} ${r(maxHeight)}`}
@@ -216,6 +242,8 @@ export const UnionGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
+        transform: transforms || undefined,
+        transformOrigin: 'center',
         ...style,
       }}
       {...props}

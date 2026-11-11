@@ -16,17 +16,32 @@ export type StraightPipeGraphicProps = {
    */
   pipeWidth?: number;
   /**
-   * 縦向きか
+   * 縦向き
    * @default false
    */
   vertical?: boolean;
+  /**
+   * 水平反転
+   * @default false
+   */
+  flipX?: boolean;
+  /**
+   * 垂直反転
+   * @default false
+   */
+  flipY?: boolean;
+  /**
+   * 回転角度
+   * @default 0
+   */
+  rotate?: number;
   /**
    * 太さ
    * @default 1.5
    */
   strokeWidth?: number;
   /**
-   * 両端の開口部を塞ぐ線を描画するか
+   * 両端の開口部を塞ぐ線を描画するかどうか
    * @default false
    */
   closed?: boolean;
@@ -40,6 +55,9 @@ export const StraightPipeGraphic = ({
   width: widthProp,
   pipeWidth: pipeWidthProp,
   vertical = false,
+  flipX = false,
+  flipY = false,
+  rotate = 0,
   strokeWidth = 1.5,
   closed = false,
   className,
@@ -60,6 +78,14 @@ export const StraightPipeGraphic = ({
       ? `M 0 0 H ${length} M 0 ${actualWidth} H ${length} M 0 0 V ${actualWidth} M ${length} 0 V ${actualWidth}`
       : `M 0 0 H ${length} M 0 ${actualWidth} H ${length}`;
 
+  const transforms = [
+    flipX ? 'scaleX(-1)' : '',
+    flipY ? 'scaleY(-1)' : '',
+    rotate !== 0 ? `rotate(${rotate}deg)` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <svg
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -72,6 +98,8 @@ export const StraightPipeGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
+        transform: transforms || undefined,
+        transformOrigin: 'center',
         ...style,
       }}
       {...props}

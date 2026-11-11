@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 
 export type PaddingGraphicProps = {
   /**
-   * 長さ
+   * 横幅
    * @default 4
    */
   width?: number;
@@ -11,7 +11,7 @@ export type PaddingGraphicProps = {
    */
   length?: number;
   /**
-   * 縦幅
+   * 縦幅（広い方）
    * @default 18
    */
   height?: number;
@@ -20,7 +20,7 @@ export type PaddingGraphicProps = {
    */
   size?: number;
   /**
-   * 狭い方の縦幅
+   * 縦幅（狭い方）
    */
   innerHeight?: number;
   /**
@@ -29,12 +29,27 @@ export type PaddingGraphicProps = {
    */
   flip?: boolean;
   /**
-   * 段差の折れ目に縦線を描画するかどうか
+   * 水平反転
+   * @default false
+   */
+  flipX?: boolean;
+  /**
+   * 垂直反転
+   * @default false
+   */
+  flipY?: boolean;
+  /**
+   * 回転角度
+   * @default 0
+   */
+  rotate?: number;
+  /**
+   * 段差の折れ目に縦線を描画するか
    * @default false
    */
   showDivider?: boolean;
   /**
-   * 線の太さ
+   * 太さ
    * @default 1.5
    */
   strokeWidth?: number;
@@ -50,6 +65,9 @@ export const PaddingGraphic = ({
   size,
   innerHeight: innerHeightProp,
   flip = false,
+  flipX = false,
+  flipY = false,
+  rotate = 0,
   showDivider = false,
   strokeWidth = 1.5,
   className,
@@ -70,19 +88,28 @@ export const PaddingGraphic = ({
   const x2 = r(actualWidth * 0.75);
   const x3 = r(actualWidth);
 
-  const dTop = flip
+  const isFlipped = flip || flipX;
+
+  const dTop = isFlipped
     ? `M 0 0 H ${x1} L ${x2} ${innerTop} H ${x3}`
     : `M 0 ${innerTop} H ${x1} L ${x2} 0 H ${x3}`;
 
-  const dBottom = flip
+  const dBottom = isFlipped
     ? `M 0 ${r(actualHeight)} H ${x1} L ${x2} ${innerBottom} H ${x3}`
     : `M 0 ${innerBottom} H ${x1} L ${x2} ${r(actualHeight)} H ${x3}`;
 
   const dDivider = showDivider
-    ? flip
+    ? isFlipped
       ? `M ${x1} 0 V ${r(actualHeight)} M ${x2} ${innerTop} V ${innerBottom}`
       : `M ${x1} ${innerTop} V ${innerBottom} M ${x2} 0 V ${r(actualHeight)}`
     : '';
+
+  const transforms = [
+    flipY ? 'scaleY(-1)' : '',
+    rotate !== 0 ? `rotate(${rotate}deg)` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <svg
@@ -96,6 +123,8 @@ export const PaddingGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
+        transform: transforms || undefined,
+        transformOrigin: 'center',
         ...style,
       }}
       {...props}
