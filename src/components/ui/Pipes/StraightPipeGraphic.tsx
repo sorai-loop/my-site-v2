@@ -2,17 +2,17 @@ import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 
 export type StraightPipeGraphicProps = {
   /**
-   * 長さ
+   * パイプの長さ（X方向）
    * @default 120
    */
   length?: number;
   /**
-   * 管幅Y
-   * @default 24
+   * 太さ
+   * @default 16
    */
   width?: number;
   /**
-   * `管幅
+   * エイリアス
    */
   pipeWidth?: number;
   /**
@@ -41,7 +41,7 @@ export const StraightPipeGraphic = ({
   'aria-hidden': ariaHidden = true,
   ...props
 }: StraightPipeGraphicProps) => {
-  const actualWidth = pipeWidthProp ?? widthProp ?? 24;
+  const actualWidth = pipeWidthProp ?? widthProp ?? 16;
 
   const d = closed
     ? `M 0 0 H ${length} M 0 ${actualWidth} H ${length} M 0 0 V ${actualWidth} M ${length} 0 V ${actualWidth}`
@@ -50,11 +50,15 @@ export const StraightPipeGraphic = ({
   return (
     <svg
       viewBox={`0 0 ${length} ${actualWidth}`}
+      width={length}
+      height={actualWidth}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden={ariaHidden}
       style={{
         overflow: 'visible',
+        display: 'inline-block',
+        verticalAlign: 'middle',
         ...style,
       }}
       {...props}
