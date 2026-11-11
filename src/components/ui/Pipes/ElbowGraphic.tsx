@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 export type ElbowGraphicProps = {
   /**
    * サイズ
-   * @default 28
+   * @default centered ? 38 : 28
    */
   size?: number;
   /**
@@ -14,6 +14,11 @@ export type ElbowGraphicProps = {
    * 縦幅
    */
   height?: number;
+  /**
+   * 接続ポートを中心軸に揃える余白を持たせるか
+   * @default true
+   */
+  centered?: boolean;
   /**
    * 太さ
    * @default 1.5
@@ -30,7 +35,7 @@ export type ElbowGraphicProps = {
    */
   flipY?: boolean;
   /**
-   * 回転角度
+   * 回転
    * @default 0
    */
   rotate?: number;
@@ -48,6 +53,7 @@ export const ElbowGraphic = ({
   size,
   width: widthProp,
   height: heightProp,
+  centered = true,
   strokeWidth = 1.5,
   flipX = false,
   flipY = false,
@@ -58,16 +64,18 @@ export const ElbowGraphic = ({
   'aria-hidden': ariaHidden = true,
   ...props
 }: ElbowGraphicProps) => {
-  const actualSize = size ?? 28;
+  const baseDim = centered ? 38 : 28;
+  const actualSize = size ?? baseDim;
   const actualWidth = widthProp ?? actualSize;
   const actualHeight = heightProp ?? actualSize;
 
-  const sx = actualWidth / 28;
-  const sy = actualHeight / 28;
+  const sx = actualWidth / baseDim;
+  const sy = actualHeight / baseDim;
 
   const r = (val: number) => Math.round(val * 100) / 100;
+
   const px = (origX: number) => r((origX - 5) * sx);
-  const py = (origY: number) => r((origY - 5) * sy);
+  const py = (origY: number) => (centered ? r((origY + 5) * sy) : r((origY - 5) * sy));
 
   const dOuter = `M ${px(5)} ${py(5)} H ${px(8)} L ${px(9)} ${py(7)} H ${px(13)} A ${r(18 * sx)} ${r(18 * sy)} 0 0 1 ${px(31)} ${py(25)} V ${py(29)} L ${px(33)} ${py(30)} V ${py(33)}`;
 
