@@ -1,42 +1,42 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import {
+  computePipeProportions,
+  DEFAULT_PIPE_SIZE,
+  DEFAULT_STROKE_WIDTH,
+} from './pipeProportions';
 
 export type StraightPipeGraphicProps = {
   /**
-   * 長さ
-   * @default 120
+   * 基準パイプ径
+   * @default 14
+   */
+  pipeSize?: number;
+  /**
+   * パイプの長さ
+   * @default 100
    */
   length?: number;
   /**
-   * 太さ
-   * @default 16
+   * パイプの太さ
    */
   width?: number;
   /**
-   * エイリアス
+   * パイプの向き
+   * @default 'horizontal'
    */
-  pipeWidth?: number;
+  orientation?: 'horizontal' | 'vertical';
   /**
    * 縦向き
    * @default false
    */
   vertical?: boolean;
   /**
-   * 水平反転
+   * 親コンテナに合わせて伸縮するかどうか
    * @default false
    */
-  flipX?: boolean;
+  flexible?: boolean;
   /**
-   * 垂直反転
-   * @default false
-   */
-  flipY?: boolean;
-  /**
-   * 回転角度
-   * @default 0
-   */
-  rotate?: number;
-  /**
-   * 太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
@@ -51,54 +51,66 @@ export type StraightPipeGraphicProps = {
 } & Omit<ComponentPropsWithoutRef<'svg'>, 'width' | 'height' | 'strokeWidth'>;
 
 export const StraightPipeGraphic = ({
-  length = 120,
-  width: widthProp,
-  pipeWidth: pipeWidthProp,
+  pipeSize,
+  length = 100,
+  width,
+  orientation,
   vertical = false,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
-  strokeWidth = 1.5,
+  flexible = false,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   closed = false,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: StraightPipeGraphicProps) => {
-  const actualWidth = pipeWidthProp ?? widthProp ?? 16;
+  const proportions = computePipeProportions(pipeSize ?? DEFAULT_PIPE_SIZE);
+  const isVertical = orientation !== undefined ? orientation === 'vertical' : vertical;
+  const actualWidth = width ?? proportions.pipeWidth;
 
-  const svgWidth = vertical ? actualWidth : length;
-  const svgHeight = vertical ? length : actualWidth;
+  const svgWidth = flexible ? (isVertical ? actualWidth : '100%') : isVertical ? actualWidth : length;
+  const svgHeight = flexible ? (isVertical ? '100%' : actualWidth) : isVertical ? length : actualWidth;
 
-  const d = vertical
-    ? closed
-      ? `M 0 0 V ${length} M ${actualWidth} 0 V ${length} M 0 0 H ${actualWidth} M 0 ${length} H ${actualWidth}`
-      : `M 0 0 V ${length} M ${actualWidth} 0 V ${length}`
-    : closed
-      ? `M 0 0 H ${length} M 0 ${actualWidth} H ${length} M 0 0 V ${actualWidth} M ${length} 0 V ${actualWidth}`
-      : `M 0 0 H ${length} M 0 ${actualWidth} H ${length}`;
+  const viewBox = flexible
+    ? isVertical
+      ? `0 0 ${actualWidth} 100`
+      : `0 0 100 ${actualWidth}`
+    : `0 0 ${isVertical ? actualWidth : length} ${isVertical ? length : actualWidth}`;
 
-  const transforms = [
-    flipX ? 'scaleX(-1)' : '',
-    flipY ? 'scaleY(-1)' : '',
-    rotate !== 0 ? `rotate(${rotate}deg)` : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const d = flexible
+    ? isVertical
+      ? closed
+        ? `M 0 0 V 100 M ${actualWidth} 0 V 100 M 0 0 H ${actualWidth} M 0 100 H ${actualWidth}`
+        : `M 0 0 V 100 M ${actualWidth} 0 V 100`
+      : closed
+        ? `M 0 0 H 100 M 0 ${actualWidth} H 100 M 0 0 V ${actualWidth} M 100 0 V ${actualWidth}`
+        : `M 0 0 H 100 M 0 ${actualWidth} H 100`
+    : isVertical
+      ? closed
+        ? `M 0 0 V ${length} M ${actualWidth} 0 V ${length} M 0 0 H ${actualWidth} M 0 ${length} H ${actualWidth}`
+        : `M 0 0 V ${length} M ${actualWidth} 0 V ${length}`
+      : closed
+        ? `M 0 0 H ${length} M 0 ${actualWidth} H ${length} M 0 0 V ${actualWidth} M ${length} 0 V ${actualWidth}`
+        : `M 0 0 H ${length} M 0 ${actualWidth} H ${length}`;
 
   return (
     <svg
-      viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+      viewBox={viewBox}
       width={svgWidth}
       height={svgHeight}
+      preserveAspectRatio={flexible ? 'none' : undefined}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden={ariaHidden}
       style={{
         overflow: 'visible',
-        display: 'inline-block',
+        display: flexible ? 'block' : 'inline-block',
         verticalAlign: 'middle',
-        transform: transforms || undefined,
+        ...(flexible
+          ? isVertical
+            ? { width: `${actualWidth}px`, height: '100%' }
+            : { width: '100%', height: `${actualWidth}px` }
+          : {}),
         transformOrigin: 'center',
         ...style,
       }}
@@ -117,3 +129,4 @@ export const StraightPipeGraphic = ({
 };
 
 export const StraightGraphic = StraightPipeGraphic;
+export const Straight = StraightPipeGraphic;
