@@ -1,41 +1,31 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import type { PipeDirection } from './pipeOrientation';
+import { resolveCheeseOrientation } from './pipeOrientation';
+import { DEFAULT_STROKE_WIDTH } from './pipeProportions';
 
 export type CheeseGraphicProps = {
   /**
-   * サイズ
-   * @default centered ? 26 : 26
+   * 外寸サイズ
+   * @default centered ? 38 : 26
    */
   size?: number;
   /**
-   * 横幅
+   * 直通の方向
+   * @default 'horizontal'
    */
-  width?: number;
+  passThrough?: 'vertical' | 'horizontal';
   /**
-   * 縦幅
+   * 枝管の分岐方向
+   * @default 'top'
    */
-  height?: number;
+  branch?: PipeDirection;
   /**
    * 接続ポートを中心軸に揃える余白を持たせるか
    * @default true
    */
   centered?: boolean;
   /**
-   * 水平反転
-   * @default false
-   */
-  flipX?: boolean;
-  /**
-   * 垂直反転
-   * @default false
-   */
-  flipY?: boolean;
-  /**
-   * 回転角度
-   * @default 0
-   */
-  rotate?: number;
-  /**
-   * 太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
@@ -51,27 +41,27 @@ export type CheeseGraphicProps = {
 
 export const CheeseGraphic = ({
   size,
-  width: widthProp,
-  height: heightProp,
+  passThrough = 'horizontal',
+  branch = 'top',
   centered = true,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
-  strokeWidth = 1.5,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   closed = true,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: CheeseGraphicProps) => {
-  const baseWidth = 26;
-  const baseHeight = centered ? 26 : 22;
+  const { flipX, flipY, rotate } = resolveCheeseOrientation(passThrough, branch);
 
-  const actualWidth = widthProp ?? size ?? baseWidth;
-  const actualHeight = heightProp ?? size ?? (centered ? actualWidth : (actualWidth * 22) / 26);
+  // 原点SVGパスの基準寸法は 26x26。
+  // centered 時のデフォルト外寸は配管規格の 38px。
+  const baseDim = 26;
+  const actualSize = size ?? (centered ? 38 : baseDim);
+  const actualWidth = actualSize;
+  const actualHeight = centered ? actualSize : (actualSize * 22) / 26;
 
-  const sx = actualWidth / baseWidth;
-  const sy = actualHeight / baseHeight;
+  const sx = actualWidth / baseDim;
+  const sy = actualHeight / (centered ? baseDim : 22);
 
   const r = (val: number) => Math.round(val * 100) / 100;
 
@@ -140,5 +130,5 @@ export const CheeseGraphic = ({
   );
 };
 
-export const TeeGraphic = CheeseGraphic;
 export const Cheese = CheeseGraphic;
+export const Tee = CheeseGraphic;
