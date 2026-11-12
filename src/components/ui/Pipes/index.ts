@@ -6,3 +6,6 @@ export * from './UnionGraphic';
 export * from './ElbowGraphic';
 export * from './CheeseGraphic';
 export * from './RingGraphic';
+export * from './JointGroup';
+export * from './pipeProportions';
+export * from './pipeOrientation';
