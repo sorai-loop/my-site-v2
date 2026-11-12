@@ -1,53 +1,38 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import {
+  computePipeProportions,
+  DEFAULT_PIPE_SIZE,
+  DEFAULT_STROKE_WIDTH,
+} from './pipeProportions';
 
 export type ThreadGraphicProps = {
+  /**
+   * 基準パイプ径
+   * @default 14
+   */
+  pipeSize?: number;
+  /**
+   * ネジ山の外径
+   */
+  size?: number;
   /**
    * 長さ
    */
   length?: number;
   /**
    * 巻き数
-   * @default 1
    */
   turns?: number;
   /**
-   * 高さ
-   * @default 15
+   * パイプの向き
+   * @default 'horizontal'
    */
-  height?: number;
+  orientation?: 'horizontal' | 'vertical';
   /**
-   * エイリアス
-   */
-  size?: number;
-  /**
-   * ピッチ
-   */
-  pitch?: number;
-  /**
-   * 水平反転
-   * @default false
-   */
-  flipX?: boolean;
-  /**
-   * 垂直反転
-   * @default false
-   */
-  flipY?: boolean;
-  /**
-   * 回転角度
-   * @default 0
-   */
-  rotate?: number;
-  /**
-   * 太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
-  /**
-   * 斜線の太さ
-   * @default strokeWidth
-   */
-  ridgeStrokeWidth?: number;
   /**
    * 両端を閉じるか
    * @default false
@@ -59,37 +44,31 @@ export type ThreadGraphicProps = {
 } & Omit<ComponentPropsWithoutRef<'svg'>, 'width' | 'height' | 'strokeWidth'>;
 
 export const ThreadGraphic = ({
-  length: lengthProp,
-  turns: turnsProp,
-  height: heightProp,
+  pipeSize,
   size,
-  pitch: pitchProp,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
-  strokeWidth = 1.5,
-  ridgeStrokeWidth: ridgeStrokeWidthProp,
+  length,
+  turns,
+  orientation = 'horizontal',
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   closed = false,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: ThreadGraphicProps) => {
-  const actualHeight = heightProp ?? size ?? 15;
-  
-  const actualPitch = pitchProp ?? (actualHeight * 2) / 15;
-  
-  const crestDepth = (actualHeight * 1) / 15;
-  
-  const actualRidgeStrokeWidth = ridgeStrokeWidthProp ?? Math.round(strokeWidth * 0.47 * 10) / 10;
+  const proportions = computePipeProportions(pipeSize ?? DEFAULT_PIPE_SIZE);
+  const actualHeight = size ?? proportions.threadOuterSize;
 
-  let actualTurns = turnsProp;
+  const rotate = orientation === 'vertical' ? 90 : 0;
+
+  const actualPitch = (actualHeight * 2) / 15;
+  const crestDepth = actualHeight / 15;
+  const ridgeStrokeWidth = Math.round(strokeWidth * 0.47 * 10) / 10;
+
+  let actualTurns = turns;
   if (actualTurns === undefined) {
-    if (lengthProp !== undefined) {
-      actualTurns = Math.max(1, Math.round((lengthProp - actualPitch / 2) / actualPitch));
-    } else {
-      actualTurns = 1;
-    }
+    const targetLength = length ?? proportions.threadLength;
+    actualTurns = Math.max(1, Math.round((targetLength - actualPitch / 2) / actualPitch));
   }
 
   const r = (val: number) => Math.round(val * 100) / 100;
@@ -120,14 +99,6 @@ export const ThreadGraphic = ({
     ? `M 0 0 L ${r(actualPitch / 2)} ${r(actualHeight - crestDepth)} M ${r(actualTurns * actualPitch)} 0 L ${totalWidth} ${r(actualHeight - crestDepth)}`
     : '';
 
-  const transforms = [
-    flipX ? 'scaleX(-1)' : '',
-    flipY ? 'scaleY(-1)' : '',
-    rotate !== 0 ? `rotate(${rotate}deg)` : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
     <svg
       viewBox={`0 0 ${totalWidth} ${r(actualHeight)}`}
@@ -140,7 +111,7 @@ export const ThreadGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
-        transform: transforms || undefined,
+        transform: rotate !== 0 ? `rotate(${rotate}deg)` : undefined,
         transformOrigin: 'center',
         ...style,
       }}
@@ -156,7 +127,7 @@ export const ThreadGraphic = ({
       />
       <path
         stroke="currentColor"
-        strokeWidth={actualRidgeStrokeWidth}
+        strokeWidth={ridgeStrokeWidth}
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
