@@ -1,44 +1,36 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import { DEFAULT_STROKE_WIDTH } from './pipeProportions';
+import type { PipeDirection } from './pipeOrientation';
+import { resolveElbowOrientation } from './pipeOrientation';
 
 export type ElbowGraphicProps = {
   /**
-   * サイズ
+   * 全体外寸（正方形の一辺）
    * @default centered ? 38 : 28
    */
   size?: number;
   /**
-   * 横幅
+   * 接続元ポート
    */
-  width?: number;
+  from?: PipeDirection;
   /**
-   * 縦幅
+   * 接続先ポート
    */
-  height?: number;
+  to?: PipeDirection;
+  /**
+   * 接続ポート2方向のペア [from, to]
+   */
+  ports?: [PipeDirection, PipeDirection];
   /**
    * 接続ポートを中心軸に揃える余白を持たせるか
    * @default true
    */
   centered?: boolean;
   /**
-   * 太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
-  /**
-   * 水平反転
-   * @default false
-   */
-  flipX?: boolean;
-  /**
-   * 垂直反転
-   * @default false
-   */
-  flipY?: boolean;
-  /**
-   * 回転
-   * @default 0
-   */
-  rotate?: number;
   /**
    * 開口端面線を描画するか
    * @default true
@@ -51,26 +43,33 @@ export type ElbowGraphicProps = {
 
 export const ElbowGraphic = ({
   size,
-  width: widthProp,
-  height: heightProp,
+  from,
+  to,
+  ports,
   centered = true,
-  strokeWidth = 1.5,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   closed = true,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: ElbowGraphicProps) => {
+  // ポートから向きを自動解決
+  const autoOrientation =
+    (from && to) || ports
+      ? resolveElbowOrientation(
+          from ?? ports?.[0] ?? 'bottom',
+          to ?? ports?.[1] ?? 'left'
+        )
+      : { flipX: false, flipY: false, rotate: 0 };
+
+  const { flipX, flipY, rotate } = autoOrientation;
+
   const baseDim = centered ? 38 : 28;
   const actualSize = size ?? baseDim;
-  const actualWidth = widthProp ?? actualSize;
-  const actualHeight = heightProp ?? actualSize;
 
-  const sx = actualWidth / baseDim;
-  const sy = actualHeight / baseDim;
+  const sx = actualSize / baseDim;
+  const sy = actualSize / baseDim;
 
   const r = (val: number) => Math.round(val * 100) / 100;
 
@@ -97,9 +96,9 @@ export const ElbowGraphic = ({
 
   return (
     <svg
-      viewBox={`0 0 ${r(actualWidth)} ${r(actualHeight)}`}
-      width={r(actualWidth)}
-      height={r(actualHeight)}
+      viewBox={`0 0 ${r(actualSize)} ${r(actualSize)}`}
+      width={r(actualSize)}
+      height={r(actualSize)}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden={ariaHidden}
