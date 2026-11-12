@@ -1,41 +1,31 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import {
+  computePipeProportions,
+  DEFAULT_PIPE_SIZE,
+  DEFAULT_STROKE_WIDTH,
+} from './pipeProportions';
 
 export type HexNutGraphicProps = {
   /**
-   * 厚さ
-   * @default 22
+   * 基準パイプ径
+   * @default 14
    */
-  thickness?: number;
+  pipeSize?: number;
   /**
-   * エイリアス
-   */
-  width?: number;
-  /**
-   * 高さ
-   * @default 50
-   */
-  height?: number;
-  /**
-   * エイリアス
+   * ナット外径
    */
   size?: number;
   /**
-   * 水平反転
-   * @default false
+   * ナット厚さ
    */
-  flipX?: boolean;
+  thickness?: number;
   /**
-   * 垂直反転
-   * @default false
+   * パイプの向き
+   * @default 'horizontal'
    */
-  flipY?: boolean;
+  orientation?: 'horizontal' | 'vertical';
   /**
-   * 回転角度
-   * @default 0
-   */
-  rotate?: number;
-  /**
-   * 太さ
+   * 線の太さ
    * @default 1.5
    */
   strokeWidth?: number;
@@ -45,24 +35,24 @@ export type HexNutGraphicProps = {
 } & Omit<ComponentPropsWithoutRef<'svg'>, 'width' | 'height' | 'strokeWidth'>;
 
 export const HexNutGraphic = ({
-  thickness,
-  width: widthProp,
-  height: heightProp,
+  pipeSize,
   size,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
-  strokeWidth = 1.5,
+  thickness,
+  orientation = 'horizontal',
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: HexNutGraphicProps) => {
-  const actualThickness = thickness ?? widthProp ?? 22;
-  const actualHeight = heightProp ?? size ?? 50;
+  const proportions = computePipeProportions(pipeSize ?? DEFAULT_PIPE_SIZE);
+  const actualThickness = thickness ?? proportions.nutThickness;
+  const actualHeight = size ?? proportions.nutOuterSize;
+
+  const rotate = orientation === 'vertical' ? 90 : 0;
 
   const r = (val: number) => Math.round(val * 100) / 100;
-  
+
   const x = (baseX: number) => r(((baseX - 6) / 22) * actualThickness);
   const y = (baseY: number) => r((baseY / 50) * actualHeight);
 
@@ -71,14 +61,6 @@ export const HexNutGraphic = ({
   const dRidges = `M ${x(24)} ${y(0)} L ${x(28)} ${y(7)} L ${x(25)} ${y(14)} L ${x(28)} ${y(21)} V ${y(29)} L ${x(25)} ${y(36)} L ${x(28)} ${y(43)} L ${x(24)} ${y(50)} H ${x(10)} L ${x(6)} ${y(43)} L ${x(9)} ${y(36)} L ${x(6)} ${y(29)} V ${y(21)} L ${x(9)} ${y(14)} L ${x(6)} ${y(7)} L ${x(10)} ${y(0)} Z`;
 
   const dHLine = `M ${x(9)} ${y(14)} H ${x(25)} M ${x(9)} ${y(36)} H ${x(25)}`;
-
-  const transforms = [
-    flipX ? 'scaleX(-1)' : '',
-    flipY ? 'scaleY(-1)' : '',
-    rotate !== 0 ? `rotate(${rotate}deg)` : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
 
   return (
     <svg
@@ -92,7 +74,7 @@ export const HexNutGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
-        transform: transforms || undefined,
+        transform: rotate !== 0 ? `rotate(${rotate}deg)` : undefined,
         transformOrigin: 'center',
         ...style,
       }}
