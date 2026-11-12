@@ -1,6 +1,11 @@
 import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
 import { HexNutGraphic } from './HexNutGraphic';
 import { PaddingGraphic } from './PaddingGraphic';
+import {
+  computePipeProportions,
+  DEFAULT_PIPE_SIZE,
+  DEFAULT_STROKE_WIDTH,
+} from './pipeProportions';
 import { StraightPipeGraphic } from './StraightPipeGraphic';
 import { ThreadGraphic } from './ThreadGraphic';
 
@@ -17,107 +22,15 @@ const DEFAULT_UNION_ORDER: UnionPartType[] = [
 
 export type UnionGraphicProps = {
   /**
-   * パーツの並び順
-   * @default ['pipe', 'mainNut', 'padding', 'subNut', 'neck', 'thread']
+   * 基準パイプ径
+   * @default 14
    */
-  order?: UnionPartType[];
+  size?: number;
   /**
-   * 水平反転
-   * @default false
+   * 配管の向き
+   * @default 'horizontal'
    */
-  flipX?: boolean;
-  /**
-   * 垂直反転
-   * @default false
-   */
-  flipY?: boolean;
-  /**
-   * 回転角度
-   * @default 0
-   */
-  rotate?: number;
-  /**
-   * 左端パイプ部の横幅
-   * @default 16
-   */
-  pipeLength?: number;
-  /**
-   * 左端パイプ部の縦幅
-   * @default 28
-   */
-  pipeHeight?: number;
-  /**
-   * メインナットの横幅
-   * @default 22
-   */
-  mainNutWidth?: number;
-  /**
-   * メインナットの縦幅
-   * @default 50
-   */
-  mainNutHeight?: number;
-  /**
-   * パディングの横幅
-   * @default 5
-   */
-  paddingWidth?: number;
-  /**
-   * パディングの縦幅（広い方）
-   * @default 36
-   */
-  paddingHeight?: number;
-  /**
-   * パディングの縦幅（狭い方）
-   * @default 30
-   */
-  paddingInnerHeight?: number;
-  /**
-   * パディングの段差反転
-   * @default true
-   */
-  flipPadding?: boolean;
-  /**
-   * サブナットの厚さ
-   * @default 10
-   */
-  subNutWidth?: number;
-  /**
-   * サブナットの縦幅
-   * @default 42
-   */
-  subNutHeight?: number;
-  /**
-   * ネックの横幅
-   * @default 4
-   */
-  neckWidth?: number;
-  /**
-   * ネックの縦幅
-   */
-  neckHeight?: number;
-  /**
-   * ネックの反転
-   * @default true
-   */
-  flipNeck?: boolean;
-  /**
-   * ネジ山の横幅
-   * @default 24
-   */
-  threadLength?: number;
-  /**
-   * ネジ山の縦幅
-   * @default 30
-   */
-  threadHeight?: number;
-  /**
-   * ネジ山の巻き数
-   */
-  threadTurns?: number;
-  /**
-   * ネジ山のピッチ
-   */
-  threadPitch?: number;
+  orientation?: 'horizontal' | 'vertical';
   /**
    * 線の太さ
    * @default 1.5
@@ -126,47 +39,43 @@ export type UnionGraphicProps = {
   className?: string;
   style?: CSSProperties;
   'aria-hidden'?: boolean | 'true' | 'false';
-} & Omit<ComponentPropsWithoutRef<'svg'>, 'width' | 'height' | 'strokeWidth' | 'order'>;
+} & Omit<ComponentPropsWithoutRef<'svg'>, 'width' | 'height' | 'strokeWidth'>;
 
 export const UnionGraphic = ({
-  order = DEFAULT_UNION_ORDER,
-  flipX = false,
-  flipY = false,
-  rotate = 0,
-  pipeLength = 16,
-  pipeHeight = 28,
-  mainNutWidth = 22,
-  mainNutHeight = 50,
-  paddingWidth = 5,
-  paddingHeight = 36,
-  paddingInnerHeight = 30,
-  flipPadding = true,
-  subNutWidth = 10,
-  subNutHeight = 42,
-  neckWidth = 4,
-  neckHeight,
-  flipNeck = true,
-  threadLength = 24,
-  threadHeight = 30,
-  threadTurns,
-  threadPitch,
-  strokeWidth = 1.5,
+  size = DEFAULT_PIPE_SIZE,
+  orientation = 'horizontal',
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   className,
   style,
   'aria-hidden': ariaHidden = true,
   ...props
 }: UnionGraphicProps) => {
+  const proportions = computePipeProportions(size);
+  const s = proportions.pipeWidth;
+
+  // 基準径に基づくプロポーション算出
+  const pipeLength = Math.round(s * 0.57); // 14 -> 8
+  const pipeHeight = Math.round(s * 1.43); // 14 -> 20
+  const mainNutWidth = Math.round(s * 1.0); // 14 -> 14
+  const mainNutHeight = Math.round(s * 2.43); // 14 -> 34
+  const paddingWidth = proportions.paddingWidth;
+  const paddingHeight = proportions.paddingHeight;
+  const paddingInnerHeight = proportions.paddingInnerHeight;
+  const subNutWidth = Math.round(s * 0.57); // 14 -> 8
+  const subNutHeight = Math.round(s * 2.0); // 14 -> 28
+  const neckWidth = 4;
+  const threadLength = Math.round(s * 1.0); // 14 -> 14
+  const threadHeight = Math.round(s * 1.43); // 14 -> 20
+
+  const rotate = orientation === 'vertical' ? 90 : 0;
+
   const r = (val: number) => Math.round(val * 100) / 100;
 
-  const actualPitch = threadPitch ?? (threadHeight * 2) / 15;
-  const actualTurns =
-    threadTurns !== undefined
-      ? threadTurns
-      : Math.max(1, Math.round((threadLength - actualPitch / 2) / actualPitch));
+  const actualPitch = (threadHeight * 2) / 15;
+  const actualTurns = Math.max(1, Math.round((threadLength - actualPitch / 2) / actualPitch));
   const actualThreadWidth = r(actualTurns * actualPitch + actualPitch / 2);
 
-  const actualNeckHeight =
-    neckHeight ?? Math.max(threadHeight + 4, Math.min(subNutHeight - 6, threadHeight + 4));
+  const actualNeckHeight = Math.max(threadHeight + 4, Math.min(subNutHeight - 6, threadHeight + 4));
 
   const getPartMeta = (type: UnionPartType) => {
     switch (type) {
@@ -185,7 +94,7 @@ export const UnionGraphic = ({
     }
   };
 
-  const activeParts = order.filter((type) => {
+  const activeParts = DEFAULT_UNION_ORDER.filter((type) => {
     const meta = getPartMeta(type);
     return meta.width > 0;
   });
@@ -195,7 +104,7 @@ export const UnionGraphic = ({
     20
   );
 
-  const { positionedParts, totalWidth } = order.reduce<{
+  const { positionedParts, totalWidth } = DEFAULT_UNION_ORDER.reduce<{
     positionedParts: Array<{
       type: UnionPartType;
       index: number;
@@ -222,14 +131,6 @@ export const UnionGraphic = ({
 
   const yCenter = (h: number) => r((maxHeight - h) / 2);
 
-  const transforms = [
-    flipX ? 'scaleX(-1)' : '',
-    flipY ? 'scaleY(-1)' : '',
-    rotate !== 0 ? `rotate(${rotate}deg)` : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
     <svg
       viewBox={`0 0 ${totalWidth} ${r(maxHeight)}`}
@@ -242,7 +143,7 @@ export const UnionGraphic = ({
         overflow: 'visible',
         display: 'inline-block',
         verticalAlign: 'middle',
-        transform: transforms || undefined,
+        transform: rotate !== 0 ? `rotate(${rotate}deg)` : undefined,
         transformOrigin: 'center',
         ...style,
       }}
@@ -275,7 +176,7 @@ export const UnionGraphic = ({
                 x={x}
                 y={yCenter(mainNutHeight)}
                 thickness={mainNutWidth}
-                height={mainNutHeight}
+                size={mainNutHeight}
                 strokeWidth={strokeWidth}
                 aria-hidden="true"
               />
@@ -290,7 +191,7 @@ export const UnionGraphic = ({
                 width={paddingWidth}
                 height={paddingHeight}
                 innerHeight={paddingInnerHeight}
-                flip={flipPadding}
+                flip
                 showDivider
                 strokeWidth={strokeWidth}
                 aria-hidden="true"
@@ -304,7 +205,7 @@ export const UnionGraphic = ({
                 x={x}
                 y={yCenter(subNutHeight)}
                 thickness={subNutWidth}
-                height={subNutHeight}
+                size={subNutHeight}
                 strokeWidth={strokeWidth}
                 aria-hidden="true"
               />
@@ -319,7 +220,7 @@ export const UnionGraphic = ({
                 width={neckWidth}
                 height={actualNeckHeight}
                 innerHeight={threadHeight}
-                flip={flipNeck}
+                flip
                 showDivider
                 strokeWidth={strokeWidth}
                 aria-hidden="true"
@@ -333,9 +234,7 @@ export const UnionGraphic = ({
                 x={x}
                 y={yCenter(threadHeight)}
                 length={threadLength}
-                turns={threadTurns}
-                height={threadHeight}
-                pitch={threadPitch}
+                size={threadHeight}
                 strokeWidth={strokeWidth}
                 closed
                 aria-hidden="true"
