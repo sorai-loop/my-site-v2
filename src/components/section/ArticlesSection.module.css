@@ -1,0 +1,113 @@
+/* ==========================================================================
+   ArticlesSection (Mobile-First Styles)
+   Base: Mobile (default)
+   Media Query: @media (min-width: 769px) for PC/Desktop
+   ========================================================================== */
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  padding: 3.5rem 1rem 5rem;
+  color: var(--color-text-main, #36332f);
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Layout Grid (Mobile: Single Column / PC: Left Control + Right Bookshelf)
+   ========================================================================== */
+.layoutGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.pipeRow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* ==========================================================================
+   Control Column (Left Column on PC / Top on Mobile)
+   ========================================================================== */
+.controlColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+}
+
+.headerArea {
+  width: 100%;
+  max-width: 480px;
+  padding-left: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-family: var(--font-header, 'IM Fell English', serif);
+  font-size: var(--font-size-section-title, 2.5rem);
+  color: var(--color-heading, #2b2d31);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  font-weight: normal;
+}
+
+.subtitle {
+  font-family: var(--font-base, cursive);
+  font-size: var(--font-size-caption, 0.85rem);
+  color: var(--color-text-sub, #7a6c5d);
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   PC / Desktop Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .section {
+    padding: 4.5rem 2rem 6rem;
+  }
+
+  .layoutGrid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .headerArea {
+    padding-left: 1.25rem;
+    max-width: none;
+  }
+
+  .pipeRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .controlColumn {
+    width: 340px;
+    max-width: 340px;
+    flex-shrink: 0;
+    align-items: flex-start;
+  }
+}
