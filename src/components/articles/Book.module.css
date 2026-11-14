@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Book Component (本単体のデザイン・背表紙・姿勢・文字あふれ調整)
+   ========================================================================== */
+
+.bookLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--color-text-main, #36332f);
+  background-color: var(--color-bg-base, #fffdf4);
+  color: var(--color-text-main, #36332f);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.bookLink:hover {
+  background-color: #f6f1de;
+  box-shadow: 2px -2px 0 rgba(54, 51, 47, 0.18);
+  z-index: 10;
+}
+
+.bookSpineInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 本文文字数に応じた背表紙サイズ（モバイル基準） */
+.bookSmall {
+  width: 34px;
+  height: 170px;
+  padding: 0.5rem 0.2rem 0.35rem;
+}
+
+.bookMedium {
+  width: 40px;
+  height: 185px;
+  padding: 0.52rem 0.24rem 0.38rem;
+}
+
+.bookLarge {
+  width: 46px;
+  height: 200px;
+  padding: 0.55rem 0.28rem 0.4rem;
+}
+
+/* 直立本 */
+.bookUpright:hover {
+  transform: translateY(-4px);
+}
+
+/* 傾き（角度を自然な4degにし、translateYでパイプ天面に着地） */
+.bookTiltedLeft {
+  transform: translateY(-3.5px) rotate(4deg);
+  transform-origin: bottom left;
+  z-index: 2;
+}
+
+.bookTiltedLeft:hover {
+  transform: translateY(-7px) rotate(3deg);
+  z-index: 10;
+}
+
+.bookTiltedRight {
+  transform: translateY(-3.5px) rotate(-4deg);
+  transform-origin: bottom right;
+  z-index: 2;
+}
+
+.bookTiltedRight:hover {
+  transform: translateY(-7px) rotate(-3deg);
+  z-index: 10;
+}
+
+/* 縦書きタイトル（文字数調整クラス） */
+.bookTitleVertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: var(--font-title, 'Sawarabi Mincho', serif);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  max-height: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+/* タイトル文字数別のフォントサイズクラス */
+.titleShort {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.titleMedium {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.titleLong {
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+/* 本のサイズに応じた最大タイトル高さ */
+.bookLarge .bookTitleVertical {
+  max-height: 150px;
+}
+
+.bookMedium .bookTitleVertical {
+  max-height: 135px;
+}
+
+.bookSmall .bookTitleVertical {
+  max-height: 120px;
+}
+
+/* フッター（二重線 ＋ ♡ ＋ いいね数） */
+.bookFooter {
+  width: 100%;
+  border-top: 3px double var(--color-text-main, #36332f);
+  padding-top: 0.2rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  font-family: var(--font-code, monospace);
+  font-size: 0.62rem;
+  line-height: 1;
+}
+
+/* マッチ状態・フィルター */
+.bookMatched {
+  border-color: var(--color-text-main, #36332f);
+}
+
+.bookDimmed {
+  opacity: 0.38;
+}
+
+/* ==========================================================================
+   PC Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .bookSmall {
+    width: 44px;
+    height: 195px;
+    padding: 0.65rem 0.26rem 0.4rem;
+  }
+
+  .bookMedium {
+    width: 50px;
+    height: 210px;
+    padding: 0.7rem 0.3rem 0.42rem;
+  }
+
+  .bookLarge {
+    width: 58px;
+    height: 225px;
+    padding: 0.75rem 0.35rem 0.45rem;
+  }
+
+  .bookSmall .bookTitleVertical {
+    max-height: 140px;
+  }
+
+  .bookMedium .bookTitleVertical {
+    max-height: 155px;
+  }
+
+  .bookLarge .bookTitleVertical {
+    max-height: 170px;
+  }
+
+  .bookTiltedLeft {
+    transform: translateY(-4px) rotate(4deg);
+  }
+
+  .bookTiltedLeft:hover {
+    transform: translateY(-8px) rotate(3deg);
+  }
+
+  .bookTiltedRight {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+
+  .bookTiltedRight:hover {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+
+  .titleShort {
+    font-size: 0.86rem;
+  }
+
+  .titleMedium {
+    font-size: 0.75rem;
+  }
+
+  .titleLong {
+    font-size: 0.64rem;
+  }
+
+  .bookFooter {
+    font-size: 0.68rem;
+  }
+}

@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Shelf Component (棚1段分のスタイル・レイアウト)
+   水平直パイプの天面に本が自然に着地し、かつ左右の縦柱パイプと重ならない
+   ように表示領域をコントロールします。
+   ========================================================================== */
+
+.shelfUnit {
+  position: relative;
+  width: 100%;
+  height: 360px; /* モバイル: 480px の 75% */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 本の領域を上部基準で配置 */
+  box-sizing: border-box;
+}
+
+/* 本の配置エリア（直パイプの天面に着地させる） */
+.shelfBooksArea {
+  position: relative;
+  width: 100%;
+  /* 
+   * 下部の水平パイプ行は高さ58pxで、直パイプ（太さ22px）はその中央を通っています。
+   * パイプの天面は上端から 18px ( (58 - 22) / 2 ) 下にあるため、
+   * 本の底辺を直パイプ天面にぴったり着地させるため高さを calc(100% - 40px) に設定します。
+   */
+  height: calc(100% - 40px); /* 100% - 58px + 18px */
+  display: flex;
+  align-items: flex-end; /* 本の底辺を着地 */
+  box-sizing: border-box;
+  z-index: 5;
+  /* 左右の縦パイプ柱・エルボ（各幅58px）と本が重ならないよう余白を確保 */
+  padding: 0 58px;
+}
+
+/* 偶数段（L字: 左側に縦柱があるため、本を左寄せで柱横から並べる） */
+.booksAreaEven {
+  justify-content: flex-start;
+}
+
+/* 奇数段（反転L字: 右側に縦柱があるため、本を右寄せで柱横から並べる） */
+.booksAreaOdd {
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   PC Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .shelfUnit {
+    height: 390px; /* PC: 520px の 75% */
+  }
+
+  .shelfBooksArea {
+    height: calc(100% - 40px);
+    padding: 0 58px;
+  }
+}

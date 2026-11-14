@@ -1,0 +1,74 @@
+/* ==========================================================================
+   ShelfBooks Component (本棚1段分の本の並び・配置・境界線の干渉防止)
+   通常3冊 + 特殊1冊の配置
+   ========================================================================== */
+
+.shelfBooksContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end; /* 水平パイプの上に本が着地 */
+  padding: 0;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.alignLeft {
+  justify-content: flex-start;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+/* 本がまとまって並ぶクラスタ */
+.bookCluster {
+  display: inline-flex;
+  align-items: flex-end;
+  position: relative;
+  /* 本同士の隙間をなくして接して置く */
+  gap: 0;
+}
+
+/* 本のスロット（外枠線の干渉防止と重ね合わせ管理） */
+.bookSlot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+/* 直立本同士が接している場合、境界線（2px）が重なって4pxにならないよう -2px マージン */
+:where(.bookSlot + .bookSlot) {
+  margin-left: -2px;
+}
+
+/* 特殊姿勢ごとのパディング・マージン調整（縦幅と傾き角度から算出したパディングを適用） */
+.slotPosture_tiltedLeft {
+  /* 右に倒れかかるため、傾く方角（右）に本固有の縦幅×角度から計算したパディングをとる */
+  padding-right: var(--tilt-padding, 13px);
+}
+
+.slotPosture_tiltedRight {
+  /* 左に倒れかかるため、傾く方角（左）に本固有の縦幅×角度から計算したパディングをとる */
+  padding-left: var(--tilt-padding, 13px);
+}
+
+/* ホバー時は最前面に浮き上がらせて境界線を美しく表示 */
+.bookSlot:hover {
+  z-index: 20 !important;
+}
+
+/* ==========================================================================
+   PC Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .slotPosture_tiltedLeft {
+    padding-right: var(--tilt-padding-pc, 15px);
+  }
+
+  .slotPosture_tiltedRight {
+    padding-left: var(--tilt-padding-pc, 15px);
+  }
+}

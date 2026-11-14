@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Articles Control Panel Component (操作パネルUI)
+   ========================================================================== */
+.controlPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.gaugesCol {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  flex: 1;
+}
+
+.counterWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: fit-content;
+}
+
+.counterLabel {
+  font-size: 0.7rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.06em;
+}
+
+.counterDigits {
+  display: flex;
+  width: 100%;
+  border: 1.5px solid var(--color-text-main, #36332f);
+  background-color: var(--color-bg-base, #fffdf4);
+  box-sizing: border-box;
+}
+
+.digitCell {
+  flex: 1;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-code, monospace);
+  font-size: 1.35rem;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  color: var(--color-heading, #2b2d31);
+  box-sizing: border-box;
+}
+
+.digitCell + .digitCell {
+  border-left: 1.5px dashed var(--color-text-main, #36332f);
+}
+
+.tagsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem 0.5rem 0.75rem;
+  flex: 1;
+}
+
+.tagsLabel {
+  font-size: 0.75rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.05em;
+}
+
+.tagsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(64px, 1fr));
+  gap: 0.5rem;
+}
+
+.tagButton {
+  appearance: none;
+  background-color: var(--color-bg-base, #fffdf4);
+  border: 1.5px solid var(--color-text-main, #36332f);
+  color: var(--color-text-main, #36332f);
+  font-family: var(--font-code, monospace);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tagButton:hover {
+  transform: translateY(-1px);
+  background-color: #f3eed9;
+}
+
+.tagButtonActive {
+  background-color: var(--color-text-main, #36332f);
+  color: var(--color-bg-base, #fffdf4);
+}
+
+.tagButtonActive:hover {
+  background-color: var(--color-heading, #2b2d31);
+}
+
+/* PC Overrides */
+@media (min-width: 769px) {
+  .controlPanel {
+    width: 340px;
+    flex-shrink: 0;
+  }
+
+  .tagsGrid {
+    grid-template-columns: repeat(2, minmax(92px, 1fr));
+  }
+}

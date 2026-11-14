@@ -1,0 +1,92 @@
+/* ==========================================================================
+   ShelfPipe Component (棚1段分のパイプ骨組みスタイル)
+   L字型（左柱・右曲がり）と左右反転L字型（右柱・左曲がり）
+   ========================================================================== */
+
+.shelfPipeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* 本のクリックを阻害しない */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 左右の縦パイプ柱スロット */
+.pillarSlotLeft,
+.pillarSlotRight {
+  position: absolute;
+  top: 0;
+  width: 58px;
+  height: calc(100% - 58px);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  z-index: 1;
+}
+
+.pillarSlotLeft {
+  left: 0;
+}
+
+.pillarSlotRight {
+  right: 0;
+}
+
+.pillarPipeWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pillarDecoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 下部の水平パイプ行 */
+.shelfPipeRow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.elbowWrapper {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horizontalShelfPipeWrapper {
+  flex: 1;
+  height: 22px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.shelfPipeJoint {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+}

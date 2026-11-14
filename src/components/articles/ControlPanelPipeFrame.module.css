@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Control Panel Pipe Frame (配管フレーム枠)
+   ========================================================================== */
+
+.pipeFrameBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 1. 最上段パイプ行（右から入り左端で下へ折れる） */
+.topPipeRow {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.topPipeWrapper {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 2. 上部コンテンツ行（上縦管 ＋ 右側にスロット） */
+.upperContentRow {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.verticalPipeCol {
+  width: 38px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-self: stretch;
+}
+
+.pillarDecoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* 3. 中間チーズ分岐行（チーズと水平分岐パイプが同一行で直結） */
+.cheeseBranchRow {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  width: 100%;
+}
+
+.branchPipeWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 4. 下部コンテンツ行（下縦管 ＋ 右側にスロット） */
+.lowerContentRow {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* 5. 最下段フック行（縦管を受けて右へ曲がり上へ巻き上がる） */
+.bottomHookRow {
+  display: flex;
+  align-items: flex-start;
+}
