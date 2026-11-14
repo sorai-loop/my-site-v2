@@ -8,11 +8,13 @@ import styles from './ArticlesSection.module.css';
 export type ArticlesSectionProps = {
   articles?: ArticleItem[];
   className?: string;
+  fetchFromQiita?: boolean;
 };
 
 export const ArticlesSection = ({
   articles: initialArticles,
   className,
+  fetchFromQiita = true,
 }: ArticlesSectionProps) => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
 
@@ -22,7 +24,7 @@ export const ArticlesSection = ({
     toggleTag,
     allTags,
     activeCount,
-  } = useArticles({ initialArticles });
+  } = useArticles({ initialArticles, fetchFromQiita });
 
   const { meterAngle, handleScroll, triggerSpike } = useSpeedMeter();
 

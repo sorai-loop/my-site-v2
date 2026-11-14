@@ -1,18 +1,56 @@
-import { useCallback, useMemo, useState } from 'react';
-import { ARTICLES_DATA } from '../data/articles';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ArticleItem } from '../types/article';
 import { sortArticlesByTag } from '../utils/sortArticles';
+import { fetchQiitaArticles, QIITA_ERROR_BOOK } from '../services/qiita';
 
 export type UseArticlesOptions = {
   initialArticles?: ArticleItem[];
   initialTag?: string | null;
+  /** Qiita APIから記事を自動取得するかどうか（デフォルト: true） */
+  fetchFromQiita?: boolean;
 };
 
 export const useArticles = (options: UseArticlesOptions = {}) => {
-  const { initialArticles = ARTICLES_DATA, initialTag = null } = options;
+  const {
+    initialArticles,
+    initialTag = null,
+    fetchFromQiita = true,
+  } = options;
 
-  const [articles, setArticles] = useState<ArticleItem[]>(initialArticles);
+  const [articles, setArticles] = useState<ArticleItem[]>(initialArticles ?? []);
   const [selectedTag, setSelectedTag] = useState<string | null>(initialTag);
+  const [isLoading, setIsLoading] = useState<boolean>(!initialArticles && fetchFromQiita);
+
+  useEffect(() => {
+    // 外部から明示的に initialArticles が渡されている場合はフェッチしない
+    if (initialArticles !== undefined || !fetchFromQiita) {
+      return;
+    }
+
+    let isMounted = true;
+    setIsLoading(true);
+
+    fetchQiitaArticles()
+      .then((data) => {
+        if (isMounted) {
+          setArticles(data);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setArticles([QIITA_ERROR_BOOK]);
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchFromQiita, initialArticles]);
 
   // 全記事からユニークなタグ一覧を抽出
   const allTags = useMemo(() => {
@@ -56,5 +94,6 @@ export const useArticles = (options: UseArticlesOptions = {}) => {
     activeCount,
     filteredArticles,
     displayArticles,
+    isLoading,
   };
 };
