@@ -42,7 +42,7 @@ export const ShelfBooks = ({
   className,
   children,
 }: ShelfBooksProps) => {
-  // 1. 本の配列と姿勢を決定（通常3冊 + 特殊1冊）
+  // 本の配列と姿勢を決定（通常3冊 + 特殊1冊）
   const resolvedBooks: BookSlotData[] = useMemo(() => {
     // 外部から既に books が渡されている場合はそれをベースにする
     if (books && books.length > 0) {
