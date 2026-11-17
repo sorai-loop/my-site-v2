@@ -1,7 +1,7 @@
-export const ProfileSection = () =>{
-    return(
-        <section>
-            <h2 id="profileSection">プロフフィールだよ！</h2>
-        </section>
-    );
-}
+export const ProfileSection = () => {
+  return (
+    <section id="profileSection">
+      <h2>プロフフィールだよ！</h2>
+    </section>
+  );
+};

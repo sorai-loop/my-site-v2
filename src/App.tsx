@@ -4,6 +4,7 @@ import { ProfileSection } from './components/section/ProfileSection';
 import { SignSection } from './components/section/SignSection';
 import { StacksSection } from './components/section/StacksSection';
 import { WorksSection } from './components/section/WorksSection';
+import { SignNav } from './components/navigation/SignNav';
 import { NoiseGraphic } from './components/ui/NoiseGraphic';
 import { StainGraphic } from './components/ui/StainGraphic';
 
@@ -16,6 +17,7 @@ function App() {
       <ArticlesSection />
       <StacksSection />
       <ProfileSection />
+      <SignNav />
       <StainGraphic aria-hidden="true" />
       <NoiseGraphic aria-hidden="true" />
     </>
