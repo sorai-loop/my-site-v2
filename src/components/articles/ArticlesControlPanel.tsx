@@ -40,7 +40,7 @@ export const ArticlesControlPanel = ({
             </div>
 
             {/* スピードメーター */}
-            <SpeedMeter angle={meterAngle} />
+            <SpeedMeter angle={meterAngle} className={styles.speedMeter} />
           </div>
         }
         lowerContent={

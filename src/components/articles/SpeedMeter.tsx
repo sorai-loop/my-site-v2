@@ -21,7 +21,7 @@ export type SpeedMeterProps = {
  */
 export const SpeedMeter = ({
   angle,
-  size = 64,
+  size,
   className,
   style,
   'aria-hidden': ariaHidden = true,
@@ -29,7 +29,7 @@ export const SpeedMeter = ({
   return (
     <div
       className={className ? `${styles.meterWrapper} ${className}` : styles.meterWrapper}
-      style={{ width: `${size}px`, height: `${size}px`, ...style }}
+      style={size ? { width: `${size}px`, height: `${size}px`, ...style } : style}
       aria-hidden={ariaHidden}
     >
       <svg

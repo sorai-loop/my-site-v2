@@ -109,11 +109,47 @@
 /* PC Overrides */
 @media (min-width: 769px) {
   .controlPanel {
-    width: 340px;
+    width: 400px;
     flex-shrink: 0;
   }
 
+  .gaugesCol {
+    gap: 1.75rem;
+    padding: 0.85rem 0.75rem 0.85rem 1rem;
+  }
+
+  .counterLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .digitCell {
+    height: 2.85rem;
+    font-size: 1.6rem;
+  }
+
+  .speedMeter {
+    width: 80px;
+    height: 80px;
+  }
+
+  .tagsCol {
+    gap: 0.75rem;
+    padding: 1rem 0.75rem 0.85rem 1rem;
+  }
+
+  .tagsLabel {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
   .tagsGrid {
-    grid-template-columns: repeat(2, minmax(92px, 1fr));
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 0.65rem;
+  }
+
+  .tagButton {
+    font-size: 0.82rem;
+    padding: 0.42rem 0.65rem;
   }
 }
