@@ -52,6 +52,7 @@
   height: 100%;
   display: block;
   overflow: visible;
+  fill: currentColor;
 }
 
 /* 外部SVGファイルパス用フォールバックマスク */
@@ -81,6 +82,7 @@
   width: 100%;
   height: 100%;
   display: block;
+  fill: currentColor;
 }
 
 /* SVGファイル未配置時のクラシックモノグラム・フォールバック */

@@ -9,6 +9,8 @@ export type StackIconProps = {
   /** icon と同様*/
   iconPath?: string;
   name?: string;
+  /** 枠の形状 ('square' | 'circle') */
+  shape?: 'square' | 'circle';
   /** 独自の子SVG要素を直接流し込む場合 */
   children?: ReactNode;
   className?: string;
@@ -29,6 +31,7 @@ export const StackIcon = ({
   icon,
   iconPath,
   name,
+  shape = 'square',
   children,
   className,
   style,
@@ -60,6 +63,7 @@ export const StackIcon = ({
     >
       {/* 外枠SVGスタンプにじみ・ステイン */}
       <StackFrameGraphic
+        shape={shape}
         bleed={bleed}
         stain={stain}
         filterId={`stack-frame-bleed-${cleanId}`}

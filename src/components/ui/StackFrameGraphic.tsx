@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import styles from './StackIcon.module.css';
 
 export type StackFrameGraphicProps = {
+  shape?: 'square' | 'circle';
   bleed?: boolean;
   stain?: boolean;
   filterId: string;
@@ -15,6 +16,7 @@ export type StackFrameGraphicProps = {
  * 枠とにじみ・ステインフィルターを描画する
  */
 export const StackFrameGraphic: FC<StackFrameGraphicProps> = ({
+  shape = 'square',
   bleed = true,
   stain = true,
   filterId,
@@ -123,28 +125,53 @@ export const StackFrameGraphic: FC<StackFrameGraphicProps> = ({
         filter={bleed ? `url(#${filterId})` : undefined}
         mask={stain ? `url(#${maskId})` : undefined}
       >
-        {/* 外側実線枠: 中心 (24, 24)、サイズ 40x40 (外マージン 4px) */}
-        <rect
-          x="4"
-          y="4"
-          width="40"
-          height="40"
-          rx="4"
-          stroke="currentColor"
-          strokeWidth="1.6"
-        />
-        {/* 内側点線枠: 中心 (24, 24)、サイズ 35x35 (実線枠の内側と一体感のある 1.7px 間隔の二重枠) */}
-        <rect
-          x="6.5"
-          y="6.5"
-          width="35"
-          height="35"
-          rx="3"
-          stroke="currentColor"
-          strokeWidth="0.8"
-          strokeDasharray="2 2"
-          opacity="0.55"
-        />
+        {shape === 'circle' ? (
+          <>
+            {/* 外側実線円: 中心 (24, 24)、半径 20 */}
+            <circle
+              cx="24"
+              cy="24"
+              r="20"
+              stroke="currentColor"
+              strokeWidth="1.6"
+            />
+            {/* 内側点線円: 中心 (24, 24)、半径 16.5 */}
+            <circle
+              cx="24"
+              cy="24"
+              r="16.5"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              strokeDasharray="2.2 2.2"
+              opacity="0.55"
+            />
+          </>
+        ) : (
+          <>
+            {/* 外側実線枠: 中心 (24, 24)、サイズ 40x40 (外マージン 4px) */}
+            <rect
+              x="4"
+              y="4"
+              width="40"
+              height="40"
+              rx="4"
+              stroke="currentColor"
+              strokeWidth="1.6"
+            />
+            {/* 内側点線枠: 中心 (24, 24)、サイズ 35x35 (実線枠の内側と一体感のある 1.7px 間隔の二重枠) */}
+            <rect
+              x="6.5"
+              y="6.5"
+              width="35"
+              height="35"
+              rx="3"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              strokeDasharray="2 2"
+              opacity="0.55"
+            />
+          </>
+        )}
       </g>
     </svg>
   );
