@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useArticles } from '../../hooks/useArticles';
 import { useSpeedMeter } from '../../hooks/useSpeedMeter';
 import type { ArticleItem } from '../../types/article';
 import { ArticlesControlPanel, PipeBookshelf } from '../articles';
-import { NotebookSection } from './NotebookSection';
 import styles from './ArticlesSection.module.css';
+import { NotebookSection } from './NotebookSection';
 
 export type ArticlesSectionProps = {
   articles?: ArticleItem[];
@@ -18,6 +18,15 @@ export const ArticlesSection = ({
   fetchFromQiita = true,
 }: ArticlesSectionProps) => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
+  const [isWide, setIsWide] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1380px)');
+    const update = () => setIsWide(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const {
     displayArticles,
@@ -51,6 +60,15 @@ export const ArticlesSection = ({
     }
   };
 
+  const bookshelfElement = (
+    <PipeBookshelf
+      articles={displayArticles}
+      selectedTag={selectedTag}
+      viewportRef={viewportRef}
+      onScroll={handleScroll}
+    />
+  );
+
   return (
     <NotebookSection
       id="articlesSection"
@@ -58,8 +76,9 @@ export const ArticlesSection = ({
       subtitle="Field Notes & Technical Scrolls"
       pageCode="PAGE. 02 // INDEX-02 [TECHNICAL SCROLLS]"
       hasLeftMarginLine={false}
+      minLines={0}
       footerCode="END OF PAGE // ARTICLES"
-      className={className}
+      className={className ? `${styles.articlesSection} ${className}` : styles.articlesSection}
     >
       <div className={styles.pipeRow}>
         <div className={styles.controlColumn}>
@@ -71,15 +90,14 @@ export const ArticlesSection = ({
             onSelectTag={handleSelectTag}
             searchQuery={searchQuery}
             onSearchChange={handleSearchChange}
-          />
+          >
+            {/* モバイル・中間画面: コントロールパネル内の検索窓の下に本棚を組み込む */}
+            {!isWide && bookshelfElement}
+          </ArticlesControlPanel>
         </div>
 
-        <PipeBookshelf
-          articles={displayArticles}
-          selectedTag={selectedTag}
-          viewportRef={viewportRef}
-          onScroll={handleScroll}
-        />
+        {/* ワイド画面(1380px以上): 右側のカラムとして本棚を配置 */}
+        {isWide && bookshelfElement}
       </div>
     </NotebookSection>
   );

@@ -1,15 +1,15 @@
 /* ==========================================================================
-   Shelf Component (棚1段分のスタイル・レイアウト)
+   Shelf Component
    ========================================================================== */
 
 .shelfUnit {
   position: relative;
   width: 100%;
-  height: 432px;
+  height: 195px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 本の領域を上部基準で配置 */
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 
@@ -36,9 +36,9 @@
 }
 
 /* ==========================================================================
-   PC Overrides (@media min-width: 769px)
+   Wide PC Overrides (@media min-width: 1380px)
    ========================================================================== */
-@media (min-width: 769px) {
+@media (min-width: 1380px) {
   .shelfUnit {
     height: 470px;
   }

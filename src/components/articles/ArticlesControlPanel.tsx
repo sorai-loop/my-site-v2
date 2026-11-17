@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import styles from './ArticlesControlPanel.module.css';
 import { ControlPanelPipeFrame } from './ControlPanelPipeFrame';
 import { SpeedMeter } from './SpeedMeter';
@@ -10,12 +11,14 @@ export type ArticlesControlPanelProps = {
   onSelectTag: (tag: string) => void;
   searchQuery?: string;
   onSearchChange?: (query: string) => void;
+  /** モバイル時など、検索窓の下に本棚を直接組み込む場合のスロット */
+  children?: ReactNode;
   className?: string;
 };
 
 /**
  * 記事セクションの操作パネルコンポーネント。
- * 配管フレーム内に、記事総数カウンタ、スピードメーター、タグフィルター、検索窓を配置。
+ * 配管フレーム内に、記事総数カウンタ、スピードメーター、タグフィルター、検索窓、および本棚を配置。
  */
 export const ArticlesControlPanel = ({
   totalCount,
@@ -25,6 +28,7 @@ export const ArticlesControlPanel = ({
   onSelectTag,
   searchQuery = '',
   onSearchChange,
+  children,
   className,
 }: ArticlesControlPanelProps) => {
   const countStr = String(totalCount).padStart(2, '0');
@@ -112,6 +116,13 @@ export const ArticlesControlPanel = ({
                     </button>
                   )}
                 </div>
+              </div>
+            )}
+
+            {/* 本棚: 検索窓の下に配置 */}
+            {children && (
+              <div className={styles.embeddedBookshelf}>
+                {children}
               </div>
             )}
           </div>

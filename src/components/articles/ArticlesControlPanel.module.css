@@ -11,22 +11,22 @@
 .gaugesCol {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  gap: 0.85rem;
+  padding: 0.25rem 0.35rem 0.25rem 0.5rem;
   flex: 1;
 }
 
 .counterWrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.2rem;
   width: fit-content;
 }
 
 .counterLabel {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--color-text-sub, #7a6c5d);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
 }
 
 .counterDigits {
@@ -39,12 +39,12 @@
 
 .digitCell {
   flex: 1;
-  height: 2.4rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-code, monospace);
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: bold;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
@@ -56,24 +56,30 @@
   border-left: 1.5px dashed var(--color-text-main, #36332f);
 }
 
+.speedMeter {
+  width: 52px;
+  height: 52px;
+}
+
 .tagsCol {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.75rem 0.5rem 0.5rem 0.75rem;
+  gap: 0.35rem;
+  padding: 0.4rem 0.35rem 0.35rem 0.5rem;
   flex: 1;
 }
 
 .tagsLabel {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   color: var(--color-text-sub, #7a6c5d);
   letter-spacing: 0.05em;
 }
 
+/* モバイル: 横3 × 縦2段 */
 .tagsGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(64px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem;
 }
 
 .tagButton {
@@ -82,14 +88,19 @@
   border: 1.5px solid var(--color-text-main, #36332f);
   color: var(--color-text-main, #36332f);
   font-family: var(--font-code, monospace);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.5rem;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.25rem;
   cursor: pointer;
   transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* モバイルでは上位6個のみ表示 */
+.tagButton:nth-child(n+7) {
+  display: none;
 }
 
 .tagButton:hover {
@@ -110,17 +121,17 @@
 .searchSection {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
   width: 100%;
-  margin-top: 0.85rem;
-  padding-top: 0.75rem;
+  margin-top: 0.45rem;
+  padding-top: 0.4rem;
   border-top: 1px dashed var(--color-border-subtle, #e1d8ba);
 }
 
 .searchLabel {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   color: var(--color-text-sub, #7a6c5d);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   font-family: var(--font-header, serif);
 }
 
@@ -141,9 +152,9 @@
 }
 
 .searchIcon {
-  width: 13px;
-  height: 13px;
-  margin-left: 0.55rem;
+  width: 12px;
+  height: 12px;
+  margin-left: 0.45rem;
   color: var(--color-text-sub, #7a6c5d);
   flex-shrink: 0;
   pointer-events: none;
@@ -156,8 +167,8 @@
   background: transparent;
   color: var(--color-text-main, #36332f);
   font-family: var(--font-code, monospace);
-  font-size: 0.76rem;
-  padding: 0.35rem 0.45rem;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.4rem;
   outline: none;
   box-sizing: border-box;
 }
@@ -172,9 +183,9 @@
   background: transparent;
   border: none;
   color: var(--color-text-sub, #7a6c5d);
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1;
-  padding: 0 0.5rem;
+  padding: 0 0.45rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -186,8 +197,20 @@
   color: var(--color-stamp-vermilion, #dc3f24);
 }
 
-/* PC Overrides */
-@media (min-width: 769px) {
+/* モバイル・PC縮小画面共通: 検索窓の下に配置される本棚スロット */
+.embeddedBookshelf {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--color-border-subtle, #e1d8ba);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Wide Desktop Overrides (1380px以上: 左右2カラム展開) */
+@media (min-width: 1380px) {
   .controlPanel {
     width: 400px;
     flex-shrink: 0;
@@ -231,6 +254,16 @@
   .tagButton {
     font-size: 0.82rem;
     padding: 0.42rem 0.65rem;
+  }
+
+  /* ワイドPCでは全タグを表示 */
+  .tagButton:nth-child(n+7) {
+    display: block;
+  }
+
+  /* ワイドPCで右側に独立して並ぶ場合は、内部スロットを非表示 */
+  .embeddedBookshelf {
+    display: none;
   }
 
   .searchSection {

@@ -1,9 +1,69 @@
+.articlesSection {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1379px) {
+  .articlesSection {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding-top: clamp(0.4rem, 1.5vh, 0.75rem) !important;
+    padding-bottom: clamp(0.4rem, 1.5vh, 0.75rem) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .articlesSection [class*="notebookBody"] {
+    min-height: 0 !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+  }
+
+  .articlesSection [class*="titleArea"] {
+    min-height: 0 !important;
+    padding: 0.25rem 0.25rem 0.15rem !important;
+  }
+
+  .articlesSection h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem) !important;
+  }
+
+  .articlesSection [class*="subtitle"] {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .articlesSection [class*="headerLine"] {
+    height: 1.5rem !important;
+    font-size: 0.65rem !important;
+  }
+
+  .articlesSection [class*="pageFooterLine"] {
+    padding-top: 0.25rem !important;
+    font-size: 0.65rem !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .articlesSection {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .articlesSection [class*="notebookBody"] {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+}
+
 .pipeRow {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 0;
 }
 
 .controlColumn {
@@ -11,18 +71,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 340px;
-}
-
-/* ==========================================================================
-   Tablet / Mid Desktop Overrides (@media min-width: 769px)
-   ========================================================================== */
-@media (min-width: 769px) {
-  .controlColumn {
-    width: 400px;
-    max-width: 400px;
-    flex-shrink: 0;
-  }
+  max-width: 510px;
 }
 
 /* ==========================================================================
@@ -38,6 +87,9 @@
   }
 
   .controlColumn {
+    width: 400px;
+    max-width: 400px;
+    flex-shrink: 0;
     align-items: flex-start;
   }
 }
