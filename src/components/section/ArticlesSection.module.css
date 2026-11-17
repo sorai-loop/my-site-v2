@@ -26,15 +26,6 @@
     padding: 0.25rem 0.25rem 0.15rem !important;
   }
 
-  .articlesSection h2 {
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem) !important;
-  }
-
-  .articlesSection [class*="subtitle"] {
-    font-size: 0.75rem !important;
-    line-height: 1.2 !important;
-  }
-
   .articlesSection [class*="headerLine"] {
     height: 1.5rem !important;
     font-size: 0.65rem !important;
