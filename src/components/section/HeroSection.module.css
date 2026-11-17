@@ -84,8 +84,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 57px;
+  height: 57px;
   color: var(--color-text-main, #36332f);
   text-decoration: none;
   border-radius: 50%;
@@ -96,7 +96,6 @@
     filter 0.25s ease;
 }
 
-/* ホバー時: 朱肉色へ変化し、スタンプの押印感・わずかな傾きを演出 */
 .socialLink:hover {
   color: var(--color-stamp-vermilion, #dc3f24);
   transform: scale(1.1) rotate(3deg);
@@ -120,21 +119,8 @@
   justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .socialLink {
-    width: 38px;
-    height: 38px;
-  }
-
-  .socialList {
-    gap: 0.85rem;
-  }
-}
-
 /* ==========================================================================
-   雲の配置 (改修前の迫力ある vh スケール感を忠実に再現)
-   モバイル: 改修前の指定 (85vh / -70%, 55vh / -55%) をそのまま完全復元
-   PC: 雲自身の幅を基準にオフセットし、モバイル同様の迫力ある被覆率で配置
+   雲の配置
    ========================================================================== */
 
 /* 左下の雨雲・積雲 (Nimbus) */
@@ -173,11 +159,19 @@
 
 /* ==========================================================================
    PC / Desktop Overrides (@media min-width: 769px)
-   横長画面でも雲が画面外へ吹き飛ばないよう、雲自身の幅比率で自然に配置
    ========================================================================== */
 @media (min-width: 769px) {
   .hero {
     min-height: 640px;
+  }
+
+  .socialLink {
+    width: 84px;
+    height: 84px;
+  }
+
+  .socialList {
+    gap: 1.65rem;
   }
 
   .nimbus {
