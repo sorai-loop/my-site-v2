@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ArticleItem } from '../types/article';
+import { countArticleTags } from '../utils/countArticleTags';
 import { sortArticlesByTag } from '../utils/sortArticles';
 import { fetchQiitaArticles, QIITA_ERROR_BOOK } from '../services/qiita';
 
@@ -51,15 +52,9 @@ export const useArticles = (options: UseArticlesOptions = {}) => {
     };
   }, [fetchFromQiita, initialArticles]);
 
-  // 全記事からユニークなタグ一覧を抽出
+  // 全記事からタグの重複をカウントし、多い順にソートしたタグ一覧を抽出
   const allTags = useMemo(() => {
-    const set = new Set<string>();
-    for (const item of articles) {
-      for (const tag of item.tags) {
-        set.add(tag);
-      }
-    }
-    return Array.from(set);
+    return countArticleTags(articles);
   }, [articles]);
 
   // 選択中タグに一致する記事一覧
