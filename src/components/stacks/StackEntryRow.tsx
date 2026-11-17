@@ -31,7 +31,7 @@ export const StackEntryRow = ({ item }: StackEntryRowProps) => {
 
   return (
     <li className={styles.entryItem}>
-      {/* 左カラム: SVGアイコン　*/}
+      {/* 左カラム: SVGアイコン */}
       <div className={styles.leftColumn}>
         <div
           className={styles.iconFrame}
