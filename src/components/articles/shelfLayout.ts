@@ -21,13 +21,6 @@ export function resolveSpecialPosture(isL: boolean): BookPosture {
   return isL ? 'tiltedRight' : 'tiltedLeft';
 }
 
-/**
- * 取得した記事の配列から、各本の姿勢（直立3冊＋端の傾き1冊）
- * を決定した「本（BookData）の配列」を生成します。
- *
- * 設計方針:
- * - 4冊区切り（棚1段あたり）で「通常3冊 ＋ 特殊配置（傾き）1冊」を厳密に配分
- */
 export function createBooksFromArticles(
   articles: ArticleItem[]
 ): BookData[] {
@@ -72,9 +65,9 @@ export const BOOK_DIMENSIONS: Record<
   BookSizeCategory,
   { height: number; pcHeight: number; width: number; pcWidth: number }
 > = {
-  small: { height: 170, pcHeight: 195, width: 34, pcWidth: 44 },
-  medium: { height: 185, pcHeight: 210, width: 40, pcWidth: 50 },
-  large: { height: 200, pcHeight: 225, width: 46, pcWidth: 58 },
+  small: { height: 125, pcHeight: 195, width: 37, pcWidth: 48 },
+  medium: { height: 135, pcHeight: 210, width: 40, pcWidth: 52 },
+  large: { height: 145, pcHeight: 225, width: 46, pcWidth: 60 },
 };
 
 /**

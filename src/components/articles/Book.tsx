@@ -18,7 +18,7 @@ export type BookProps = {
  * 本棚に並ぶ1冊の本を描画するコンポーネント。
  * 文字数（本文量）に応じた背表紙サイズ（薄さ・厚さ・高さ）、
  * タイトルの文字数に応じたフォントサイズ調整クラス、
- * 姿勢別のスタイリング、縦書き背表紙タイトル、いいね数を描画します。
+ * 姿勢別のスタイリング、縦書き背表紙タイトル、いいね数を描画。
  */
 export const Book = ({
   article,
@@ -38,11 +38,13 @@ export const Book = ({
   // タイトル文字数に応じたフォントサイズ調整クラス
   const titleLength = article.title.length;
   const titleSizeClass =
-    titleLength >= 24
-      ? styles.titleLong
-      : titleLength >= 14
-        ? styles.titleMedium
-        : styles.titleShort;
+    titleLength >= 32
+      ? styles.titleExtraLong
+      : titleLength >= 24
+        ? styles.titleLong
+        : titleLength >= 14
+          ? styles.titleMedium
+          : styles.titleShort;
 
   // 姿勢に応じたクラス
   const postureClass =

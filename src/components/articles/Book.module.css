@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Book Component (本単体のデザイン・背表紙・姿勢・文字あふれ調整)
+   Book Component
    ========================================================================== */
 
 .bookLink {
@@ -35,23 +35,23 @@
   overflow: hidden;
 }
 
-/* 本文文字数に応じた背表紙サイズ（モバイル基準） */
+/* 本文文字数に応じた背表紙サイズ */
 .bookSmall {
-  width: 34px;
-  height: 170px;
-  padding: 0.5rem 0.2rem 0.35rem;
+  width: 37px;
+  height: 125px;
+  padding: 0.35rem 0.1rem 0.25rem;
 }
 
 .bookMedium {
   width: 40px;
-  height: 185px;
-  padding: 0.52rem 0.24rem 0.38rem;
+  height: 135px;
+  padding: 0.38rem 0.12rem 0.28rem;
 }
 
 .bookLarge {
   width: 46px;
-  height: 200px;
-  padding: 0.55rem 0.28rem 0.4rem;
+  height: 145px;
+  padding: 0.4rem 0.14rem 0.3rem;
 }
 
 /* 直立本 */
@@ -59,7 +59,7 @@
   transform: translateY(-4px);
 }
 
-/* 傾き（角度を自然な4degにし、translateYでパイプ天面に着地） */
+/* 傾き */
 .bookTiltedLeft {
   transform: translateY(-3.5px) rotate(4deg);
   transform-origin: bottom left;
@@ -82,14 +82,15 @@
   z-index: 10;
 }
 
-/* 縦書きタイトル（文字数調整クラス） */
+/* 縦書きタイトル */
 .bookTitleVertical {
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-family: var(--font-title, 'Sawarabi Mincho', serif);
-  line-height: 1.15;
-  letter-spacing: 0.04em;
-  max-height: 125px;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  max-width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
@@ -97,32 +98,59 @@
 
 /* タイトル文字数別のフォントサイズクラス */
 .titleShort {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  line-height: 1.12;
 }
 
 .titleMedium {
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+  font-size: 0.62rem;
+  letter-spacing: 0.015em;
+  line-height: 1.08;
 }
 
 .titleLong {
-  font-size: 0.58rem;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
+  font-size: 0.52rem;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+}
+
+.titleExtraLong {
+  font-size: 0.44rem;
+  letter-spacing: 0;
+  line-height: 1.04;
+}
+
+/* 薄い本 */
+.bookSmall .titleMedium {
+  font-size: 0.54rem;
+  line-height: 1.06;
+  letter-spacing: 0.01em;
+}
+
+.bookSmall .titleLong {
+  font-size: 0.48rem;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.bookSmall .titleExtraLong {
+  font-size: 0.42rem;
+  line-height: 1.02;
+  letter-spacing: 0;
 }
 
 /* 本のサイズに応じた最大タイトル高さ */
 .bookLarge .bookTitleVertical {
-  max-height: 150px;
+  max-height: 108px;
 }
 
 .bookMedium .bookTitleVertical {
-  max-height: 135px;
+  max-height: 98px;
 }
 
 .bookSmall .bookTitleVertical {
-  max-height: 120px;
+  max-height: 88px;
 }
 
 /* フッター（二重線 ＋ ♡ ＋ いいね数） */
@@ -150,37 +178,38 @@
 }
 
 /* ==========================================================================
-   PC Overrides (@media min-width: 769px)
+   Wide PC Overrides (@media min-width: 1380px)
+   1380px以上の左右2カラム展開時に大型本サイズを適用
    ========================================================================== */
-@media (min-width: 769px) {
+@media (min-width: 1380px) {
   .bookSmall {
-    width: 44px;
+    width: 46px;
     height: 195px;
-    padding: 0.65rem 0.26rem 0.4rem;
+    padding: 0.65rem 0.18rem 0.4rem;
   }
 
   .bookMedium {
-    width: 50px;
+    width: 52px;
     height: 210px;
-    padding: 0.7rem 0.3rem 0.42rem;
+    padding: 0.7rem 0.2rem 0.42rem;
   }
 
   .bookLarge {
-    width: 58px;
+    width: 60px;
     height: 225px;
-    padding: 0.75rem 0.35rem 0.45rem;
+    padding: 0.75rem 0.22rem 0.45rem;
   }
 
   .bookSmall .bookTitleVertical {
-    max-height: 140px;
+    max-height: 145px;
   }
 
   .bookMedium .bookTitleVertical {
-    max-height: 155px;
+    max-height: 160px;
   }
 
   .bookLarge .bookTitleVertical {
-    max-height: 170px;
+    max-height: 175px;
   }
 
   .bookTiltedLeft {
@@ -200,15 +229,45 @@
   }
 
   .titleShort {
-    font-size: 0.86rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    line-height: 1.12;
   }
 
   .titleMedium {
-    font-size: 0.75rem;
+    font-size: 0.70rem;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
   }
 
   .titleLong {
-    font-size: 0.64rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+  }
+
+  .titleExtraLong {
+    font-size: 0.48rem;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+  }
+
+  .bookSmall .titleMedium {
+    font-size: 0.62rem;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+  }
+
+  .bookSmall .titleLong {
+    font-size: 0.52rem;
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  .bookSmall .titleExtraLong {
+    font-size: 0.44rem;
+    line-height: 1.04;
+    letter-spacing: 0;
   }
 
   .bookFooter {
