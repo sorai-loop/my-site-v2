@@ -1,14 +1,18 @@
 /**
- * src/assets/svg/Stacks/ 配下のSVGファイルをバンドル時にインポート
+ * src/assets/svg/Stacks/ および src/assets/svg/logo/ 配下のSVGファイルをバンドル時にインポート
  */
-const SVG_RAW_MODULES = import.meta.glob<string>(
-  '../assets/svg/Stacks/*.svg',
-  {
+const SVG_RAW_MODULES = {
+  ...import.meta.glob<string>('../assets/svg/Stacks/*.svg', {
     query: '?raw',
     import: 'default',
     eager: true,
-  }
-);
+  }),
+  ...import.meta.glob<string>('../assets/svg/logo/*.svg', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  }),
+};
 
 /**
  * SVG検索用のキャッシュ辞書
@@ -31,6 +35,15 @@ for (const [path, rawText] of Object.entries(SVG_RAW_MODULES)) {
   const stripped = cleanName.replace(/icon|logo/g, '');
   if (stripped && !SVG_LOOKUP_MAP.has(stripped)) {
     SVG_LOOKUP_MAP.set(stripped, rawText);
+  }
+
+  // SNS等の短縮エイリアス登録
+  if (cleanName.includes('xlogo') || cleanName.includes('x_logo') || cleanName === 'x') {
+    SVG_LOOKUP_MAP.set('x', rawText);
+    SVG_LOOKUP_MAP.set('twitter', rawText);
+  }
+  if (cleanName.includes('github')) {
+    SVG_LOOKUP_MAP.set('github', rawText);
   }
 
   SVG_NORMALIZED_ENTRIES.push({ cleanName, rawText });
@@ -176,12 +189,21 @@ export const recolorSvg = (rawSvg: string, options?: RecolorOptions): string => 
   replaced = replaced.replace(
     /<svg\b([^>]*)>/i,
     (_match, attrs: string) => {
-      const cleanAttrs = attrs
+      let cleanAttrs = attrs
         .replace(/\s+(width|height)=["'][^"']*["']/gi, '')
         .replace(/\s+class=["'][^"']*["']/gi, '')
         .replace(/\s+[xy]=["'][^"']*["']/gi, '')
         .replace(/\s+style=["'][^"']*["']/gi, '')
         .replace(/\s+preserveAspectRatio=["'][^"']*["']/gi, '');
+
+      // viewBox が存在しない場合、width/height から補完
+      if (!/viewBox=/i.test(cleanAttrs)) {
+        const wMatch = attrs.match(/width=["']\s*([-\d.]+)[a-zA-Z%]*\s*["']/i);
+        const hMatch = attrs.match(/height=["']\s*([-\d.]+)[a-zA-Z%]*\s*["']/i);
+        if (wMatch && hMatch) {
+          cleanAttrs = `viewBox="0 0 ${wMatch[1]} ${hMatch[1]}" ${cleanAttrs}`;
+        }
+      }
 
       const classAttr = className ? ` class="${className}"` : '';
       const aspectAttr = ' preserveAspectRatio="xMidYMid meet"';
