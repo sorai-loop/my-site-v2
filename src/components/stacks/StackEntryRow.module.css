@@ -1,0 +1,148 @@
+/* ==========================================================================
+   StackEntryRow (手記ノートの1技術アイテム行)
+   すべての高さ・余白を親から継承する --line-height の整数倍で厳密に管理し、
+   罫線の位相ズレをゼロに保ちます。
+   ========================================================================== */
+
+.entryItem {
+  display: grid;
+  grid-template-columns: var(--margin-col-width, 5.25rem) 1fr;
+  align-items: start;
+  position: relative;
+  /* アイテムごとに罫線1行分の空行（余白）を挟む */
+  margin-bottom: var(--line-height);
+}
+
+.entryItem:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Left Column: Icon + Stamp (左マージン線の内側)
+   右側の最小高さ（見出し2行 + 本文2行以上 = 4行以上）を超えないよう
+   高さを --line-height * 3 に収め、グリッド行高を常に右側（整数行）に委ねる
+   ========================================================================== */
+.leftColumn {
+  padding-top: calc(var(--line-height) * 0.15);
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.iconFrame {
+  width: 3.65rem;
+  height: 3.65rem;
+  color: var(--color-icon-sub, #574938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 253, 244, 0.85);
+  border-radius: 4px;
+  transform: rotate(var(--stamp-rotate, 0deg));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+}
+
+.entryItem:hover .iconFrame {
+  color: var(--color-icon-main, #975600);
+  transform: rotate(calc(var(--stamp-rotate, 0deg) - 1.5deg)) scale(1.05);
+}
+
+.iconSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Right Column: 技術名（罫線2行分） + こだわりメモ（罫線着地）
+   ========================================================================== */
+.rightColumn {
+  padding-left: 0.85rem;
+  min-width: 0;
+}
+
+/* 技術名ヘッダ（罫線2行分の高さを厳密に占有） */
+.itemHeader {
+  height: calc(var(--line-height) * 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* 1行目: 分野・役割の小さな注釈ラベル（1行目の罫線に着地） */
+.domainLabel {
+  height: var(--line-height);
+  line-height: var(--line-height);
+  font-family: var(--font-code, monospace);
+  font-size: 0.72rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translateY(var(--baseline-shift-code, 0.2rem));
+}
+
+/* 2行目: 技術名（少し大きめの手書き文字・2行目の罫線に着地） */
+.techName {
+  height: var(--line-height);
+  line-height: var(--line-height);
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: var(--color-heading, #2b2d31);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translateY(var(--baseline-shift-title, 0.16rem));
+}
+
+/* メモ本文（2〜5行・各行が --line-height と完全同期し罫線に着地） */
+.memoBody {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.94rem;
+  line-height: var(--line-height);
+  color: var(--color-text-main, #36332f);
+  letter-spacing: 0.02em;
+  word-break: break-word;
+  /* レイアウト高さを N * var(--line-height) に保ったまま文字底辺を罫線に着座させる */
+  transform: translateY(var(--baseline-shift, 0.24rem));
+}
+
+/* ==========================================================================
+   PC / Desktop Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .leftColumn {
+    padding-top: calc(var(--line-height) * 0.1);
+    padding-right: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .iconFrame {
+    width: 4.85rem;
+    height: 4.85rem;
+  }
+
+  .rightColumn {
+    padding-left: 1.35rem;
+  }
+
+  .techName {
+    font-size: 1.38rem;
+  }
+
+  .domainLabel {
+    font-size: 0.78rem;
+  }
+
+  .memoBody {
+    font-size: 1rem;
+  }
+}
