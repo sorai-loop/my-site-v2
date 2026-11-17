@@ -23,6 +23,8 @@ export const ArticlesSection = ({
     displayArticles,
     selectedTag,
     toggleTag,
+    searchQuery,
+    setSearchQuery,
     allTags,
     activeCount,
   } = useArticles({ initialArticles, fetchFromQiita });
@@ -32,6 +34,16 @@ export const ArticlesSection = ({
   const handleSelectTag = (tag: string) => {
     toggleTag(tag);
     triggerSpike(58, 650);
+
+    const el = viewportRef.current;
+    if (el) {
+      el.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    triggerSpike(42, 500);
 
     const el = viewportRef.current;
     if (el) {
@@ -57,6 +69,8 @@ export const ArticlesSection = ({
             tags={allTags}
             selectedTag={selectedTag}
             onSelectTag={handleSelectTag}
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
           />
         </div>
 

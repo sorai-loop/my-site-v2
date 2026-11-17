@@ -106,6 +106,86 @@
   background-color: var(--color-heading, #2b2d31);
 }
 
+/* 検索窓セクション */
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-border-subtle, #e1d8ba);
+}
+
+.searchLabel {
+  font-size: 0.72rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.06em;
+  font-family: var(--font-header, serif);
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  border: 1.5px solid var(--color-text-main, #36332f);
+  background-color: var(--color-bg-base, #fffdf4);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchBox:focus-within {
+  border-color: var(--color-accent, #45312e);
+  box-shadow: 0 0 0 1px var(--color-accent, #45312e);
+}
+
+.searchIcon {
+  width: 13px;
+  height: 13px;
+  margin-left: 0.55rem;
+  color: var(--color-text-sub, #7a6c5d);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-main, #36332f);
+  font-family: var(--font-code, monospace);
+  font-size: 0.76rem;
+  padding: 0.35rem 0.45rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-sub, #7a6c5d);
+  opacity: 0.65;
+}
+
+.searchClearBtn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text-sub, #7a6c5d);
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.searchClearBtn:hover {
+  color: var(--color-stamp-vermilion, #dc3f24);
+}
+
 /* PC Overrides */
 @media (min-width: 769px) {
   .controlPanel {
@@ -151,5 +231,20 @@
   .tagButton {
     font-size: 0.82rem;
     padding: 0.42rem 0.65rem;
+  }
+
+  .searchSection {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+  }
+
+  .searchLabel {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  .searchInput {
+    font-size: 0.82rem;
+    padding: 0.42rem 0.6rem;
   }
 }
