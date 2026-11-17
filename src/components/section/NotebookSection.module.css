@@ -1,0 +1,223 @@
+/* ==========================================================================
+   NotebookSection (手記の1ページ共通レイアウトスタイル)
+   基準モチーフ: トラベラーズノート レギュラーサイズ (H210 × W110mm / 横罫28行)
+   ========================================================================== */
+
+.section {
+  --line-height: 2rem;
+  --margin-col-width: 4.65rem;
+  --baseline-shift: 0.24rem;
+  --baseline-shift-title: 0.16rem;
+  --baseline-shift-code: 0.2rem;
+  --side-tab-width-mobile: 1.85rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  /* 天余白 (基本比率 1 : 3) と 地余白 (セクション間余白) */
+  padding: calc(var(--line-height) * 2.5) 1.25rem calc(var(--line-height) * 2.5);
+  color: var(--color-text-main, #36332f);
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ==========================================================================
+   1. Page Header (ヘッダ線 ＆ 大見出し h2 ＆ タイトル二重線)
+   ========================================================================== */
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.headerLine {
+  height: var(--line-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border-subtle, #e1d8ba);
+  border-bottom: 1px dashed var(--color-border-subtle, #e1d8ba);
+  font-family: var(--font-code, monospace);
+  font-size: 0.7rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.06em;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
+.pageCode {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.headerAccessory {
+  display: flex;
+  align-items: center;
+}
+
+.titleArea {
+  min-height: calc(var(--line-height) * 2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  padding: 0.6rem 0.25rem 0.4rem;
+  /* ページのタイトル線: h2 を装飾する太めの二重線 */
+  border-bottom: 3px double var(--color-heading, #2b2d31);
+  box-sizing: border-box;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.title {
+  font-family: var(--font-header, 'IM Fell English', serif);
+  font-size: 2.2rem;
+  font-weight: normal;
+  color: var(--color-heading, #2b2d31);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.subtitle {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.85rem;
+  color: var(--color-text-sub, #7a6c5d);
+  line-height: 1.2;
+}
+
+.categoryBadge {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.82rem;
+  color: var(--color-accent, #45312e);
+  padding-bottom: 0.05rem;
+}
+
+/* ==========================================================================
+   2. Page Body Wrapper (本文紙面 ＋ 右端小口の付箋スロット)
+   ========================================================================== */
+.pageBodyWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.sideTabsSlot {
+  position: absolute;
+  top: calc(var(--line-height) * 0.5);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  z-index: 5;
+}
+
+/* 本文紙面 (1行SVG背景と --line-height の完全同期) */
+.notebookBody {
+  position: relative;
+  width: 100%;
+  background-image: url('../../assets/svg/RuledLine.svg');
+  background-size: 100% var(--line-height);
+  background-repeat: repeat-y;
+  background-position: 0 0;
+  /* 28行を基準とした最小高さ */
+  min-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
+  padding-top: var(--line-height);
+  padding-bottom: var(--line-height);
+  /* スマホでは右端に付箋が沿う場合を考慮した右パディング */
+  padding-right: calc(var(--side-tab-width-mobile) + 0.65rem);
+  box-sizing: border-box;
+}
+
+/* 左マージン線 (縦ガイド線) */
+.hasMarginLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--margin-col-width);
+  width: 1px;
+  background-color: rgba(197, 74, 56, 0.32);
+  box-shadow: 2px 0 0 rgba(197, 74, 56, 0.12);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. Page Footer Line (ページの罫線の終わりの太い線)
+   ========================================================================== */
+.pageFooterLine {
+  /* ページの終わりを示すしっかりとした太い線 */
+  border-top: 3px double var(--color-heading, #2b2d31);
+  padding-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-code, monospace);
+  font-size: 0.72rem;
+  color: var(--color-text-sub, #7a6c5d);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.pageFooterCode {
+  letter-spacing: 0.08em;
+}
+
+.pageFooterAction {
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   PC / Desktop Overrides (@media min-width: 769px)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .section {
+    --line-height: 2.25rem;
+    --margin-col-width: 6.75rem;
+    --baseline-shift: 0.28rem;
+    --baseline-shift-title: 0.18rem;
+    --baseline-shift-code: 0.24rem;
+    padding: calc(var(--line-height) * 3) 2.25rem calc(var(--line-height) * 3);
+  }
+
+  .title {
+    font-size: 2.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.92rem;
+  }
+
+  .categoryBadge {
+    font-size: 0.9rem;
+  }
+
+  /* PC: 付箋スロットをノートの右外側に飛び出させる */
+  .sideTabsSlot {
+    top: calc(var(--line-height) * 0.8);
+    right: 0;
+    transform: translateX(100%);
+    gap: 0.65rem;
+  }
+
+  /* PCでは付箋が外側にあるため、本文エリアの右パディングを通常に戻す */
+  .notebookBody {
+    padding-right: 0.5rem;
+  }
+}
