@@ -1,40 +1,198 @@
-.nimbus{
-    width: 85vh;
+/* ==========================================================================
+   HeroSection (手記の表紙・空と雲のファーストビュー)
+   ========================================================================== */
 
-    position: absolute;
-    bottom: 0%;
-    left: -70%;
-    pointer-events: none;
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-height: 560px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.stratus{
-    width: 55vh;
-
-    position: absolute;
-    top: 47%;
-    right: -55%;
-    pointer-events: none;
+/* 中央タイトルエリア */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  transform: translateY(-2vh);
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    transform: translateY(-3vh);
+.title {
+  font-size: clamp(3.75rem, 10vw, 7.5rem);
+  font-family: var(--font-display, 'Shippori Mincho', serif);
+  color: var(--color-heading, #2b2d31);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  margin: 0;
+  user-select: none;
 }
 
-.title{
-    font-size: 6rem;
-    font-family: Shippori Mincho, serif;
-
+.viewDetailsLink {
+  margin-top: clamp(2.75rem, 6vh, 4.25rem);
+  font-family: var(--font-code, monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text-sub, #7a6c5d);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.hero{
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100vh;
+.viewDetailsLink:hover {
+  color: var(--color-stamp-vermilion, #dc3f24);
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   右側ミニリンク (X / GitHub 丸型スタンプ)
+   ========================================================================== */
+.socialNav {
+  position: absolute;
+  right: clamp(1rem, 3.5vw, 2.75rem);
+  bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+  z-index: 10;
+  user-select: none;
+}
+
+.socialList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialItem {
+  margin: 0;
+  padding: 0;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--color-text-main, #36332f);
+  text-decoration: none;
+  border-radius: 50%;
+  position: relative;
+  transition:
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.25s ease;
+}
+
+/* ホバー時: 朱肉色へ変化し、スタンプの押印感・わずかな傾きを演出 */
+.socialLink:hover {
+  color: var(--color-stamp-vermilion, #dc3f24);
+  transform: scale(1.1) rotate(3deg);
+  filter: drop-shadow(0 2px 6px rgba(220, 63, 36, 0.2));
+}
+
+.socialLink:active {
+  transform: scale(0.95) rotate(0deg);
+}
+
+.socialLink:focus-visible {
+  outline: 2px dashed var(--color-stamp-vermilion, #dc3f24);
+  outline-offset: 4px;
+}
+
+.socialIcon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .socialLink {
+    width: 38px;
+    height: 38px;
+  }
+
+  .socialList {
+    gap: 0.85rem;
+  }
+}
+
+/* ==========================================================================
+   雲の配置 (改修前の迫力ある vh スケール感を忠実に再現)
+   モバイル: 改修前の指定 (85vh / -70%, 55vh / -55%) をそのまま完全復元
+   PC: 雲自身の幅を基準にオフセットし、モバイル同様の迫力ある被覆率で配置
+   ========================================================================== */
+
+/* 左下の雨雲・積雲 (Nimbus) */
+.nimbus {
+  width: 85vh;
+  position: absolute;
+  bottom: 0%;
+  left: -70%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+.nimbus svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 右中央の層雲 (Stratus) */
+.stratus {
+  width: 55vh;
+  position: absolute;
+  top: 47%;
+  right: -55%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.stratus svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   PC / Desktop Overrides (@media min-width: 769px)
+   横長画面でも雲が画面外へ吹き飛ばないよう、雲自身の幅比率で自然に配置
+   ========================================================================== */
+@media (min-width: 769px) {
+  .hero {
+    min-height: 640px;
+  }
+
+  .nimbus {
+    width: 92vh;
+    min-width: 700px;
+    bottom: -2%;
+    left: 0;
+    transform: translateX(-36%);
+  }
+
+  .stratus {
+    width: 62vh;
+    min-width: 480px;
+    top: 45%;
+    right: 0;
+    transform: translateX(38%);
+  }
 }
