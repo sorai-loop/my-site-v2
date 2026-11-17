@@ -3,6 +3,7 @@ import { useArticles } from '../../hooks/useArticles';
 import { useSpeedMeter } from '../../hooks/useSpeedMeter';
 import type { ArticleItem } from '../../types/article';
 import { ArticlesControlPanel, PipeBookshelf } from '../articles';
+import { NotebookSection } from './NotebookSection';
 import styles from './ArticlesSection.module.css';
 
 export type ArticlesSectionProps = {
@@ -39,36 +40,33 @@ export const ArticlesSection = ({
   };
 
   return (
-    <section
+    <NotebookSection
       id="articlesSection"
-      className={className ? `${styles.section} ${className}` : styles.section}
+      title="Articles"
+      subtitle="Field Notes & Technical Scrolls"
+      pageCode="PAGE. 02 // INDEX-02 [TECHNICAL SCROLLS]"
+      hasLeftMarginLine={false}
+      footerCode="END OF PAGE // ARTICLES"
+      className={className}
     >
-      <div className={styles.container}>
-        <div className={styles.layoutGrid}>
-          <header className={styles.headerArea}>
-              <h2 className={styles.title}>Articles</h2>
-              <p className={styles.subtitle}>Field Notes &amp; Technical Scrolls</p>
-          </header>
-          <div className={styles.pipeRow}>
-            <div className={styles.controlColumn}>
-              <ArticlesControlPanel
-                totalCount={activeCount}
-                meterAngle={meterAngle}
-                tags={allTags}
-                selectedTag={selectedTag}
-                onSelectTag={handleSelectTag}
-              />
-            </div>
-
-            <PipeBookshelf
-              articles={displayArticles}
-              selectedTag={selectedTag}
-              viewportRef={viewportRef}
-              onScroll={handleScroll}
-            />
-          </div>
+      <div className={styles.pipeRow}>
+        <div className={styles.controlColumn}>
+          <ArticlesControlPanel
+            totalCount={activeCount}
+            meterAngle={meterAngle}
+            tags={allTags}
+            selectedTag={selectedTag}
+            onSelectTag={handleSelectTag}
+          />
         </div>
+
+        <PipeBookshelf
+          articles={displayArticles}
+          selectedTag={selectedTag}
+          viewportRef={viewportRef}
+          onScroll={handleScroll}
+        />
       </div>
-    </section>
+    </NotebookSection>
   );
 };
