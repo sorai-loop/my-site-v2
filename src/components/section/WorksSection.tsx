@@ -3,6 +3,7 @@ import { WORKS_DATA } from '../../data/works';
 import type { WorkItem } from '../../types/work';
 import { sortAndNumberWorks } from '../../utils/sortWorks';
 import { WorksItem } from '../works/WorksItem';
+import { NotebookSection } from './NotebookSection';
 import styles from './WorksSection.module.css';
 
 export { WorksItem } from '../works/WorksItem';
@@ -30,29 +31,26 @@ export const WorksSection = ({
   };
 
   return (
-    <section
+    <NotebookSection
       id="worksSection"
-      className={className ? `${styles.section} ${className}` : styles.section}
+      title="Works"
+      subtitle="Recorded Quests & Artifacts"
+      pageCode="PAGE. 01 // INDEX-01 [RECORDED QUESTS]"
+      footerCode="END OF PAGE // WORKS"
+      className={className}
     >
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h2 className={styles.title}>Works</h2>
-          <p className={styles.subtitle}>Recorded Quests & Artifacts</p>
-        </header>
-
-        <ul className={styles.accordionList}>
-          {sortedWorks.map((work, index) => (
-            <WorksItem
-              key={work.id}
-              work={work}
-              index={index}
-              dispatchNumber={work.dispatchNumber}
-              isOpen={openIds.includes(work.id)}
-              onToggle={() => toggleItem(work.id)}
-            />
-          ))}
-        </ul>
-      </div>
-    </section>
+      <ul className={styles.accordionList}>
+        {sortedWorks.map((work, index) => (
+          <WorksItem
+            key={work.id}
+            work={work}
+            index={index}
+            dispatchNumber={work.dispatchNumber}
+            isOpen={openIds.includes(work.id)}
+            onToggle={() => toggleItem(work.id)}
+          />
+        ))}
+      </ul>
+    </NotebookSection>
   );
 };
