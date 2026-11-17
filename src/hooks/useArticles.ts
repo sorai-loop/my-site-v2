@@ -28,7 +28,6 @@ export const useArticles = (options: UseArticlesOptions = {}) => {
     }
 
     let isMounted = true;
-    setIsLoading(true);
 
     fetchQiitaArticles()
       .then((data) => {
