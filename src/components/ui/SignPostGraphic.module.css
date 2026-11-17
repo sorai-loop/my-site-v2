@@ -16,13 +16,12 @@
   opacity: 0.6;
 }
 
-/* 現在地セクションのハイライト */
 .activePlate {
-  color: var(--color-stamp-vermilion, #dc3f24);
+  color: var(--color-icon-main, #975600);
 }
 
 .activePlate .plateText {
-  fill: var(--color-stamp-vermilion, #dc3f24);
+  fill: var(--color-icon-main, #975600);
 }
 
 .plateText {
