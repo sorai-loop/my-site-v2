@@ -1,0 +1,94 @@
+/* ==========================================================================
+   StackIcon (手記・製図風の刻印枠 ＆ 多色パレット上塗りワッパー)
+   - 各SVGアイコンの構成パーツをサイトの手記パレット（インク・朱肉・用紙色）で上塗り
+   - 外枠: 製図・手記の刻印フレーム（実線 ＋ 内側点線枠）
+   ========================================================================== */
+
+.frame {
+  /* 手記パレット: メイン・サブ・アクセント・透過（文字色準拠） */
+  --stack-main: var(--color-text-main, #36332f);       /* メイン: 本文の文字色（石墨インク） */
+  --stack-sub: var(--palette-sepia-faded, #7a6c5d);    /* サブ: 文字色と同系統の褪色セピア（ハイライト/陰影面） */
+  --stack-accent: var(--palette-vermilion, #dc3f24);   /* アクセント: サイト共通の刻印朱肉色 */
+  --stack-transparent: var(--palette-paper, #fffdf4);  /* 透過・用紙色: 文字の抜き・背景透過 */
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: var(--stack-main);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* 外枠SVG (二重線・点線枠の製図フレーム) */
+.frameSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  stroke: currentColor;
+}
+
+/* 内側アイコンエリア (外枠の中心に絶対配置でロックし、点線枠の内側に大きく美しく収める) */
+.innerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 多色上塗りされたインラインSVG */
+.vectorIcon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* 外部SVGファイルパス用フォールバックマスク */
+.maskedIcon {
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  display: block;
+}
+
+/* 任意の子要素・カスタムSVG */
+.childContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.childContainer > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* SVGファイル未配置時のクラシックモノグラム・フォールバック */
+.fallbackGlyph {
+  font-family: var(--font-header, 'IM Fell English', serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--stack-main);
+  opacity: 0.88;
+  user-select: none;
+}
