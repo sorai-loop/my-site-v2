@@ -143,6 +143,7 @@
 .textColumn {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .description {
@@ -153,6 +154,9 @@
   margin: 0 0 1.35rem;
   text-align: justify;
   letter-spacing: 0.04em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 
 /* ドロップキャップ */
@@ -379,7 +383,7 @@
   color: var(--color-accent, #45312e);
 }
 
-/* 奥付・フッター (コロフォン ＆ 直筆サイン) */
+/* 奥付・フッター */
 .articleFooter {
   border-top: 1px solid var(--color-border-subtle, #e1d8ba);
   margin-top: 1.35rem;
@@ -458,9 +462,8 @@
     letter-spacing: 0.16em;
   }
 
-  /* PCでは2カラムの新聞組版 */
   .articleBody {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
     gap: 1.75rem;
   }
 

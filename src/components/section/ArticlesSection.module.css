@@ -15,21 +15,29 @@
 }
 
 /* ==========================================================================
-   PC / Desktop Overrides (@media min-width: 769px)
+   Tablet / Mid Desktop Overrides (@media min-width: 769px)
    ========================================================================== */
 @media (min-width: 769px) {
-  .pipeRow {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1.5rem;
-    width: 100%;
-  }
-
   .controlColumn {
     width: 400px;
     max-width: 400px;
     flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   Wide Desktop Overrides (@media min-width: 1380px)
+   ========================================================================== */
+@media (min-width: 1380px) {
+  .pipeRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .controlColumn {
     align-items: flex-start;
   }
 }
