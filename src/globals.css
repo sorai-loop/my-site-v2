@@ -75,12 +75,14 @@
   padding: 0;
 }
 
-html,
-body {
+html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
   font-family: var(--font-base);
@@ -95,7 +97,10 @@ a {
 
 section {
   position: relative;
-  /* overflow-x: hidden;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory; */
+  scroll-snap-align: start;
+}
+
+h2 {
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(1.5rem, 3.5vh, 2.5rem);
 }

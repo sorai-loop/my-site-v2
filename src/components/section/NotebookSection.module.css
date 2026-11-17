@@ -39,6 +39,8 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(1rem, 2.5vh, 2rem);
 }
 
 .headerLine {
@@ -93,6 +95,8 @@
   color: var(--color-heading, #2b2d31);
   line-height: 1;
   letter-spacing: 0.04em;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(1.5rem, 3.5vh, 2.5rem);
 }
 
 .subtitle {
