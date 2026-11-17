@@ -97,11 +97,13 @@ export const NotebookSection = ({
           )}
 
           <div
-            className={
-              hasLeftMarginLine
-                ? `${styles.notebookBody} ${styles.hasMarginLine}`
-                : styles.notebookBody
-            }
+            className={[
+              styles.notebookBody,
+              hasLeftMarginLine && styles.hasMarginLine,
+              sideTabs && styles.hasSideTabs,
+            ]
+              .filter(Boolean)
+              .join(' ')}
           >
             {children}
           </div>

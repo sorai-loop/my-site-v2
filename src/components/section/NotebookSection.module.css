@@ -127,7 +127,7 @@
   z-index: 5;
 }
 
-/* 本文紙面 (1行SVG背景と --line-height の完全同期) */
+/* 本文紙面 (1行SVG背景と --line-height の同期) */
 .notebookBody {
   position: relative;
   width: 100%;
@@ -139,9 +139,14 @@
   min-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
   padding-top: var(--line-height);
   padding-bottom: var(--line-height);
-  /* スマホでは右端に付箋が沿う場合を考慮した右パディング */
-  padding-right: calc(var(--side-tab-width-mobile) + 0.65rem);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   box-sizing: border-box;
+}
+
+/* スマホで付箋がある場合のみ、紙面右縁に沿う付箋との干渉を防ぐ右パディングを確保 */
+.hasSideTabs {
+  padding-right: calc(var(--side-tab-width-mobile) + 0.65rem);
 }
 
 /* 左マージン線 (縦ガイド線) */
@@ -217,7 +222,8 @@
   }
 
   /* PCでは付箋が外側にあるため、本文エリアの右パディングを通常に戻す */
-  .notebookBody {
+  .notebookBody,
+  .hasSideTabs {
     padding-right: 0.5rem;
   }
 }
