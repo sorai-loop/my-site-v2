@@ -1,17 +1,47 @@
+/* ==========================================================================
+   SignSection (目次・道標セクション)
+   ========================================================================== */
+
 .section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   width: 100%;
+  height: 100vh;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-bottom: clamp(4.5rem, 14vh, 9rem);
 }
 
 .signWrapper {
-  height: 75vh;
-  max-height: 650px;
+  height: clamp(380px, 66vh, 600px);
   width: auto;
-  aspect-ratio: 85 / 207;
+  aspect-ratio: 90 / 214;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -6px;
+}
+
+.groundContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(140px, 22vh, 240px);
+  pointer-events: none;
+  z-index: 1;
+  color: var(--color-text-main, #36332f);
+}
+
+.groundSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

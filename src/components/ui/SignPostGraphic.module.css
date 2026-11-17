@@ -27,3 +27,7 @@
   user-select: none;
   pointer-events: none;
 }
+
+.groundBase {
+  pointer-events: none;
+}
