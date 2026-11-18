@@ -24,7 +24,7 @@ export const WORKS_DATA: WorkItem[] = [
     startDate: '2026-04',
     completedDate: '2026-07',
     description:
-      'ギルドのクエスト掲示板をイメージしたタスク・プロジェクト管理Webアプリ。タグや期日ごとのフィルタリング、手帳風の進捗ログ機能を搭載。',
+      'テスト用のデータだからこんなプロジェクトないよ！ギルドのクエスト掲示板をイメージしたタスク・プロジェクト管理Webアプリ。タグや期日ごとのフィルタリング、手帳風の進捗ログ機能を搭載。',
     stacks: ['React', 'TypeScript', 'Node.js', 'CSS Modules'],
     imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
@@ -47,7 +47,7 @@ export const WORKS_DATA: WorkItem[] = [
     startDate: '2025-10',
     completedDate: '2025-12',
     description:
-      'オープン気象APIと連携し、各地の空模様・雲の様子を手記風に記録・視覚化するWebツール。',
+      'テスト用のデータだからこんなプロジェクトないよ！オープン気象APIと連携し、各地の空模様・雲の様子を手記風に記録・視覚化するWebツール。',
     stacks: ['TypeScript', 'FastAPI', 'Python', 'SVG'],
     imagePath: null,
     githubUrl: 'https://github.com/sorai-loop',
