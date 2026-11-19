@@ -28,9 +28,3 @@ export type StackItem = {
   stampType?: StampType;
   description: string;
 };
-
-export type FutureThoughtNote = {
-  heading: string;
-  paragraphs: string[];
-  signature: string;
-};
