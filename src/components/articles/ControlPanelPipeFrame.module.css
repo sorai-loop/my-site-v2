@@ -5,8 +5,11 @@
 .pipeFrameBox {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* 1. 最上段パイプ行（右から入り左端で下へ折れる） */
@@ -30,6 +33,9 @@
   display: flex;
   align-items: stretch;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .verticalPipeCol {
@@ -73,6 +79,9 @@
   display: flex;
   align-items: stretch;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* 5. 最下段フック行（縦管を受けて右へ曲がり上へ巻き上がる） */
