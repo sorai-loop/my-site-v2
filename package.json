@@ -8,7 +8,8 @@
     "build": "hcm 'src/**/*.module.css' && tsc -b && vite build",
     "check:types": "hcm 'src/**/*.module.css' && tsc -b",
     "lint": "hcm 'src/**/*.module.css' && eslint . --ext .js,.jsx,.ts,.tsx,.svg && tsc -b",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && tar -czf - -C dist . | ssh sorai@100.120.21.109 \"sudo rm -rf /var/www/html/* && sudo tar -xzf - -C /var/www/html/ && sudo chown -R sorai:www-data /var/www/html && sudo chmod -R 775 /var/www/html && sudo systemctl reload nginx\""
   },
   "dependencies": {
     "react": "^19.2.8",
