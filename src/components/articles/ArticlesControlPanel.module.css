@@ -6,14 +6,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .gaugesCol {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.25rem 0.35rem 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .counterWrapper {
@@ -65,8 +70,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding: 0.4rem 0.35rem 0.35rem 0.5rem;
+  padding: 0.4rem 0.5rem 0.35rem 0.5rem;
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tagsLabel {
@@ -78,8 +86,11 @@
 /* モバイル: 横3 × 縦2段 */
 .tagsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.3rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .tagButton {
@@ -88,14 +99,17 @@
   border: 1.5px solid var(--color-text-main, #36332f);
   color: var(--color-text-main, #36332f);
   font-family: var(--font-code, monospace);
-  font-size: 0.7rem;
-  padding: 0.2rem 0.25rem;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.2rem;
   cursor: pointer;
   transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* モバイルでは上位6個のみ表示 */
@@ -123,9 +137,11 @@
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
+  min-width: 0;
   margin-top: 0.45rem;
   padding-top: 0.4rem;
   border-top: 1px dashed var(--color-border-subtle, #e1d8ba);
+  box-sizing: border-box;
 }
 
 .searchLabel {
@@ -140,6 +156,7 @@
   align-items: center;
   position: relative;
   width: 100%;
+  min-width: 0;
   border: 1.5px solid var(--color-text-main, #36332f);
   background-color: var(--color-bg-base, #fffdf4);
   box-sizing: border-box;
@@ -191,6 +208,7 @@
   align-items: center;
   justify-content: center;
   transition: color 0.15s ease;
+  flex-shrink: 0;
 }
 
 .searchClearBtn:hover {
@@ -200,6 +218,8 @@
 /* モバイル・PC縮小画面共通: 検索窓の下に配置される本棚スロット */
 .embeddedBookshelf {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin-top: 0.5rem;
   padding-top: 0.45rem;
   border-top: 1px dashed var(--color-border-subtle, #e1d8ba);
@@ -207,6 +227,7 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Wide Desktop Overrides (1380px以上: 左右2カラム展開) */

@@ -77,7 +77,6 @@
   justify-content: space-between;
   gap: 0.35rem 1rem;
   padding: 0.6rem 0.25rem 0.4rem;
-  /* ページのタイトル線: h2 を装飾する太めの二重線 */
   border-bottom: 3px double var(--color-heading, #2b2d31);
   box-sizing: border-box;
 }
@@ -131,7 +130,7 @@
   z-index: 5;
 }
 
-/* 本文紙面 (1行SVG背景と --line-height の同期) */
+/* 本文紙面*/
 .notebookBody {
   position: relative;
   width: 100%;
@@ -197,6 +196,90 @@
 }
 
 /* ==========================================================================
+   手記1ページ 統一ビューポートフィットモード
+   ========================================================================== */
+.section.pageFit {
+  --notebook-pad-top: clamp(0.75rem, 2vh, 1.25rem);
+  --notebook-pad-bottom: clamp(1rem, 2.5vh, 1.75rem);
+  /* モバイル安全下限 22px, 上限 28px */
+  --line-height: clamp(
+    22px,
+    calc((100dvh - var(--notebook-pad-top)) / (var(--min-notebook-lines, 28) + 3)),
+    28px
+  );
+  --baseline-shift: calc(var(--line-height) * 0.12);
+  --baseline-shift-title: calc(var(--line-height) * 0.08);
+  --baseline-shift-code: calc(var(--line-height) * 0.1);
+
+  padding-top: var(--notebook-pad-top);
+  padding-bottom: var(--notebook-pad-bottom);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .section.pageFit {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+.pageFit .pageHeader {
+  flex-shrink: 0;
+}
+
+.pageFit .headerLine {
+  height: var(--line-height);
+  box-sizing: border-box;
+  font-size: 0.65rem;
+}
+
+.pageFit .titleArea {
+  height: calc(var(--line-height) * 2);
+  min-height: calc(var(--line-height) * 2);
+  padding: 0 0.25rem 0.15rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+}
+
+.pageFit .title {
+  font-size: clamp(1.65rem, calc(var(--line-height) * 1.25), 2.15rem);
+  line-height: 1;
+}
+
+.pageFit .subtitle {
+  font-size: 0.78rem;
+  line-height: 1.1;
+}
+
+.pageFit .categoryBadge {
+  font-size: 0.76rem;
+}
+
+.pageFit .pageBodyWrapper {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.pageFit .notebookBody {
+  height: calc(var(--line-height) * var(--min-notebook-lines, 28));
+  min-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
+  max-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: var(--line-height);
+  padding-bottom: var(--line-height);
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-subtle, #e1d8ba) transparent;
+}
+
+.pageFit .pageFooterLine {
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
    PC / Desktop Overrides (@media min-width: 769px)
    ========================================================================== */
 @media (min-width: 769px) {
@@ -235,22 +318,16 @@
     padding-right: 0.5rem;
   }
 
-  /* ==========================================================================
-     手記1ページ 統一ビューポートフィットモード (isPageFit)
-     - 天余白 ＋ ヘッダー(3行) ＋ 本文紙面(28行) ＝ 100dvh に完全フィット
-     - ページのフッター線(pageFooterLine) と 地余白 は画面外(圏外)へ自然に押し出す
-     ========================================================================== */
+  /* PC: pageFit 上書き設定 */
   .section.pageFit {
     --notebook-pad-top: clamp(1.2rem, 2.5vh, 2rem);
     --notebook-pad-bottom: clamp(1.5rem, 3.5vh, 2.5rem);
-    /* ヘッダー3行分 ＋ 紙面28行分 ＝ 合計31行で 100dvh - 天余白 を均等配分 */
-    /* 安全下限 26px (フォント破壊防止), 上限 34px (スカスカ防止) */
+    /* PC安全下限 26px (フォント破壊防止), 上限 34px (スカスカ防止) */
     --line-height: clamp(
       26px,
       calc((100dvh - var(--notebook-pad-top)) / (var(--min-notebook-lines, 28) + 3)),
       34px
     );
-    /* 行高の変化に応じてフォント底辺が罫線にジャスト着地するよう相対同期 */
     --baseline-shift: calc(var(--line-height) * 0.12);
     --baseline-shift-title: calc(var(--line-height) * 0.08);
     --baseline-shift-code: calc(var(--line-height) * 0.1);
@@ -260,50 +337,27 @@
     box-sizing: border-box;
   }
 
-  .pageFit .pageHeader {
-    flex-shrink: 0;
-  }
-
   .pageFit .headerLine {
-    height: var(--line-height);
-    box-sizing: border-box;
+    font-size: 0.7rem;
   }
 
   .pageFit .titleArea {
-    height: calc(var(--line-height) * 2);
-    min-height: calc(var(--line-height) * 2);
     padding: 0 0.25rem 0.2rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-end;
   }
 
   .pageFit .title {
     font-size: clamp(2rem, calc(var(--line-height) * 1.35), 2.75rem);
-    line-height: 1;
   }
 
-  .pageFit .pageBodyWrapper {
-    flex-shrink: 0;
-    width: 100%;
+  .pageFit .subtitle {
+    font-size: 0.92rem;
   }
 
-  .pageFit .notebookBody {
-    height: calc(var(--line-height) * var(--min-notebook-lines, 28));
-    min-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
-    max-height: calc(var(--line-height) * var(--min-notebook-lines, 28));
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* 罫線(RuledLine)のグリッド位相と完全同期させるため、整数倍の var(--line-height) を指定 */
-    padding-top: var(--line-height);
-    padding-bottom: var(--line-height);
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border-subtle, #e1d8ba) transparent;
+  .pageFit .categoryBadge {
+    font-size: 0.9rem;
   }
 
   .pageFit .pageFooterLine {
-    flex-shrink: 0;
     margin-top: 0.75rem;
   }
 }
@@ -312,7 +366,8 @@
    PC Wide Screen Overrides (@media min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .section {
+  .section,
+  .section.pageFit {
     /* 左側: 看板の幅 (見開き左ページ) + 1.5倍に拡大した適度な余白 */
     padding-left: calc(clamp(520px, 82vh, 860px) * (90 / 214) + clamp(3rem, 5.25vw, 6rem));
     /* 右側: 1.5倍に拡大した適度な余白 */
