@@ -92,8 +92,10 @@
 
 .historyMeta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  column-gap: 0.45rem;
+  row-gap: 0.2rem;
 }
 
 .historyPeriod {
@@ -101,17 +103,43 @@
   font-size: 0.7rem;
   color: var(--color-accent, #45312e);
   letter-spacing: 0.04em;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 .historyBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: fit-content;
   font-family: var(--font-base, 'Klee One', cursive);
   font-size: 0.65rem;
-  padding: 0 0.35rem;
+  font-weight: normal;
+  line-height: 1.2;
+  padding: 0.08rem 0.35rem;
   border: 1px solid var(--color-border, #525b68);
-  color: var(--color-text-sub, #7a6c5d);
+  border-radius: 2px;
+  background-color: rgba(225, 216, 186, 0.25);
+  color: var(--color-accent, #45312e);
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.historyRole {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.7rem;
+  color: var(--color-accent, #45312e);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
 .historyTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.45rem;
+  row-gap: 0.2rem;
   font-family: var(--font-base, 'Klee One', cursive);
   font-size: 0.94rem;
   font-weight: 600;
@@ -141,6 +169,37 @@
   line-height: 1.5;
 }
 
+.historyLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.historyLinkTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.1rem 0.35rem;
+  border: 1px dashed var(--color-border, #525b68);
+  background-color: rgba(225, 216, 186, 0.2);
+  color: var(--color-heading, #2b2d31);
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.72rem;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.historyLinkTag:hover {
+  border-color: var(--color-accent, #45312e);
+  color: var(--color-accent, #45312e);
+  background-color: rgba(225, 216, 186, 0.45);
+}
+
+.linkTagLabel {
+  line-height: 1.2;
+}
+
 @media (max-width: 959px) {
   .recordBlock {
     gap: 0.35rem;
@@ -165,13 +224,23 @@
     height: 0.35rem;
   }
 
+  .historyMeta {
+    column-gap: 0.35rem;
+    row-gap: 0.15rem;
+  }
+
   .historyPeriod {
     font-size: 0.62rem;
   }
 
   .historyBadge {
     font-size: 0.58rem;
-    padding: 0.05rem 0.3rem;
+    line-height: 1.2;
+    padding: 0.08rem 0.28rem;
+  }
+
+  .historyRole {
+    font-size: 0.6rem;
   }
 
   .historyTitle {
@@ -181,5 +250,14 @@
   .historyDetail {
     font-size: 0.68rem;
     line-height: 1.3;
+  }
+
+  .historyLinks {
+    gap: 0.25rem;
+  }
+
+  .historyLinkTag {
+    font-size: 0.62rem;
+    padding: 0.05rem 0.25rem;
   }
 }
