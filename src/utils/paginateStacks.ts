@@ -2,33 +2,42 @@ import type { StackItem } from '../types/stack';
 
 /**
  * 1アイテムの推定行数を計算する
- * - 見出し (domainLabel + techName): 2行
- * - 本文 (memoBody): 説明文の文字数に応じた行数 (約34文字/行)
+ * - 見出し (techName + domainLabel): 1行 (横並び統合)
+ * - 本文 (memoBody): 説明文の文字数に応じた行数
+ *   - PC: 約32文字/行
+ *   - モバイル: 横幅が狭いため約18文字/行で折り返し
  */
-export function estimateStackItemLines(item: StackItem): number {
+export function estimateStackItemLines(
+  item: StackItem,
+  isMobile = false
+): number {
   const descLength = item.description?.length ?? 0;
-  // 34文字程度で1行折り返しと仮定 (最小1行)
-  const descLines = Math.max(1, Math.ceil(descLength / 34));
-  return 2 + descLines;
+  const charsPerLine = isMobile ? 18 : 32;
+  const descLines = Math.max(1, Math.ceil(descLength / charsPerLine));
+  return 1 + descLines;
 }
 
 /**
  * トラベラーズノートの28行紙面に収まるよう、スタックアイテムを複数ページに分割する。
- * 
+ *
  * ルール:
- * 1. 1ページの最大行数 (maxLinesPerPage, デフォルト26行: 上下パディング各1行を除いた紙面) を超えたら次ページへ送る。
+ * 1. 1ページの最大行数:
+ *    - PC: 26行 (上下パディング各1行を除いた紙面)
+ *    - モバイル: 20行 (狭い横幅・付箋・パディングを考慮し、1ページあたり3件程度をスクロールなしで収容)
  * 2. 【孤立アイテム防止】行が溢れて次ページができた際、次ページに1件だけポツンと溢れる (オルファン) 場合は、
  *    その直前のスタックも一緒に次ページへ配置し、バランス良く収容する。
  */
 export function paginateStacks(
   items: StackItem[],
-  maxLinesPerPage = 26
+  isMobile = false,
+  maxLinesPerPage?: number
 ): StackItem[][] {
   if (items.length <= 1) {
     return [items];
   }
 
-  const linesPerItem = items.map(estimateStackItemLines);
+  const effectiveMaxLines = maxLinesPerPage ?? (isMobile ? 20 : 26);
+  const linesPerItem = items.map((it) => estimateStackItemLines(it, isMobile));
   const pages: StackItem[][] = [];
   let currentPageItems: StackItem[] = [];
   let currentLines = 0;
@@ -41,7 +50,7 @@ export function paginateStacks(
 
     if (
       currentPageItems.length > 0 &&
-      currentLines + neededLines > maxLinesPerPage
+      currentLines + neededLines > effectiveMaxLines
     ) {
       pages.push(currentPageItems);
       currentPageItems = [item];
