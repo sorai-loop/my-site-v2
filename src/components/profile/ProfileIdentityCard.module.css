@@ -1,0 +1,272 @@
+.identityBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.identityTopRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+@media (min-width: 520px) {
+  .identityTopRow {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* 証明写真枠（四隅の差し込みスリット付き） */
+.portraitWrapper {
+  position: relative;
+  width: 132px;
+  height: 152px;
+  flex-shrink: 0;
+  padding: 0.45rem;
+  border: 1px solid var(--color-border, #525b68);
+  background-color: rgba(225, 216, 186, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portraitWrapper::before,
+.portraitWrapper::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--color-heading, #2b2d31);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.portraitWrapper::before {
+  top: 3px;
+  left: 3px;
+  border-width: 2px 0 0 2px;
+}
+
+.portraitWrapper::after {
+  bottom: 3px;
+  right: 3px;
+  border-width: 0 2px 2px 0;
+}
+
+.portraitInner {
+  width: 100%;
+  height: 116px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle, #e1d8ba);
+  background-color: var(--color-bg-base, #fffdf4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portraitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.28) contrast(1.04);
+}
+
+.portraitCaption {
+  font-family: var(--font-code, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+/* 写真枠に重なる朱肉スタンプ */
+.portraitStampOverlay {
+  position: absolute;
+  bottom: -0.55rem;
+  right: -0.85rem;
+  width: 4.8rem;
+  color: var(--color-stamp-vermilion, #dc3f24);
+  transform: rotate(-8deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ハンドルネーム・肩書き領域 */
+.namePlate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.guildClassBadge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-code, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--color-accent, #45312e);
+  color: var(--color-accent, #45312e);
+  background-color: rgba(69, 49, 46, 0.05);
+}
+
+.handleName {
+  font-family: var(--font-display, 'Shippori Mincho', serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-heading, #2b2d31);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+}
+
+.roleTitle {
+  font-family: var(--font-header, 'IM Fell English', serif);
+  font-size: 0.98rem;
+  color: var(--color-text-sub, #7a6c5d);
+  line-height: 1.3;
+}
+
+.stampRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.inlineStamp {
+  width: 4.4rem;
+  color: var(--color-stamp-vermilion, #dc3f24);
+  transform: rotate(3deg);
+}
+
+/* 身分証テーブル（生年月日・所属・状態） */
+.particularsList {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--color-border, #525b68);
+  border-bottom: 1px solid var(--color-border, #525b68);
+}
+
+.particularItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.25rem;
+  border-bottom: 1px dashed var(--color-border-subtle, #e1d8ba);
+}
+
+.particularItem:last-child {
+  border-bottom: none;
+}
+
+.particularLabel {
+  font-family: var(--font-code, monospace);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.particularValue {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.95rem;
+  color: var(--color-text-main, #36332f);
+  word-break: break-word;
+}
+
+/* モバイル用 レイアウト (< 960px) */
+@media (max-width: 959px) {
+  .identityBlock {
+    gap: 0.45rem;
+  }
+
+  .identityTopRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .portraitWrapper {
+    width: 76px;
+    height: 90px;
+    padding: 0.25rem;
+  }
+
+  .portraitInner {
+    height: 68px;
+  }
+
+  .portraitStampOverlay {
+    width: 3.2rem;
+    bottom: -0.35rem;
+    right: -0.45rem;
+  }
+
+  .handleName {
+    font-size: 1.3rem;
+  }
+
+  .roleTitle {
+    font-size: 0.74rem;
+  }
+
+  .guildClassBadge {
+    font-size: 0.6rem;
+    padding: 0.08rem 0.35rem;
+  }
+
+  .stampRow {
+    gap: 0.3rem;
+    margin-top: 0.15rem;
+  }
+
+  .inlineStamp {
+    width: 3.2rem;
+  }
+
+  .particularsList {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid var(--color-border, #525b68);
+    border-bottom: 1px solid var(--color-border, #525b68);
+  }
+
+  .particularItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.28rem 0.35rem;
+    border-bottom: 1px dashed var(--color-border-subtle, #e1d8ba);
+    border-right: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .particularItem:last-child {
+    border-bottom: none;
+  }
+
+  .particularLabel {
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+  }
+
+  .particularValue {
+    font-size: 0.82rem;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.35;
+  }
+}

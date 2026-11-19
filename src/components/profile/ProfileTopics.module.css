@@ -1,0 +1,74 @@
+.recordBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.topicList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.topicCard {
+  padding: 0.5rem 0.65rem;
+  border: 1px dashed var(--color-border, #525b68);
+  background-color: rgba(225, 216, 186, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.topicTag {
+  font-family: var(--font-code, monospace);
+  font-size: 0.63rem;
+  color: var(--color-accent, #45312e);
+  letter-spacing: 0.06em;
+}
+
+.topicTitle {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-heading, #2b2d31);
+}
+
+.topicBody {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.76rem;
+  color: var(--color-text-sub, #7a6c5d);
+  line-height: 1.45;
+}
+
+@media (max-width: 959px) {
+  .recordBlock {
+    gap: 0.3rem;
+  }
+
+  .topicList {
+    gap: 0.3rem;
+  }
+
+  .topicCard {
+    padding: 0.25rem 0.45rem;
+    gap: 0.08rem;
+  }
+
+  .topicTag {
+    font-size: 0.58rem;
+  }
+
+  .topicTitle {
+    font-size: 0.76rem;
+  }
+
+  .topicBody {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  /* モバイルでは小話を1件のみ表示して高さを抑える */
+  .topicCard:nth-child(n+2) {
+    display: none;
+  }
+}

@@ -1,0 +1,159 @@
+.telemetryBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.85rem 0.85rem;
+  border: 1px solid var(--color-border, #525b68);
+  background-color: rgba(225, 216, 186, 0.16);
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.telemetryHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  border-bottom: 1px dashed var(--color-border-subtle, #e1d8ba);
+  padding-bottom: 0.4rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.telemetryTitleGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.telemetryCode {
+  font-family: var(--font-code, monospace);
+  font-size: 0.72rem;
+  color: var(--color-accent, #45312e);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.telemetryLabel {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.85rem;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.telemetryStats {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-code, monospace);
+  font-size: 0.72rem;
+  color: var(--color-text-main, #36332f);
+}
+
+.profileLink {
+  color: var(--color-accent, #45312e);
+  border-bottom: 1px dotted var(--color-accent, #45312e);
+  transition: opacity 0.2s ease;
+}
+
+.profileLink:hover {
+  opacity: 0.75;
+}
+
+.calendarScrollWrapper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
+  box-sizing: border-box;
+}
+
+.calendarSvg {
+  display: block;
+  min-width: 540px;
+  max-width: none;
+  height: auto;
+}
+
+/* Ink & Amber contribution levels */
+.cellLevel0 {
+  fill: rgba(225, 216, 186, 0.38);
+  stroke: rgba(122, 108, 93, 0.22);
+  stroke-width: 0.6;
+}
+
+.cellLevel1 {
+  fill: #e3c193;
+  stroke: rgba(87, 73, 56, 0.35);
+  stroke-width: 0.6;
+}
+
+.cellLevel2 {
+  fill: #c88a4b;
+  stroke: rgba(87, 73, 56, 0.45);
+  stroke-width: 0.6;
+}
+
+.cellLevel3 {
+  fill: #975600;
+  stroke: rgba(54, 51, 47, 0.55);
+  stroke-width: 0.6;
+}
+
+.cellLevel4 {
+  fill: #45312e;
+  stroke: #2b2d31;
+  stroke-width: 0.7;
+}
+
+.telemetryFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-code, monospace);
+  font-size: 0.68rem;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legendSwatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  display: inline-block;
+  border-radius: 1.5px;
+  border: 1px solid rgba(87, 73, 56, 0.35);
+}
+
+.swatch0 {
+  background-color: rgba(225, 216, 186, 0.38);
+}
+
+.swatch1 {
+  background-color: #e3c193;
+}
+
+.swatch2 {
+  background-color: #c88a4b;
+}
+
+.swatch3 {
+  background-color: #975600;
+}
+
+.swatch4 {
+  background-color: #45312e;
+}

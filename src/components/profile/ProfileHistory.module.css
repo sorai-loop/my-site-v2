@@ -1,0 +1,185 @@
+.recordBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.subHeaderFlex {
+  flex: 1;
+}
+
+.historyCount {
+  font-family: var(--font-code, monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent, #45312e);
+  white-space: nowrap;
+}
+
+/* 固定高スクロール枠（アンティーク調スクロールバー） */
+.scrollContainer {
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0.65rem 0.5rem 0.35rem;
+  border: 1px solid var(--color-border-subtle, #e1d8ba);
+  background-color: rgba(225, 216, 186, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border, #525b68) transparent;
+  box-sizing: border-box;
+}
+
+.scrollContainer:focus-visible {
+  outline: 1px solid var(--color-accent, #45312e);
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: rgba(225, 216, 186, 0.25);
+  border-radius: 2px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: var(--color-border, #525b68);
+  border-radius: 2px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent, #45312e);
+}
+
+.historyList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  padding-left: 0.95rem;
+  border-left: 1px solid var(--color-border, #525b68);
+  margin-left: 0.35rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.historyItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.historyItem::before {
+  content: '';
+  position: absolute;
+  left: -1.23rem;
+  top: 0.38rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background-color: var(--color-bg-base, #fffdf4);
+  border: 2px solid var(--color-accent, #45312e);
+}
+
+.historyMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.historyPeriod {
+  font-family: var(--font-code, monospace);
+  font-size: 0.7rem;
+  color: var(--color-accent, #45312e);
+  letter-spacing: 0.04em;
+}
+
+.historyBadge {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.65rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--color-border, #525b68);
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+.historyTitle {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--color-heading, #2b2d31);
+}
+
+.historyLink {
+  color: var(--color-heading, #2b2d31);
+  text-decoration: underline dotted var(--color-border, #525b68);
+  transition: color 0.18s ease;
+}
+
+.historyLink:hover {
+  color: var(--color-accent, #45312e);
+}
+
+.linkArrow {
+  font-size: 0.75rem;
+  font-family: var(--font-code, monospace);
+  color: var(--color-accent, #45312e);
+}
+
+.historyDetail {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.82rem;
+  color: var(--color-text-sub, #7a6c5d);
+  line-height: 1.5;
+}
+
+@media (max-width: 959px) {
+  .recordBlock {
+    gap: 0.35rem;
+  }
+
+  .scrollContainer {
+    max-height: calc(100dvh - 170px);
+    min-height: 220px;
+    padding: 0.35rem 0.45rem 0.35rem 0.25rem;
+  }
+
+  .historyList {
+    gap: 0.35rem;
+    padding-left: 0.75rem;
+    margin-left: 0.25rem;
+  }
+
+  .historyItem::before {
+    left: -0.98rem;
+    top: 0.32rem;
+    width: 0.35rem;
+    height: 0.35rem;
+  }
+
+  .historyPeriod {
+    font-size: 0.62rem;
+  }
+
+  .historyBadge {
+    font-size: 0.58rem;
+    padding: 0.05rem 0.3rem;
+  }
+
+  .historyTitle {
+    font-size: 0.76rem;
+  }
+
+  .historyDetail {
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+}

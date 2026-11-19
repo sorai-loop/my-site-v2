@@ -1,0 +1,35 @@
+.sheetSubHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border, #525b68);
+  padding-bottom: 0.3rem;
+}
+
+.sheetCode {
+  font-family: var(--font-code, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-accent, #45312e);
+}
+
+.sheetTitle {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.8rem;
+  color: var(--color-text-sub, #7a6c5d);
+}
+
+@media (max-width: 959px) {
+  .sheetSubHeader {
+    padding-bottom: 0.15rem;
+  }
+
+  .sheetCode {
+    font-size: 0.64rem;
+  }
+
+  .sheetTitle {
+    font-size: 0.72rem;
+  }
+}
