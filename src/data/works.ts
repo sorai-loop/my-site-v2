@@ -48,7 +48,7 @@ export const WORKS_DATA: WorkItem[] = [
     startDate: '2025-04',
     completedDate: '2026-08',
     description:
-      'webの基礎を学ぶため制作中！として構築した旧ポートフォリオサイト。HTML/CSS/JavaScriptを用いて基礎固めを行いながら制作。',
+      'webの基礎を学ぶため制作。として構築した旧ポートフォリオサイト。HTML/CSS/JavaScriptを用いて基礎固めを行いながら制作。',
     stacks: ['HTML', 'CSS', 'JavaScript'],
     imagePath: '../assets/img/myportfolio.png',
     status: 'COMPLETED',
