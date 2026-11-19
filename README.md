@@ -184,12 +184,12 @@ Qiitaから取得した記事データを流し込み、スチームパンク風
    - **SEC. 03 // OFFICIAL ACCOUNTS**:
      - 本人の公式アカウント（GitHub, X, Qiita等）。`StackIcon` を添えたカードリンク。
 2. **右面: SEC. 04 - 06 // DOSSIER RECORDS & CHRONICLE（調査調書・活動録）**
-   - **SEC. 04 // CHRONICLE & HISTORY**:
-     - 活動履歴タイムライン。イベント等の大量参加を見越し、**固定高の内部スクロール枠（アンティーク調スクロールバー付き）** として実装。件数が増えてもパスポート全体の高さを崩さない。
-   - **SEC. 05 // MAIN ENVIRONMENT**:
+   - **SEC. 04 // MAIN ENVIRONMENT**:
      - メイン作業環境（OS, Home Server, Tools, Stationery等）。
-   - **SEC. 06 // FIELD NOTES**:
+   - **SEC. 05 // FIELD NOTES**:
      - 雑記・小話（自作SVGのこだわり、天気連動構想など）。
+   - **SEC. 06 // CHRONICLE & HISTORY**:
+     - 活動履歴タイムライン。イベント等の大量参加を見越し、SEC.04・05の**残りの高さをすべて使った可変高の内部スクロール枠（アンティーク調スクロールバー付き）** として実装。見開きの高さを有効活用する。
 3. **下部横断: SEC. 07, FIELD TELEMETRY & MRZ（音楽・活動観測ログ・機械読取帯）**
    - **SEC. 07 // HEAVY ROTATION**:
      - 最近ハマっている曲（レコード盤SVGモチーフ付き）。
