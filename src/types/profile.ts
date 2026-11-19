@@ -1,13 +1,20 @@
 import type { StampType } from '../components/ui/StampGraphic';
 
+export type ProfileHistoryLink = {
+  label: string;
+  url: string;
+};
+
 export type ProfileHistoryItem = {
   id: string;
   period: string;
   title: string;
+  role?: string;
   detail?: string;
   badge?: string;
   category?: string;
   url?: string;
+  links?: ProfileHistoryLink[];
 };
 
 export type ProfileEnvironmentItem = {
