@@ -18,12 +18,16 @@ export type NotebookSectionProps = {
   sideTabs?: ReactNode;
   /** 左マージン線 (赤い縦ガイド線) を表示するかどうか (デフォルト: true) */
   hasLeftMarginLine?: boolean;
+  /** 横罫線 (RuledLine.svg) を表示するかどうか (デフォルト: true) */
+  hasRuledLines?: boolean;
   /** 基準とする罫線行数 (デフォルト: トラベラーズノートレギュラーサイズの28行) */
   minLines?: number;
   /** ページ最下部太線の左側に表示する終端コード (例: 'END OF PAGE // STACKS') */
   footerCode?: string;
   /** ページ最下部太線の右側に配置するアクション (ページ送りボタンなど) */
   footerAction?: ReactNode;
+  /** モバイル時に最大高さを100vh(100dvh)に収めるかどうか */
+  isViewportHeight?: boolean;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -47,9 +51,11 @@ export const NotebookSection = ({
   headerAccessory,
   sideTabs,
   hasLeftMarginLine = true,
+  hasRuledLines = true,
   minLines = 28,
   footerCode,
   footerAction,
+  isViewportHeight = false,
   className,
   style,
   children,
@@ -57,7 +63,13 @@ export const NotebookSection = ({
   return (
     <section
       id={id}
-      className={className ? `${styles.section} ${className}` : styles.section}
+      className={[
+        styles.section,
+        isViewportHeight && styles.viewportHeight,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       style={
         {
           ['--min-notebook-lines' as string]: minLines,
@@ -99,6 +111,7 @@ export const NotebookSection = ({
           <div
             className={[
               styles.notebookBody,
+              !hasRuledLines && styles.noRuledLines,
               hasLeftMarginLine && styles.hasMarginLine,
               sideTabs && styles.hasSideTabs,
             ]

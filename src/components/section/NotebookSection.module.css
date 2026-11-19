@@ -148,6 +148,10 @@
   box-sizing: border-box;
 }
 
+.noRuledLines {
+  background-image: none;
+}
+
 /* スマホで付箋がある場合のみ、紙面右縁に沿う付箋との干渉を防ぐ右パディングを確保 */
 .hasSideTabs {
   padding-right: calc(var(--side-tab-width-mobile) + 0.65rem);
@@ -248,5 +252,65 @@
     width: 100%;
     max-width: 100%;
     margin: 0;
+  }
+}
+
+/* ==========================================================================
+   モバイル用 100vh(100dvh) 収容モード (isViewportHeight={true})
+   ========================================================================== */
+@media (max-width: 959px) {
+  .section.viewportHeight {
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: 0.4rem 0.65rem 0.4rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .viewportHeight .container {
+    height: 100%;
+    max-height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+  }
+
+  .viewportHeight .pageHeader {
+    flex-shrink: 0;
+  }
+
+  .viewportHeight .headerLine {
+    height: auto;
+    padding: 0.15rem 0.25rem;
+    font-size: 0.65rem;
+  }
+
+  .viewportHeight .titleArea {
+    min-height: auto;
+    padding: 0.25rem 0.25rem 0.15rem;
+  }
+
+  .viewportHeight .pageBodyWrapper {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0.2rem 0;
+  }
+
+  .viewportHeight .notebookBody {
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .viewportHeight .pageFooterLine {
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+    font-size: 0.65rem;
   }
 }
