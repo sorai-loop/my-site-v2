@@ -2,7 +2,7 @@
    StacksSection (Stacks 固有スタイル)
    手記の共通ページレイアウト (ヘッダ線・タイトル線・罫線・フッター線) は
    NotebookSection に委譲し、本ファイルでは Stacks 固有の付箋・展望コラム・
-   アイテムリストのスタイルのみを管理します。
+   アイテムリストのスタイルのみを管理。
    ========================================================================== */
 
 /* ==========================================================================
@@ -36,7 +36,7 @@
   overflow: hidden;
 }
 
-/* 付箋ごとの色味変化 (トラベラーズノートのクラフト風紙質) */
+/* 付箋ごとの色味変化 */
 .stickyTab:nth-child(1) {
   background-color: #f6efe0;
 }
@@ -92,12 +92,47 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 769px) {
+  .panelContainer {
+    padding-bottom: 3.5rem;
+  }
 }
 
 .entriesList {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.stickyNavRow {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0.65rem;
+  padding-right: 4.6rem;
+  box-sizing: border-box;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.stickyNavRow > * {
+  pointer-events: auto;
+}
+
+@media (min-width: 769px) {
+  .stickyNavRow {
+    bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .paginationActions {
@@ -187,5 +222,11 @@
   .tabLabel {
     font-size: 0.86rem;
     letter-spacing: 0.14em;
+  }
+}
+
+@media (max-width: 768px) {
+  .paginationActions {
+    display: none;
   }
 }

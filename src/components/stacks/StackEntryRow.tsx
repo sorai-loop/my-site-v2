@@ -45,11 +45,11 @@ export const StackEntryRow = ({ item }: StackEntryRowProps) => {
         </div>
       </div>
 
-      {/* 右カラム: 技術名＋ こだわりメモ本文 */}
+      {/* 右カラム: 技術名＋ 本文 */}
       <div className={styles.rightColumn}>
         <div className={styles.itemHeader}>
-          <span className={styles.domainLabel}>// {item.domainLabel}</span>
           <h3 className={styles.techName}>{item.name}</h3>
+          <span className={styles.domainLabel}>// {item.domainLabel}</span>
         </div>
         <p className={styles.memoBody}>{item.description}</p>
       </div>

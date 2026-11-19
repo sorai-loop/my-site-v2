@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PageStickyTab (トラベラーズノートの紙面に貼られた目印付箋)
+   PageStickyTab
    ========================================================================== */
 
 .stickyButton {
@@ -17,7 +17,7 @@
     filter 0.2s ease;
 }
 
-/* 右下配置 (次ページへ進む付箋) */
+/* 右下配置 */
 .stickyNext {
   right: 1rem;
   bottom: 0.75rem;
@@ -28,7 +28,7 @@
   transform: rotate(-1deg) translateY(-3px) scale(1.03);
 }
 
-/* 左下配置 (前ページへ戻る付箋) */
+/* 左下配置 */
 .stickyPrev {
   left: 1rem;
   bottom: 0.75rem;
@@ -73,7 +73,7 @@
   overflow: hidden;
 }
 
-/* 付箋の端のアクセントライン (トラベラーズノートのクラフト付箋風) */
+/* 付箋の端のアクセントライン */
 .stickyNext .stickyBody::after {
   content: '';
   position: absolute;
@@ -137,26 +137,44 @@
 }
 
 @media (max-width: 768px) {
+  .stickyButton {
+    position: relative;
+    right: auto;
+    left: auto;
+    bottom: auto;
+  }
+
   .stickyNext {
-    right: 0.5rem;
-    bottom: 0.5rem;
+    margin-left: auto;
+    transform: rotate(-1deg);
   }
 
   .stickyPrev {
-    left: 0.5rem;
-    bottom: 0.5rem;
+    margin-right: auto;
+    transform: rotate(1deg);
   }
 
+  /* モバイルでは高さを抑えてコンパクトにする */
   .stickyBody {
-    padding: 0.35rem 0.75rem 0.35rem 0.65rem;
+    padding: 0.22rem 0.55rem;
+    box-shadow:
+      -1px 2px 5px rgba(54, 51, 47, 0.12),
+      0 1px 2px rgba(54, 51, 47, 0.08);
+  }
+
+  /* モバイルでは上部バッジを省略して横幅と高さを大幅にスリム化 */
+  .badgeText {
+    display: none;
   }
 
   .mainText {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    font-weight: 600;
   }
 
   .tapeAnchor {
-    width: 36px;
-    height: 12px;
+    width: 22px;
+    height: 7px;
+    top: -4px;
   }
 }

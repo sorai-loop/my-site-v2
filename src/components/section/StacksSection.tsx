@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { STACKS_DATA, STACK_TABS } from '../../data/stacks';
 import type {
   StackCategoryId,
@@ -25,6 +25,15 @@ export const StacksSection = ({
   const [activeCategory, setActiveCategory] =
     useState<StackCategoryId>('languages');
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const activeTabIndex = useMemo(() => {
     const idx = tabs.findIndex((tab) => tab.id === activeCategory);
@@ -38,10 +47,10 @@ export const StacksSection = ({
     return stacks.filter((item) => item.category === activeCategory);
   }, [stacks, activeCategory]);
 
-  // 28行の紙面に収まるようページ分割 (溢れる際は直前のスタックも一緒に次ページへ収容)
+  // 28行の紙面に収まるようページ分割 (モバイル時は横幅の狭さを加味し厳格に分割してスクロールを防止)
   const paginatedPages = useMemo(() => {
-    return paginateStacks(filteredStacks);
-  }, [filteredStacks]);
+    return paginateStacks(filteredStacks, isMobile);
+  }, [filteredStacks, isMobile]);
 
   const totalPages = paginatedPages.length;
   const safeCurrentPage = Math.min(currentPage, Math.max(0, totalPages - 1));
@@ -74,8 +83,9 @@ export const StacksSection = ({
   const isLastTab = activeTabIndex === tabs.length - 1;
   const hasNextSubPage = safeCurrentPage < totalPages - 1;
 
+  // モバイルでは上部をすっきり保つため、ページ番号表記 (1/3等) は非表示にする
   const pageIndicator =
-    totalPages > 1 ? ` [${safeCurrentPage + 1}/${totalPages}]` : '';
+    !isMobile && totalPages > 1 ? ` [${safeCurrentPage + 1}/${totalPages}]` : '';
   const footerPageIndicator =
     totalPages > 1 ? ` - P.${safeCurrentPage + 1}/${totalPages}` : '';
 
@@ -84,7 +94,9 @@ export const StacksSection = ({
     if (hasNextSubPage) {
       return {
         badgeText: 'CONTINUED',
-        mainText: `NEXT PAGE (P.${safeCurrentPage + 2}) ⤻`,
+        mainText: isMobile
+          ? `P.${safeCurrentPage + 2} →`
+          : `NEXT PAGE (P.${safeCurrentPage + 2}) ⤻`,
         ariaLabel: `手記の次のページ (P.${safeCurrentPage + 2}/${totalPages}) をめくる`,
         onClick: handleNextPage,
       };
@@ -92,20 +104,23 @@ export const StacksSection = ({
     if (isLastTab) {
       return {
         badgeText: 'CYCLE BACK',
-        mainText: `↺ ${nextTabMeta.shortTitle} (P.1)`,
-        ariaLabel: `最初の付箋 (${nextTabMeta.title}) へ循環して戻る`,
+        mainText: isMobile
+          ? `↺ ${nextTabMeta.shortTitle}`
+          : `↺ ${nextTabMeta.shortTitle} (P.1)`,
+        ariaLabel: `最初の付箋 (${nextTabMeta.title}) へ戻る`,
         onClick: handleCycleNextTab,
       };
     }
     return {
       badgeText: 'NEXT TAB',
-      mainText: `▶ ${nextTabMeta.shortTitle} ⤻`,
+      mainText: `▶ ${nextTabMeta.shortTitle}`,
       ariaLabel: `次の付箋 (${nextTabMeta.title}) を開く`,
       onClick: handleCycleNextTab,
     };
   }, [
     hasNextSubPage,
     isLastTab,
+    isMobile,
     safeCurrentPage,
     totalPages,
     nextTabMeta.shortTitle,
@@ -131,11 +146,6 @@ export const StacksSection = ({
       title="Stacks"
       subtitle="Adventurer's Arsenal & Technical Notes"
       pageCode={`PAGE. 03 // INDEX-${activeTabMeta.indexLabel} [${activeTabMeta.shortTitle.toUpperCase()}]${pageIndicator}`}
-      categoryBadge={
-        totalPages > 1
-          ? `${activeTabMeta.title} (${safeCurrentPage + 1}/${totalPages})`
-          : activeTabMeta.title
-      }
       isPageFit
       className={className}
       sideTabs={
@@ -171,26 +181,28 @@ export const StacksSection = ({
       }
       footerCode={`END OF PAGE // ${activeTabMeta.shortTitle.toUpperCase()}${footerPageIndicator}`}
       footerAction={
-        <div className={styles.paginationActions}>
-          {safeCurrentPage > 0 && (
+        !isMobile ? (
+          <div className={styles.paginationActions}>
+            {safeCurrentPage > 0 && (
+              <button
+                type="button"
+                onClick={handlePrevPage}
+                className={styles.pageNavButton}
+                aria-label="前の手記ページへ戻る"
+              >
+                ← 前のページへ ({safeCurrentPage}/{totalPages})
+              </button>
+            )}
             <button
               type="button"
-              onClick={handlePrevPage}
-              className={styles.pageNavButton}
-              aria-label="前の手記ページへ戻る"
+              onClick={nextStickyProps.onClick}
+              className={styles.nextTabButton}
+              aria-label={nextStickyProps.ariaLabel}
             >
-              ← 前のページへ ({safeCurrentPage}/{totalPages})
+              {footerNextLabel}
             </button>
-          )}
-          <button
-            type="button"
-            onClick={nextStickyProps.onClick}
-            className={styles.nextTabButton}
-            aria-label={nextStickyProps.ariaLabel}
-          >
-            {footerNextLabel}
-          </button>
-        </div>
+          </div>
+        ) : undefined
       }
     >
       {/* タブパネルとして各アイテム一覧を表示 */}
@@ -209,25 +221,32 @@ export const StacksSection = ({
           ))}
         </ul>
 
-        {/* 右下付箋: 次のページ / 次の付箋 / 先頭への循環をシームレスに誘導 */}
-        <PageStickyTab
-          direction="next"
-          badgeText={nextStickyProps.badgeText}
-          mainText={nextStickyProps.mainText}
-          ariaLabel={nextStickyProps.ariaLabel}
-          onClick={nextStickyProps.onClick}
-        />
+        {/* 付箋ナビゲーション行: モバイルではアイテム直下にインライン配置して右下SIGNボタンとの被りを防止 */}
+        <div className={styles.stickyNavRow}>
+          {safeCurrentPage > 0 ? (
+            <PageStickyTab
+              direction="prev"
+              badgeText="RETURN"
+              mainText={
+                isMobile
+                  ? `← P.${safeCurrentPage}`
+                  : `⤺ PREV PAGE (P.${safeCurrentPage})`
+              }
+              ariaLabel={`手記の前のページ (P.${safeCurrentPage}/${totalPages}) へ戻る`}
+              onClick={handlePrevPage}
+            />
+          ) : (
+            <div />
+          )}
 
-        {/* 左下付箋: 同一カテゴリ内で2ページ目以降にいる場合に前のページへの戻り付箋を表示 */}
-        {safeCurrentPage > 0 && (
           <PageStickyTab
-            direction="prev"
-            badgeText="RETURN"
-            mainText={`⤺ PREV PAGE (P.${safeCurrentPage})`}
-            ariaLabel={`手記の前のページ (P.${safeCurrentPage}/${totalPages}) へ戻る`}
-            onClick={handlePrevPage}
+            direction="next"
+            badgeText={nextStickyProps.badgeText}
+            mainText={nextStickyProps.mainText}
+            ariaLabel={nextStickyProps.ariaLabel}
+            onClick={nextStickyProps.onClick}
           />
-        )}
+        </div>
       </div>
     </NotebookSection>
   );

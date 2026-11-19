@@ -1,7 +1,6 @@
 /* ==========================================================================
-   StackEntryRow (手記ノートの1技術アイテム行)
-   すべての高さ・余白を親から継承する --line-height の整数倍で厳密に管理し、
-   罫線の位相ズレをゼロに保ちます。
+   StackEntryRow 
+   すべての高さ・余白を親から継承する --line-height の整数倍で管理
    ========================================================================== */
 
 .entryItem {
@@ -9,7 +8,6 @@
   grid-template-columns: var(--margin-col-width, 5.25rem) 1fr;
   align-items: start;
   position: relative;
-  /* アイテムごとに罫線1行分の空行（余白）を挟む */
   margin-bottom: var(--line-height);
 }
 
@@ -58,55 +56,56 @@
 }
 
 /* ==========================================================================
-   Right Column: 技術名（罫線2行分） + こだわりメモ（罫線着地）
+   Right Column: 技術名 + メモ
    ========================================================================== */
 .rightColumn {
   padding-left: 0.85rem;
   min-width: 0;
 }
 
-/* 技術名ヘッダ（罫線2行分の高さを厳密に占有） */
+/* 技術名ヘッダ*/
 .itemHeader {
-  height: calc(var(--line-height) * 2);
+  height: var(--line-height);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: baseline;
+  gap: 0.5rem;
   position: relative;
+  overflow: hidden;
 }
 
-/* 1行目: 分野・役割の小さな注釈ラベル（1行目の罫線に着地） */
+/* 1行目・右側: 分野・役割の小さな注釈ラベル */
 .domainLabel {
   height: var(--line-height);
   line-height: var(--line-height);
   font-family: var(--font-code, monospace);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--color-text-sub, #7a6c5d);
   letter-spacing: 0.04em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
   transform: translateY(var(--baseline-shift-code, 0.2rem));
 }
 
-/* 2行目: 技術名（少し大きめの手書き文字・2行目の罫線に着地） */
+/* 1行目・左側: 技術名 */
 .techName {
   height: var(--line-height);
   line-height: var(--line-height);
   font-family: var(--font-base, 'Klee One', cursive);
-  font-size: 1.22rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-heading, #2b2d31);
   letter-spacing: 0.03em;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-shrink: 0;
   transform: translateY(var(--baseline-shift-title, 0.16rem));
 }
 
-/* メモ本文（2〜5行・各行が --line-height と完全同期し罫線に着地） */
+/* メモ本文 */
 .memoBody {
   font-family: var(--font-base, 'Klee One', cursive);
-  font-size: 0.94rem;
+  font-size: 0.88rem;
   line-height: var(--line-height);
   color: var(--color-text-main, #36332f);
   letter-spacing: 0.02em;
