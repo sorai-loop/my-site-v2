@@ -41,7 +41,7 @@ export const ProfileIdentityCard = ({
     >
       <ProfileSubHeader
         code="SEC. 01 // IDENTITY & Field"
-        title="冒険者身分証"
+        title="Who are you?"
       />
 
       <div className={styles.identityTopRow}>

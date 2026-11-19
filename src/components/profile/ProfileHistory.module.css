@@ -4,6 +4,14 @@
   gap: 0.55rem;
 }
 
+.fillHeight {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .headerRow {
   display: flex;
   align-items: center;
@@ -23,7 +31,7 @@
   white-space: nowrap;
 }
 
-/* 固定高スクロール枠（アンティーク調スクロールバー） */
+/* 固定高スクロール枠 */
 .scrollContainer {
   max-height: 220px;
   overflow-y: auto;
@@ -34,6 +42,13 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-border, #525b68) transparent;
   box-sizing: border-box;
+}
+
+.scrollContainerFill {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
 }
 
 .scrollContainer:focus-visible {

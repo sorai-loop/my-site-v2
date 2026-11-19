@@ -8,21 +8,27 @@ export type ProfileHistoryProps = {
   items: ProfileHistoryItem[];
   secNo?: string | number;
   className?: string;
+  isFillHeight?: boolean;
 };
 
 export const ProfileHistory = ({
   items,
   secNo = '04',
   className,
+  isFillHeight = false,
 }: ProfileHistoryProps) => {
   const code = `SEC. ${String(secNo).padStart(2, '0')} // Activity Log`;
   const sortedItems = useMemo(() => sortHistory(items), [items]);
 
   return (
     <div
-      className={
-        className ? `${styles.recordBlock} ${className}` : styles.recordBlock
-      }
+      className={[
+        styles.recordBlock,
+        isFillHeight && styles.fillHeight,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
       <div className={styles.headerRow}>
         <ProfileSubHeader
@@ -36,7 +42,12 @@ export const ProfileHistory = ({
       </div>
 
       <div
-        className={styles.scrollContainer}
+        className={[
+          styles.scrollContainer,
+          isFillHeight && styles.scrollContainerFill,
+        ]
+          .filter(Boolean)
+          .join(' ')}
         tabIndex={0}
         role="region"
         aria-label="活動記録タイムライン"

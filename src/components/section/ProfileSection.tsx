@@ -191,17 +191,25 @@ export const ProfileSection = ({
               .filter(Boolean)
               .join(' ')}
           >
-            <ProfileHistory items={profile.history} secNo="07" />
+            <ProfileHistory
+              items={profile.history}
+              secNo="07"
+              isFillHeight={true}
+            />
             <div className={styles.mobilePageFooter}>
               <ProfileMrzZone handleName={profile.handleName} />
             </div>
           </div>
 
-          {/* PC専用: 右列 (SEC.04 活動履歴 ＆ SEC.05 作業環境 ＆ SEC.06 小話) */}
+          {/* PC専用: 右列 (SEC.04 作業環境 ＆ SEC.05 小話 ＆ SEC.06 活動履歴) */}
           <div className={styles.desktopDossierSheet}>
-            <ProfileHistory items={profile.history} secNo="04" />
-            <ProfileEnvironment items={profile.environment} secNo="05" />
-            <ProfileTopics topics={profile.topics} secNo="06" />
+            <ProfileEnvironment items={profile.environment} secNo="04" />
+            <ProfileTopics topics={profile.topics} secNo="05" />
+            <ProfileHistory
+              items={profile.history}
+              secNo="06"
+              isFillHeight={true}
+            />
           </div>
         </div>
 
