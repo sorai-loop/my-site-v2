@@ -2,53 +2,6 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 1379px) {
-  .articlesSection {
-    height: 100vh;
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-    padding-top: clamp(0.4rem, 1.5vh, 0.75rem) !important;
-    padding-bottom: clamp(0.4rem, 1.5vh, 0.75rem) !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .articlesSection [class*="notebookBody"] {
-    min-height: 0 !important;
-    padding-top: 0.2rem !important;
-    padding-bottom: 0.2rem !important;
-  }
-
-  .articlesSection [class*="titleArea"] {
-    min-height: 0 !important;
-    padding: 0.25rem 0.25rem 0.15rem !important;
-  }
-
-  .articlesSection [class*="headerLine"] {
-    height: 1.5rem !important;
-    font-size: 0.65rem !important;
-  }
-
-  .articlesSection [class*="pageFooterLine"] {
-    padding-top: 0.25rem !important;
-    font-size: 0.65rem !important;
-  }
-}
-
-@media (max-width: 1023px) {
-  .articlesSection {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-
-  .articlesSection [class*="notebookBody"] {
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
-  }
-}
-
 .pipeRow {
   width: 100%;
   display: flex;

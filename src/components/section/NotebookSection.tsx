@@ -28,6 +28,8 @@ export type NotebookSectionProps = {
   footerAction?: ReactNode;
   /** モバイル時に最大高さを100vh(100dvh)に収めるかどうか */
   isViewportHeight?: boolean;
+  /** ヘッダー＋本文28行をビューポート(100vh/100dvh)に収め、フッターを圏外へ押し出す手記1ページ統一モード */
+  isPageFit?: boolean;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -56,6 +58,7 @@ export const NotebookSection = ({
   footerCode,
   footerAction,
   isViewportHeight = false,
+  isPageFit = false,
   className,
   style,
   children,
@@ -66,6 +69,7 @@ export const NotebookSection = ({
       className={[
         styles.section,
         isViewportHeight && styles.viewportHeight,
+        isPageFit && styles.pageFit,
         className,
       ]
         .filter(Boolean)

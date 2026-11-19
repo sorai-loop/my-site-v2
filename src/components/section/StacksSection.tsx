@@ -49,6 +49,7 @@ export const StacksSection = ({
       subtitle="Adventurer's Arsenal & Technical Notes"
       pageCode={`PAGE. 03 // INDEX-${activeTabMeta.indexLabel} [${activeTabMeta.shortTitle.toUpperCase()}]`}
       categoryBadge={activeTabMeta.title}
+      isPageFit
       className={className}
       sideTabs={
         <nav

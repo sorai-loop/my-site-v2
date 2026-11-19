@@ -37,6 +37,7 @@ export const WorksSection = ({
       subtitle="Recorded Quests & Artifacts"
       pageCode="PAGE. 01 // INDEX-01 [RECORDED QUESTS]"
       footerCode="END OF PAGE // WORKS"
+      isPageFit
       className={className}
     >
       <ul className={styles.accordionList}>

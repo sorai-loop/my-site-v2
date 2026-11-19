@@ -75,8 +75,8 @@ export const ArticlesSection = ({
       title="Articles"
       subtitle="Field Notes & Technical Scrolls"
       pageCode="PAGE. 02 // INDEX-02 [TECHNICAL SCROLLS]"
-      minLines={0}
       footerCode="END OF PAGE // ARTICLES"
+      isPageFit
       className={className ? `${styles.articlesSection} ${className}` : styles.articlesSection}
     >
       <div className={styles.pipeRow}>
