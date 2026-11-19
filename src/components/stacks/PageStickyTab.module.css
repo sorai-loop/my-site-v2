@@ -1,0 +1,162 @@
+/* ==========================================================================
+   PageStickyTab (トラベラーズノートの紙面に貼られた目印付箋)
+   ========================================================================== */
+
+.stickyButton {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+  z-index: 8;
+  outline: none;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.2s ease;
+}
+
+/* 右下配置 (次ページへ進む付箋) */
+.stickyNext {
+  right: 1rem;
+  bottom: 0.75rem;
+  transform: rotate(-1.5deg);
+}
+
+.stickyNext:hover {
+  transform: rotate(-1deg) translateY(-3px) scale(1.03);
+}
+
+/* 左下配置 (前ページへ戻る付箋) */
+.stickyPrev {
+  left: 1rem;
+  bottom: 0.75rem;
+  transform: rotate(1.5deg);
+}
+
+.stickyPrev:hover {
+  transform: rotate(1deg) translateY(-3px) scale(1.03);
+}
+
+/* 上部の半透明マスキングテープ留め */
+.tapeAnchor {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0.8deg);
+  width: 44px;
+  height: 14px;
+  background-color: rgba(235, 226, 204, 0.72);
+  border-left: 1px dashed rgba(160, 145, 120, 0.35);
+  border-right: 1px dashed rgba(160, 145, 120, 0.35);
+  box-shadow: 0 1px 2px rgba(54, 51, 47, 0.08);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 付箋本体 */
+.stickyBody {
+  position: relative;
+  background: linear-gradient(135deg, #f7efe0 0%, #ede1c7 100%);
+  border: 1px solid var(--color-border-subtle, #e1d8ba);
+  border-radius: 2px 4px 4px 2px;
+  box-shadow:
+    -2px 3px 8px rgba(54, 51, 47, 0.12),
+    0 1px 3px rgba(54, 51, 47, 0.08);
+  padding: 0.45rem 1rem 0.45rem 0.85rem;
+  display: flex;
+  align-items: center;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+/* 付箋の端のアクセントライン (トラベラーズノートのクラフト付箋風) */
+.stickyNext .stickyBody::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3.5px;
+  background-color: var(--color-stamp-vermilion, #c54a38);
+}
+
+.stickyPrev .stickyBody::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3.5px;
+  background-color: var(--color-stamp-vermilion, #c54a38);
+}
+
+.stickyButton:hover .stickyBody {
+  background: linear-gradient(135deg, #fffaf0 0%, #f3e9d2 100%);
+  box-shadow:
+    -3px 5px 12px rgba(54, 51, 47, 0.18),
+    0 2px 4px rgba(54, 51, 47, 0.1);
+}
+
+.stickyButton:focus-visible .stickyBody {
+  outline: 2px solid var(--color-stamp-vermilion, #c54a38);
+  outline-offset: 2px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  line-height: 1.1;
+}
+
+.badgeText {
+  font-family: var(--font-code, monospace);
+  font-size: 0.58rem;
+  color: var(--color-text-sub, #7a6c5d);
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.mainText {
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-heading, #2b2d31);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.stickyButton:hover .mainText {
+  color: var(--color-stamp-vermilion, #c54a38);
+}
+
+@media (max-width: 768px) {
+  .stickyNext {
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .stickyPrev {
+    left: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .stickyBody {
+    padding: 0.35rem 0.75rem 0.35rem 0.65rem;
+  }
+
+  .mainText {
+    font-size: 0.78rem;
+  }
+
+  .tapeAnchor {
+    width: 36px;
+    height: 12px;
+  }
+}

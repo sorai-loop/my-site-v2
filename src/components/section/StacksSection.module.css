@@ -87,10 +87,40 @@
   white-space: nowrap;
 }
 
+.panelContainer {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .entriesList {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.paginationActions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.pageNavButton {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-family: var(--font-base, 'Klee One', cursive);
+  font-size: 0.82rem;
+  color: var(--color-text-sub, #7a6c5d);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.pageNavButton:hover {
+  color: var(--color-stamp-vermilion, #c54a38);
 }
 
 .nextTabButton {
@@ -108,6 +138,21 @@
 
 .nextTabButton:hover {
   color: var(--color-stamp-vermilion, #c54a38);
+}
+
+.pageTurnAnimation {
+  animation: pageTurnFade 0.25s ease-out;
+}
+
+@keyframes pageTurnFade {
+  from {
+    opacity: 0.25;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
