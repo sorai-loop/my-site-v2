@@ -40,6 +40,13 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 959px) {
+  .viewport {
+    height: clamp(220px, 34svh, 245px);
+    max-height: 245px;
+  }
+}
+
 .track {
   display: flex;
   flex-direction: column;

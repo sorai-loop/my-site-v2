@@ -35,6 +35,18 @@
   justify-content: flex-end;
 }
 
+@media (max-width: 959px) {
+  .shelfBooksArea.booksAreaEven {
+    padding-left: 48px;
+    padding-right: 14px;
+  }
+
+  .shelfBooksArea.booksAreaOdd {
+    padding-left: 14px;
+    padding-right: 48px;
+  }
+}
+
 /* ==========================================================================
    Wide PC Overrides (@media min-width: 1380px)
    ========================================================================== */

@@ -230,7 +230,38 @@
   overflow-x: hidden;
 }
 
-/* Wide Desktop Overrides (1380px以上: 左右2カラム展開) */
+@media (max-width: 959px) {
+  .searchSection {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
+  .embeddedBookshelf {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
+  .gaugesCol {
+    padding: 0.2rem 0.4rem;
+    gap: 0.5rem;
+  }
+
+  .tagsCol {
+    padding: 0.2rem 0.4rem;
+  }
+
+  .speedMeter {
+    width: 44px;
+    height: 44px;
+  }
+
+  .digitCell {
+    height: 1.6rem;
+    font-size: 1rem;
+  }
+}
+
+/* Wide Desktop Overrides */
 @media (min-width: 1380px) {
   .controlPanel {
     width: 400px;
@@ -277,12 +308,10 @@
     padding: 0.42rem 0.65rem;
   }
 
-  /* ワイドPCでは全タグを表示 */
   .tagButton:nth-child(n+7) {
     display: block;
   }
 
-  /* ワイドPCで右側に独立して並ぶ場合は、内部スロットを非表示 */
   .embeddedBookshelf {
     display: none;
   }
