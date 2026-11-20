@@ -30,16 +30,15 @@ export const ProfileHistory = ({
         .filter(Boolean)
         .join(' ')}
     >
-      <div className={styles.headerRow}>
-        <ProfileSubHeader
-          code={code}
-          title="活動記録"
-          className={styles.subHeaderFlex}
-        />
-        <span className={styles.historyCount} aria-hidden="true">
-          LOGS: {sortedItems.length} (SCROLL)
-        </span>
-      </div>
+      <ProfileSubHeader
+        code={code}
+        title="活動記録"
+        extra={
+          <span className={styles.historyCount} aria-hidden="true">
+            LOGS: {sortedItems.length}
+          </span>
+        }
+      />
 
       <div
         className={[

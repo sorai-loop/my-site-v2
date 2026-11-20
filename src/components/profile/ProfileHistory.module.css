@@ -12,17 +12,6 @@
   overflow: hidden;
 }
 
-.headerRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-}
-
-.subHeaderFlex {
-  flex: 1;
-}
-
 .historyCount {
   font-family: var(--font-code, monospace);
   font-size: 0.65rem;
@@ -218,6 +207,10 @@
 @media (max-width: 959px) {
   .recordBlock {
     gap: 0.35rem;
+  }
+
+  .historyCount {
+    font-size: 0.58rem;
   }
 
   .scrollContainer {
