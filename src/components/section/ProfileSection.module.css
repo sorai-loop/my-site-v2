@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ProfileSection — パスポート 兼 ギルド調査報告書 (Guild Dossier & Passport)
+   ProfileSection — ギルド調査報告書っぽく
    罫線なし (hasRuledLines={false}) の厚紙・羊皮紙見開きレイアウトコンテナ
    ========================================================================== */
 
@@ -63,10 +63,13 @@
   overflow: hidden;
 }
 
-/* シート基底スタイル (左頁・モバイルPAGE 02・PAGE 03・PC右列) */
+/* シート基底スタイル (左頁・モバイルPAGE 02・PAGE 03・タブレットシート・PC右列) */
 .identitySheet,
 .mobilePage2Sheet,
 .mobilePage3Sheet,
+.tabletProfileSheet,
+.tabletCol,
+.tabletHistorySheet,
 .desktopDossierSheet {
   display: flex;
   flex-direction: column;
@@ -74,6 +77,25 @@
   width: 100%;
   max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+}
+
+/* 中身本来の自然な高さを計測・保持するためのラッパー */
+.page1Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.page2Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  height: auto;
   box-sizing: border-box;
 }
 
@@ -89,7 +111,7 @@
 }
 
 /* ==========================================================================
-   モバイル用 報告書フッターバー ＆ 査証頁めくりボタン (< 960px)
+   モバイル用 めくりボタン (< 960px)
    羊皮紙調書・パスポートの意匠に調和するインデックスタブ風デザイン
    ========================================================================== */
 .dossierFooter {
@@ -220,10 +242,22 @@
 /* モバイルでの表示/非表示切り替えクラス */
 .mobileVisible {
   display: flex !important;
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .mobileHidden {
-  display: none !important;
+  display: flex !important;
+  position: absolute !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: auto !important;
+  z-index: -1;
 }
 
 /* PC専用 下部全幅エリア (左右見開きの下に横長に配置: 音楽・草・MRZ) 初期状態 */
@@ -248,11 +282,11 @@
 
   .dossierFrame {
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    height: 100svh;
+    height: auto;
+    max-height: 100vh;
+    max-height: 100dvh;
     max-height: 100svh;
-    min-height: 420px;
+    min-height: 0;
     padding: 0.5rem 0.65rem max(0.45rem, env(safe-area-inset-bottom, 0px));
     gap: 0.45rem;
     box-sizing: border-box;
@@ -267,12 +301,12 @@
     flex-shrink: 0;
   }
 
-  /* ページ切替ステージ: 枠の残り高さを一杯に使い、めくった際のガタつきを防止 */
+  /* ページ切替ステージ: 1・2ページ目の大きい方に高さを統一し、活動履歴のオーバーをロック */
   .spreadGrid {
     flex: 1;
     min-height: 0;
-    height: auto;
-    max-height: none;
+    height: var(--synced-tablet-page-height, var(--synced-page-height, auto));
+    max-height: var(--synced-tablet-page-height, var(--synced-page-height, none));
     position: relative;
     overflow: hidden;
   }
@@ -281,7 +315,7 @@
     height: 100%;
     min-height: 0;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 0;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
@@ -292,7 +326,7 @@
     height: 100%;
     min-height: 0;
     justify-content: flex-start;
-    gap: 0.4rem;
+    gap: 0;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
@@ -301,6 +335,44 @@
 
   .mobilePage3Sheet {
     height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    overflow: hidden;
+  }
+
+  .tabletProfileSheet {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 0.25rem;
+  }
+
+  .tabletCol {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    box-sizing: border-box;
+  }
+
+  .tabletCol:first-child {
+    padding-right: 0.85rem;
+    border-right: 1px dashed var(--color-border-subtle, #e1d8ba);
+  }
+
+  .tabletHistorySheet {
+    height: 100%;
+    max-height: 100%;
     min-height: 0;
     justify-content: flex-start;
     gap: 0.25rem;
@@ -362,11 +434,13 @@
     overflow: visible;
   }
 
-  /* PCではモバイル専用UI・シートを非表示 */
+  /* PCではモバイル・タブレット専用UI・シートを非表示 */
   .dossierFooter,
   .mobilePageFooter,
   .mobilePage2Sheet,
-  .mobilePage3Sheet {
+  .mobilePage3Sheet,
+  .tabletProfileSheet,
+  .tabletHistorySheet {
     display: none !important;
   }
 
@@ -409,6 +483,7 @@
     position: relative;
     display: block;
     width: 100%;
+    height: auto !important;
     overflow: visible;
   }
 
