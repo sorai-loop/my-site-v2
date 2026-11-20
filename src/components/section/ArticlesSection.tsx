@@ -77,6 +77,7 @@ export const ArticlesSection = ({
       pageCode="PAGE. 02 // INDEX-02 [TECHNICAL SCROLLS]"
       footerCode="END OF PAGE // ARTICLES"
       isPageFit
+      isViewportHeight
       className={className ? `${styles.articlesSection} ${className}` : styles.articlesSection}
     >
       <div className={styles.pipeRow}>
