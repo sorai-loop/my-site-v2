@@ -35,9 +35,13 @@
   overflow-x: hidden;
   padding: 0.25rem 0.25rem 0.75rem;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border-subtle, #e1d8ba) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   box-sizing: border-box;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 959px) {
