@@ -3,6 +3,10 @@
    罫線なし (hasRuledLines={false}) の厚紙・羊皮紙見開きレイアウトコンテナ
    ========================================================================== */
 
+.profileSectionWrapper {
+  width: 100%;
+}
+
 .dossierFrame {
   display: flex;
   flex-direction: column;
@@ -228,46 +232,72 @@
 }
 
 /* ==========================================================================
-   モバイル画面最適化 (< 960px: 100dvh厳密収容 & ページ切替)
+   モバイル画面最適化 (< 960px: ページ切替 & ガタつき防止の固定枠)
    ========================================================================== */
 @media (max-width: 959px) {
+  .profileSectionWrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding-top: max(1.2rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0.65rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.65rem, env(safe-area-inset-right, 0px));
+    overflow: visible !important;
+  }
+
   .dossierFrame {
-    flex: 1;
-    height: 100%;
-    max-height: 100%;
-    padding: 0.35rem 0.5rem 0.25rem;
-    gap: 0.25rem;
-    justify-content: space-between;
-    min-height: 0;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 0.5rem 0.65rem 0.45rem;
+    gap: 0.45rem;
+    box-sizing: border-box;
+    overflow: visible;
   }
 
   .dossierTopBar {
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.25rem;
     font-size: 0.62rem;
     border-bottom: 1.5px solid var(--color-heading, #2b2d31);
+    flex-shrink: 0;
   }
 
+  /* ページ切替ステージ: 全ページ共通の固定高さを確保し、めくった際のガタつきを防止 */
   .spreadGrid {
-    flex: 1;
-    min-height: 0;
+    height: 490px;
+    min-height: 490px;
+    max-height: 490px;
+    position: relative;
     overflow: hidden;
   }
 
   .identitySheet {
-    flex: 1;
+    height: 100%;
     min-height: 0;
     justify-content: flex-start;
     gap: 0.5rem;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
   }
 
-  .mobilePage2Sheet,
+  .mobilePage2Sheet {
+    height: 100%;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+  }
+
   .mobilePage3Sheet {
-    flex: 1;
+    height: 100%;
     min-height: 0;
     justify-content: flex-start;
     gap: 0.25rem;
-    overflow: hidden; /* 経歴タイムライン以外での枠内スクロールはなし */
+    overflow: hidden;
   }
 
   .desktopDossierSheet {
@@ -280,10 +310,11 @@
   }
 
   .dossierFooter {
-    padding-top: 0.25rem;
+    padding-top: 0.35rem;
     gap: 0.5rem;
     border-top: 1.5px solid var(--color-heading, #2b2d31);
     align-items: center;
+    flex-shrink: 0;
   }
 
   .dossierPageIndicator {
@@ -309,8 +340,8 @@
 
 @media (max-width: 480px) {
   .dossierFrame {
-    padding: 0.3rem 0.45rem 0.25rem;
-    gap: 0.25rem;
+    padding: 0.45rem 0.55rem 0.4rem;
+    gap: 0.4rem;
   }
 }
 

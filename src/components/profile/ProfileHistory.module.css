@@ -221,7 +221,7 @@
   }
 
   .scrollContainer {
-    max-height: calc(100dvh - 170px);
+    max-height: calc(100svh - 170px);
     min-height: 220px;
     padding: 0.35rem 0.45rem 0.35rem 0.25rem;
   }

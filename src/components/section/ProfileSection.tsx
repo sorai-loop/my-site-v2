@@ -8,7 +8,6 @@ import {
   ProfileFavoriteTracks,
   ProfileHistory,
   ProfileIdentityCard,
-  ProfileMrzZone,
   ProfilePhilosophy,
   ProfileTopics,
 } from '../profile';
@@ -97,9 +96,11 @@ export const ProfileSection = ({
       hasRuledLines={false}
       hasLeftMarginLine={false}
       minLines={0}
-      isViewportHeight={true}
+      isViewportHeight={false}
       footerCode="END OF DOSSIER // PROFILE & LINKS"
-      className={className}
+      className={[styles.profileSectionWrapper, className]
+        .filter(Boolean)
+        .join(' ')}
     >
       <div
         ref={dossierFrameRef}
@@ -139,7 +140,6 @@ export const ProfileSection = ({
               guildClass={profile.guildClass}
               birthDate={profile.birthDate}
               affiliation={profile.affiliation}
-              status={profile.status}
               avatarUrl={profile.avatarUrl}
               stamps={profile.stamps}
             />
@@ -148,11 +148,6 @@ export const ProfileSection = ({
               description={profile.philosophy.description}
             />
             <ProfileAccountLinks links={accountLinks} />
-
-            {/* モバイル Page 1 のみ、末尾にMRZ */}
-            <div className={styles.mobilePageFooter}>
-              <ProfileMrzZone handleName={profile.handleName} />
-            </div>
           </div>
 
           {/* モバイル専用: PAGE 02 (SEC.04 作業環境 ＆ SEC.05 小話 ＆ SEC.06 音楽) */}
@@ -172,9 +167,6 @@ export const ProfileSection = ({
             <ProfileEnvironment items={profile.environment} secNo="04" />
             <ProfileTopics topics={profile.topics} secNo="05" />
             <ProfileFavoriteTracks tracks={profile.favoriteTracks} secNo="06" />
-            <div className={styles.mobilePageFooter}>
-              <ProfileMrzZone handleName={profile.handleName} />
-            </div>
           </div>
 
           {/* モバイル専用: PAGE 03 (SEC.07 活動履歴 - 大容量タイムライン) */}
@@ -196,9 +188,6 @@ export const ProfileSection = ({
               secNo="07"
               isFillHeight={true}
             />
-            <div className={styles.mobilePageFooter}>
-              <ProfileMrzZone handleName={profile.handleName} />
-            </div>
           </div>
 
           {/* PC専用: 右列 (SEC.04 作業環境 ＆ SEC.05 小話 ＆ SEC.06 活動履歴) */}
@@ -258,8 +247,6 @@ export const ProfileSection = ({
           <ProfileFavoriteTracks tracks={profile.favoriteTracks} secNo="07" />
           {/* GitHubの草 (Activity Telemetry) */}
           <GuildActivityCalendar username={profile.githubUsername} />
-          {/* パスポート風 MRZ（機械読取コード帯） */}
-          <ProfileMrzZone handleName={profile.handleName} />
         </div>
       </div>
     </NotebookSection>

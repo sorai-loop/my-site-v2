@@ -10,7 +10,6 @@ export type ProfileIdentityCardProps = {
   guildClass: string;
   birthDate: string;
   affiliation: string;
-  status: string;
   avatarUrl?: string | null;
   stamps: ProfileStampItem[];
   className?: string;
@@ -22,7 +21,6 @@ export const ProfileIdentityCard = ({
   guildClass,
   birthDate,
   affiliation,
-  status,
   avatarUrl,
   stamps,
   className,
@@ -106,12 +104,6 @@ export const ProfileIdentityCard = ({
             AFFILIATION // 所属
           </dt>
           <dd className={styles.particularValue}>{affiliation}</dd>
-        </div>
-        <div className={styles.particularItem}>
-          <dt className={styles.particularLabel}>
-            CURRENT STATUS // 状態
-          </dt>
-          <dd className={styles.particularValue}>{status}</dd>
         </div>
       </dl>
     </div>
