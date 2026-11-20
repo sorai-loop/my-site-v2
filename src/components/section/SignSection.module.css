@@ -6,14 +6,15 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 580px;
+  height: 100svh;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
-  padding-bottom: clamp(4.5rem, 14vh, 9rem);
+  padding-bottom: max(clamp(4.5rem, 14vh, 9rem), calc(env(safe-area-inset-bottom, 0px) + 2.5rem));
 }
 
 .signWrapper {

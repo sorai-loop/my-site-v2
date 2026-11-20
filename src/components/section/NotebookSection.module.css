@@ -199,12 +199,12 @@
    手記1ページ 統一ビューポートフィットモード
    ========================================================================== */
 .section.pageFit {
-  --notebook-pad-top: clamp(0.75rem, 2vh, 1.25rem);
-  --notebook-pad-bottom: clamp(1rem, 2.5vh, 1.75rem);
-  /* モバイル安全下限 22px, 上限 28px */
+  --notebook-pad-top: max(clamp(0.75rem, 2vh, 1.25rem), env(safe-area-inset-top, 0px));
+  --notebook-pad-bottom: max(clamp(1rem, 2.5vh, 1.75rem), env(safe-area-inset-bottom, 0px));
+  /* モバイル安全下限 22px, 上限 28px (安定した 100svh を基準に計算し、スクロール時の伸縮ブレを防止) */
   --line-height: clamp(
     22px,
-    calc((100dvh - var(--notebook-pad-top)) / (var(--min-notebook-lines, 28) + 3)),
+    calc((100svh - var(--notebook-pad-top) - var(--notebook-pad-bottom)) / (var(--min-notebook-lines, 28) + 3)),
     28px
   );
   --baseline-shift: calc(var(--line-height) * 0.12);
@@ -387,9 +387,13 @@
    ========================================================================== */
 @media (max-width: 959px) {
   .section.viewportHeight {
-    height: 100dvh;
-    max-height: 100dvh;
-    padding: 0.4rem 0.65rem 0.4rem;
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
+    padding-top: max(0.4rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.4rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0.65rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.65rem, env(safe-area-inset-right, 0px));
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -425,11 +429,15 @@
     display: flex;
     flex-direction: column;
     margin: 0.2rem 0;
+    overflow: hidden;
   }
 
   .viewportHeight .notebookBody {
     flex: 1;
     min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    overflow: visible;
     padding: 0;
     display: flex;
     flex-direction: column;

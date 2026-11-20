@@ -10,9 +10,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  min-height: 560px;
+  height: 100svh;
+  min-height: 520px;
   width: 100%;
   box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
 }
 
 /* 中央タイトルエリア */
@@ -59,8 +62,8 @@
    ========================================================================== */
 .socialNav {
   position: absolute;
-  right: clamp(1rem, 3.5vw, 2.75rem);
-  bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+  right: max(clamp(1rem, 3.5vw, 2.75rem), calc(env(safe-area-inset-right, 0px) + 0.75rem));
+  bottom: max(clamp(1.25rem, 3.5vh, 2.5rem), calc(env(safe-area-inset-bottom, 0px) + 1rem));
   z-index: 10;
   user-select: none;
 }

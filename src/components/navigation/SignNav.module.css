@@ -59,8 +59,8 @@
 /* モバイル向け: Signセクション通過後に右下に常駐する復帰ボタン */
 .mobileBackWrapper {
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
+  right: max(1.25rem, calc(env(safe-area-inset-right, 0px) + 0.75rem));
+  bottom: max(1.25rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
   z-index: 60;
   pointer-events: none;
   opacity: 0;
