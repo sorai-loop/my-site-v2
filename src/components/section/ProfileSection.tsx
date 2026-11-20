@@ -92,7 +92,7 @@ export const ProfileSection = ({
       title="Profile"
       subtitle="Guild Dossier & Adventurer Passport"
       pageCode={`PAGE. 04 // ${profile.dossierNo}`}
-      categoryBadge="登録証・個人調書"
+      categoryBadge="個人調書"
       hasRuledLines={false}
       hasLeftMarginLine={false}
       minLines={0}
@@ -215,10 +215,10 @@ export const ProfileSection = ({
             }
             aria-label={
               mobilePage === 1
-                ? '次頁（PAGE 02 制作・音楽）へめくる'
+                ? '次頁へめくる'
                 : mobilePage === 2
-                  ? '次頁（PAGE 03 活動履歴）へめくる'
-                  : '冒険者身分証（PAGE 01）へ戻る'
+                  ? '次頁（PAGE 03へめくる'
+                  : 'PAGE 01へ戻る'
             }
           >
             <span className={styles.turnButtonBadge}>
@@ -230,10 +230,10 @@ export const ProfileSection = ({
             </span>
             <span className={styles.turnButtonLabel}>
               {mobilePage === 1
-                ? '制作・音楽へ'
+                ? 'へ'
                 : mobilePage === 2
-                  ? '活動履歴へ'
-                  : '冒険者身分証へ'}
+                  ? 'へ'
+                  : 'へ'}
             </span>
             <span className={styles.turnButtonArrow} aria-hidden="true">
               {mobilePage === 3 ? '↺' : '→'}
