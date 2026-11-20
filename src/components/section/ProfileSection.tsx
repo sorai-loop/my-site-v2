@@ -213,30 +213,11 @@ export const ProfileSection = ({
             onClick={() =>
               goToPage(mobilePage === 1 ? 2 : mobilePage === 2 ? 3 : 1)
             }
-            aria-label={
-              mobilePage === 1
-                ? '次頁へめくる'
-                : mobilePage === 2
-                  ? '次頁（PAGE 03へめくる'
-                  : 'PAGE 01へ戻る'
-            }
+            aria-label="次のページへめくる"
           >
-            <span className={styles.turnButtonBadge}>
-              {mobilePage === 1
-                ? 'PAGE 02'
-                : mobilePage === 2
-                  ? 'PAGE 03'
-                  : 'PAGE 01'}
-            </span>
-            <span className={styles.turnButtonLabel}>
-              {mobilePage === 1
-                ? 'へ'
-                : mobilePage === 2
-                  ? 'へ'
-                  : 'へ'}
-            </span>
+            <span className={styles.turnButtonLabel}>次のページへ</span>
             <span className={styles.turnButtonArrow} aria-hidden="true">
-              {mobilePage === 3 ? '↺' : '→'}
+              →
             </span>
           </button>
         </div>
