@@ -1,0 +1,20 @@
+<svg viewBox="16 10 70 24" xmlns="http://www.w3.org/2000/svg">
+    <path fill="none" stroke="black" stroke-width="0.3" stroke-linecap="round"
+        d="M20 30
+        q-10 -5 10 -10
+        m-1 1
+        a10 10 0 0 1 8 -5
+        m-1 -1
+        c10 1 15 -5 30 -3
+        m-2 -1
+        q1 2 15 5
+        t -5 6
+        m0 -0.5
+        a 10 5 0 0 1 1 4
+        m-1 0
+        c10 4 -15 5 -10 7
+        m-0.2 -0.5
+        a5 5 0 0 1 -8 -1
+        m-0.3 0.5
+        c15 -6 -45 4 -35 -1" />
+</svg>
