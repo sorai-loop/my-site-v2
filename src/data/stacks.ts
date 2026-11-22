@@ -65,6 +65,17 @@ export const STACKS_DATA: StackItem[] = [
       'Unityでのゲームロジック開発やWPFでのデスクトップアプリを作成できます。イベント駆動プログラミングの勉強中です。',
   },
   {
+    id: 'lang-svg',
+    category: 'languages',
+    name: 'SVG',
+    domainLabel: 'Graphic Design',
+    icon: 'svg-logo.svg',
+    stampText: 'Main',
+    stampType: 0,
+    description:
+      'WorksのStampコンポーネント、Articleのパイプたち、Stacksの技術ロゴ。これらは私がVSCで手書き、もしくはオリジナルのテクスチャを付与するコンポーネントを通して出力されたものです。',
+  },
+  {
     id: 'lang-html',
     category: 'languages',
     name: 'HTML5',
