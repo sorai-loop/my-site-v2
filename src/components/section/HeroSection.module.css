@@ -28,14 +28,41 @@
   transform: translateY(-2vh);
 }
 
-.title {
+.titleWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: clamp(3.75rem, 10vw, 7.5rem);
+}
+
+.title {
+  font-size: inherit;
   font-family: var(--font-display, 'Shippori Mincho', serif);
   color: var(--color-heading, #2b2d31);
   letter-spacing: 0.08em;
   line-height: 1;
   margin: 0;
   user-select: none;
+  position: relative;
+  z-index: 1;
+}
+
+.lenticular {
+  position: absolute;
+  top: -1.6em;
+  left: -4.6em;
+  width: 5.1em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.lenticular svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .viewDetailsLink {

@@ -1,5 +1,6 @@
 import { SOCIAL_LINKS } from '../../data/social';
 import { DownArrowIcon } from '../ui/DownArrowIcon';
+import { LenticularGraphic } from '../ui/LenticularGraphic';
 import { NimbusGraphic } from '../ui/NimbusGraphic';
 import { StackIcon } from '../ui/StackIcon';
 import { StratusGraphic } from '../ui/StratusGraphic';
@@ -9,7 +10,12 @@ export const HeroSection = () => {
   return (
     <section className={styles.hero} id="heroSection">
       <div className={styles.content}>
-        <h1 className={styles.title}>Sorai</h1>
+        <div className={styles.titleWrapper}>
+          <div className={styles.lenticular}>
+            <LenticularGraphic aria-hidden="true" />
+          </div>
+          <h1 className={styles.title}>Sorai</h1>
+        </div>
         <a href="#signSection" className={styles.viewDetailsLink}>
           <span>VIEW_DETAILS</span>
           <DownArrowIcon aria-hidden="true" style={{ width: '1.1rem', height: 'auto' }} />
