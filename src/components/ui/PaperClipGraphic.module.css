@@ -1,0 +1,26 @@
+.paperClip {
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 26px;
+  border: 2px solid var(--color-heading, #2b2d31);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 2px rgba(54, 51, 47, 0.25);
+  pointer-events: none;
+}
+
+.innerLoop {
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  right: 1px;
+  bottom: -4px;
+  border: 1.5px solid var(--color-text-sub, #7a6c5d);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-sizing: border-box;
+}
