@@ -2,6 +2,7 @@ import { SOCIAL_LINKS } from '../../data/social';
 import { DownArrowIcon } from '../ui/DownArrowIcon';
 import { LenticularGraphic } from '../ui/LenticularGraphic';
 import { NimbusGraphic } from '../ui/NimbusGraphic';
+import { PostmarkWavyGraphic } from '../ui/PostmarkWavyGraphic';
 import { StackIcon } from '../ui/StackIcon';
 import { StratusGraphic } from '../ui/StratusGraphic';
 import styles from './HeroSection.module.css';
@@ -35,6 +36,9 @@ export const HeroSection = () => {
                 aria-label={link.label}
                 title={link.label}
               >
+                <div className={styles.postmarkWaves} aria-hidden="true">
+                  <PostmarkWavyGraphic />
+                </div>
                 <div className={styles.socialIcon}>
                   <StackIcon
                     icon={link.iconName}
