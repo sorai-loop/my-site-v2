@@ -132,6 +132,16 @@
 
 /* 本文紙面*/
 .notebookBody {
+  --margin-line-gradient: linear-gradient(
+    to right,
+    transparent calc(var(--margin-col-width) - 1px),
+    rgba(197, 74, 56, 0.32) calc(var(--margin-col-width) - 1px),
+    rgba(197, 74, 56, 0.32) var(--margin-col-width),
+    rgba(197, 74, 56, 0.12) var(--margin-col-width),
+    rgba(197, 74, 56, 0.12) calc(var(--margin-col-width) + 2px),
+    transparent calc(var(--margin-col-width) + 2px)
+  );
+
   position: relative;
   width: 100%;
   background-image: url('../../assets/svg/RuledLine.svg');
@@ -151,22 +161,32 @@
   background-image: none;
 }
 
+/* 左マージン線 (縦ガイド線): 横罫線と完全に同じ同期・全領域でリピート描画し一番下まで流す */
+.hasMarginLine {
+  background-image:
+    var(--margin-line-gradient),
+    url('../../assets/svg/RuledLine.svg');
+  background-size:
+    100% var(--line-height),
+    100% var(--line-height);
+  background-repeat:
+    repeat-y,
+    repeat-y;
+  background-position:
+    0 0,
+    0 0;
+}
+
+.hasMarginLine.noRuledLines {
+  background-image: var(--margin-line-gradient);
+  background-size: 100% var(--line-height);
+  background-repeat: repeat-y;
+  background-position: 0 0;
+}
+
 /* スマホで付箋がある場合のみ、紙面右縁に沿う付箋との干渉を防ぐ右パディングを確保 */
 .hasSideTabs {
   padding-right: calc(var(--side-tab-width-mobile) + 0.65rem);
-}
-
-/* 左マージン線 (縦ガイド線) */
-.hasMarginLine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--margin-col-width);
-  width: 1px;
-  background-color: rgba(197, 74, 56, 0.32);
-  box-shadow: 2px 0 0 rgba(197, 74, 56, 0.12);
-  pointer-events: none;
 }
 
 /* ==========================================================================

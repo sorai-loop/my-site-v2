@@ -143,14 +143,13 @@
   outline-offset: 4px;
 }
 
-/* 消印の波線 (波状消印: Wavy line cancellation) */
 .postmarkWaves {
   position: absolute;
-  left: calc(100% + 7px); /* スタンプ本体の右側で被らない位置 */
+  left: calc(100% + 7px);
   top: 50%;
-  transform: translateY(-50%); /* 傾かせずに水平に配置 */
-  height: clamp(46px, 5.5vw, 56px); /* 以前(38px)の約1.5倍の縦サイズ */
-  width: clamp(50px, 6vw, 60px); /* viewBox 60:56 に合わせた横幅 */
+  transform: translateY(-50%);
+  height: clamp(46px, 5.5vw, 56px);
+  width: clamp(50px, 6vw, 60px);
   aspect-ratio: 60 / 56;
   pointer-events: none;
   opacity: 0.88;
