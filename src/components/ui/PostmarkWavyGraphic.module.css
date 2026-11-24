@@ -1,0 +1,14 @@
+.postmarkWave {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  stroke: currentColor;
+  fill: none;
+}
+
+.waveLine {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 0.4s ease, opacity 0.25s ease;
+}
