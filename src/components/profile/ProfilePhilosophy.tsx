@@ -19,7 +19,7 @@ export const ProfilePhilosophy = ({
       }
     >
       <ProfileSubHeader
-        code="SEC. 02 // PYRPOSE & PHILOSOPHY"
+        code="SEC. 02 // PURPOSE & PHILOSOPHY"
         title="目標・思想"
       />
       <div className={styles.philosophyBox}>

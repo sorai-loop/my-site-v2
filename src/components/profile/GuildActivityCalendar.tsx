@@ -24,7 +24,7 @@ const WEEKS_COUNT = 52;
 const DAYS_PER_WEEK = 7;
 
 /**
- * オフライン時・初期描画用の決定論的フォールバックデータ生成
+ * オフライン時フォールバックデータ生成
  */
 function buildFallbackContributions(seedStr: string): ContributionDay[] {
   let hash = 2166136261;
