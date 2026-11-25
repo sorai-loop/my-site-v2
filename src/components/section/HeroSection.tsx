@@ -37,7 +37,7 @@ export const HeroSection = () => {
                 title={link.label}
               >
                 <div className={styles.postmarkWaves} aria-hidden="true">
-                  <PostmarkWavyGraphic />
+                  <PostmarkWavyGraphic aria-hidden="true" />
                 </div>
                 <div className={styles.socialIcon}>
                   <StackIcon
